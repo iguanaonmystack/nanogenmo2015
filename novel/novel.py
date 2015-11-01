@@ -1,4 +1,5 @@
 import csv
+import time
 import random
 import bisect
 import itertools
@@ -42,24 +43,42 @@ class Tile:
         return cls(terrain)
     
     def __str__(self):
-        return "%s %s" % (self.terrain, self.people)
+        return "%s %s" % (self.terrain, len(self.people))
 
 class Person:
-    def __init__(self, name, gender, posx=0, posy=0):
+    def __init__(self, world, name, gender, posx=0, posy=0):
         self.name = name
         self.gender = gender
+        self.world = world
         self.posx = posx
         self.posy = posy
+        self.flighty = 0.5
 
     @classmethod
-    def from_random(cls, namegen):
-        return cls(*namegen())
+    def from_random(cls, world, namegen):
+        return cls(world, *namegen())
 
     def __str__(self):
         return "%s" % (self.name)
 
     def __repr__(self):
-        return "Person(%r, %r, %r, %r)" % (self.name, self.gender, self.posx, self.posx)
+        return "Person(%r, %r, %r, %r)" % ( 
+            self.world, self.name, self.gender, self.posx, self.posx)
+
+    def move(self):
+        # chance of staying put
+        if random.random() > self.flighty:
+            return
+        dx = random.choice((1, -1))
+        dy = random.choice((1, -1))
+        self.world[self.posx][self.posy].people.remove(self)
+        self.posx += dx
+        self.posy += dy
+        self.world[self.posx][self.posy].people.add(self)
+        print("%s moved %d East and %d North" % (self, dx, dy))
+
+    def action(self):
+        pass
 
 class NameGenerator:
     def __init__(self, csvfile):
@@ -83,15 +102,30 @@ def novel(x, y):
     
     people = []
     for i in range(12):
-        person = Person.from_random(namegen)
+        person = Person.from_random(world, namegen)
         person.posx = x//2
         person.posy = y//2
         world[person.posx][person.posy].people.add(person)
         people.append(person)
 
-    print(world)
+    print("Dramatis Personae:")
     for person in people:
         print(person)
+    
+    print()
+    print(world)
+
+    # tick:
+    for i in range(10):
+        time.sleep(1)
+        # move people:
+        for person in people:
+            person.move()
+        # do actions:
+        for person in people:
+            person.action()
+        print()
+        print(world)
 
 if __name__ == '__main__':
     import sys
