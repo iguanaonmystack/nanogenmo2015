@@ -44,4 +44,5 @@ def novel(x, y):
 
 if __name__ == '__main__':
     import sys
+    random.seed(0)
     novel(int(sys.argv[1]), int(sys.argv[2]))
