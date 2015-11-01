@@ -3,14 +3,13 @@ import random
 import bisect
 import itertools
 
-class World:
+class World(list):
     def __init__(self, x, y):
-        self.coord = []
         self.sizex = x
         self.sizey = y
         for i in range(x):
             row = []
-            self.coord.append(row)
+            self.append(row)
             for j in range(y):
                 row.append(Tile.from_random())
     
@@ -18,7 +17,7 @@ class World:
         s = []
         for x in reversed(range(self.sizex)):
             for y in range(self.sizey):
-                s.append("%s(%d,%d) | " % (self.coord[x][y], x, y))
+                s.append("%s | " % (self[x][y]))
             s.append('\n')
         return ''.join(s)
 
@@ -32,6 +31,10 @@ class Tile:
 
     def __init__(self, terrain):
         self.terrain = terrain
+        class PeopleSet(set):
+            def __str__(self):
+                return ', '.join(str(p) for p in self)
+        self.people = PeopleSet()
 
     @classmethod
     def from_random(cls):
@@ -39,19 +42,24 @@ class Tile:
         return cls(terrain)
     
     def __str__(self):
-        return self.terrain
+        return "%s %s" % (self.terrain, self.people)
 
 class Person:
-    def __init__(self, name, gender):
+    def __init__(self, name, gender, posx=0, posy=0):
         self.name = name
         self.gender = gender
+        self.posx = posx
+        self.posy = posy
 
     @classmethod
     def from_random(cls, namegen):
         return cls(*namegen())
 
     def __str__(self):
-        return "%s (%s)" % (self.name, self.gender)
+        return "%s" % (self.name)
+
+    def __repr__(self):
+        return "Person(%r, %r, %r, %r)" % (self.name, self.gender, self.posx, self.posx)
 
 class NameGenerator:
     def __init__(self, csvfile):
@@ -75,7 +83,11 @@ def novel(x, y):
     
     people = []
     for i in range(12):
-        people.append(Person.from_random(namegen))
+        person = Person.from_random(namegen)
+        person.posx = x//2
+        person.posy = y//2
+        world[person.posx][person.posy].people.add(person)
+        people.append(person)
 
     print(world)
     for person in people:
