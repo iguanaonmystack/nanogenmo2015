@@ -12,7 +12,14 @@ class World(list):
             row = []
             self.append(row)
             for j in range(y):
-                row.append(Tile.from_random())
+                tile = Tile.from_random()
+                row.append(tile)
+                if j:
+                    tile.west = self[i][j - 1]
+                    self[i][j - 1].east = tile
+                if i:
+                    tile.south = self[i - 1][j]
+                    self[i - 1][j].north = tile
     
     def __str__(self):
         s = []
@@ -32,6 +39,10 @@ class Tile:
 
     def __init__(self, terrain):
         self.terrain = terrain
+        self.west = None
+        self.east = None
+        self.north = None
+        self.south = None
         class PeopleSet(set):
             def __str__(self):
                 return ', '.join(str(p) for p in self)
@@ -45,13 +56,18 @@ class Tile:
     def __str__(self):
         return "%s %s" % (self.terrain, len(self.people))
 
+    @property
+    def neighbours(self):
+        return [t for t in (self.north, self.east, self.south, self.west) if t]
+
 class Person:
-    def __init__(self, world, name, gender, posx=0, posy=0):
+    def __init__(self, world, name, gender, tile=None):
         self.name = name
         self.gender = gender
         self.world = world
-        self.posx = posx
-        self.posy = posy
+        self.tile = tile
+
+        # behaviour attributes
         self.flighty = 0.5
 
     @classmethod
@@ -69,13 +85,9 @@ class Person:
         # chance of staying put
         if random.random() > self.flighty:
             return
-        dx = random.choice((1, -1))
-        dy = random.choice((1, -1))
-        self.world[self.posx][self.posy].people.remove(self)
-        self.posx += dx
-        self.posy += dy
-        self.world[self.posx][self.posy].people.add(self)
-        print("%s moved %d East and %d North" % (self, dx, dy))
+        self.tile.people.remove(self)
+        self.tile = random.choice(self.tile.neighbours)
+        self.tile.people.add(self)
 
     def action(self):
         pass
@@ -103,9 +115,8 @@ def novel(x, y):
     people = []
     for i in range(12):
         person = Person.from_random(world, namegen)
-        person.posx = x//2
-        person.posy = y//2
-        world[person.posx][person.posy].people.add(person)
+        person.tile = world[x//2][y//2]
+        person.tile.people.add(person)
         people.append(person)
 
     print("Dramatis Personae:")
