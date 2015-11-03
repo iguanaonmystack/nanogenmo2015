@@ -1,4 +1,5 @@
 import random
+from copy import copy
 
 from world import World, Tile, opposite_direction
 
@@ -23,6 +24,7 @@ class Person:
         self.worldview = None # Tile
         
         # current status/needs
+        self.dead = False
         self.thirst = 0
 
 
@@ -34,8 +36,8 @@ class Person:
         return "%s" % (self.name)
 
     def __repr__(self):
-        return "Person(%r, %r, %r, %r)" % ( 
-            self.world, self.name, self.gender, self.posx, self.posx)
+        return "Person(%r, %r, %r)" % ( 
+            self.world, self.name, self.gender)
     
     def log(self, fmt, *args):
         self._log.append(fmt % args)
@@ -49,10 +51,14 @@ class Person:
         # update stats
         self.thirst += 1
 
+        # update worldview
+        self.observe()
+
     def observe(self):
         # update worldview
         self.previous_worldview = self.worldview
         tile_as_observed = Tile(self.tile.terrain)
+        tile_as_observed.people = copy(self.tile.people)
         self.log('I\'m in a %s', self.tile.terrain)
         if self.previous_worldview is not None and self.last_direction is not None:
             setattr(self.previous_worldview, self.last_direction, tile_as_observed)
@@ -60,9 +66,6 @@ class Person:
         self.worldview = tile_as_observed
         
     def action(self):
-        # update worldview
-        self.observe()
-
         # What will character decide to do?
         action = None
 
@@ -71,8 +74,8 @@ class Person:
         if self.thirst > 6:
             self.log('Thirsty')
             need = 'water'
-        elif len(self.tile.people) > 1:
-            self.log('%s are here', ', '.join(p.name for p in self.tile.people))
+        elif len(self.worldview.people) > 1:
+            self.log('%s are here', ', '.join(p.name for p in self.worldview.people if p is not self))
             # run away if shy
             if random.random() < self.shy:
                 self.log('Must escape')
@@ -83,6 +86,8 @@ class Person:
         if need is None:
             # nothing in particular to do.
             self.log('Bored')
+            action = 'explore'
+        elif need == 'escape':
             action = 'explore'
         elif need == 'water':
             self.log('Need water')
@@ -102,7 +107,7 @@ class Person:
         if action is None:
             self.log('Nothing to do')
             pass
-        elif action in ('explore', 'escape'):
+        elif action in ('explore'):
             self.tile.people.remove(self)
             neighbours = self.tile.neighbours
             self.last_direction = random.choice(list(self.tile.neighbours))

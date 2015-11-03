@@ -42,19 +42,19 @@ def novel(x, y):
     print()
 
     # tick:
-    for i in range(10):
-        time.sleep(1)
-        # move people:
-        for person in people:
-            person.tick()
-        # do actions:
-        for person in people:
-            person.action()
-        
+    for i in range(100):
         print('Map for time period', i + 1)
         print('--------------------' + '-'*len(str(i + 1)))
         print()
         print(world)
+
+        # update everyone's stats and have them look around:
+        for person in people:
+            person.tick()
+        
+        # do actions:
+        for person in people:
+            person.action()
 
         for person in people:
             print(person.name)
@@ -63,6 +63,27 @@ def novel(x, y):
             print(person.diary())
             print()
 
+        # grim reaper:
+        for person in people:
+            if person.dead:
+                # died during their turn
+                print("*", person.name, 'has died.')
+                print()
+            elif person.thirst > 10:
+                print("*", person.name, 'has died of thirst.')
+                print()
+                person.dead = True
+                
+            if person.dead:
+                people.remove(person)
+
+        if len(people) == 1:
+            print("*", people[0].name, 'has won.')
+            break
+        if len(people) == 0:
+            print("*", "Everybody has died.")
+            break
+        
 if __name__ == '__main__':
     import sys
     novel(int(sys.argv[1]), int(sys.argv[2]))
