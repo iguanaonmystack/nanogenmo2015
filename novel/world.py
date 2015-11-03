@@ -1,3 +1,4 @@
+import operator
 import random
 
 class World(list):
@@ -57,6 +58,9 @@ class Tile:
     def __str__(self):
         return "%06s %2d" % (self.terrain, len(self.people))
 
+    def __repr__(self):
+        return "<Tile terrain=%r people=%r>" % (self.terrain, self.people)
+
     @property
     def neighbours(self):
         d = {}
@@ -66,8 +70,45 @@ class Tile:
         return d
 
     
-    def find_nearest(self, terrain):
-        pass
+    def path_to(self, target_terrain):
+        visited_nodes = set()
+        distances = {}
+        parents = {}
+        dest = _find(self, visited_nodes, distances, parents, target_terrain)
+        if dest is not None:
+            path = [(dest, '')]
+            while path[0][0] != self:
+                path = [parents[path[0][0]]] + path
+            return path
+        return None
+
+
+def _find(current, visited_nodes, distances, parents, terrain):
+    # Dijkstra's algorithm.
+    if current.terrain == terrain:
+        return current
+    for direction, neighbour in current.neighbours.items():
+        if neighbour not in visited_nodes:
+            dist = distances.setdefault(current, 0) + 1
+            if neighbour in distances:
+                if dist < distances[neighbour]:
+                    distances[neighbour] = dist
+                    parents[neighbour] = current, direction
+            else:
+                distances[neighbour] = dist
+                parents[neighbour] = current, direction
+    visited_nodes.add(current)
+    unvisited_distances = [
+        (k, v) for k, v in distances.items() if k not in visited_nodes]
+    if unvisited_distances:
+        sorted_distances = sorted(
+            unvisited_distances,
+            key=operator.itemgetter(1))
+        nearest_unvisited, dist = sorted_distances[0]
+        return _find(nearest_unvisited, visited_nodes, distances, parents, terrain)
+    else:
+        # no unvisted nodes, unable to find target
+        return None
 
 
 def opposite_direction(direction):
@@ -76,3 +117,4 @@ def opposite_direction(direction):
         'south': 'north',
         'west': 'east'}
     return d[direction]
+

@@ -28,7 +28,7 @@ def novel(x, y):
         namegen = NameGenerator(csvfile)
     
     people = []
-    for i in range(12):
+    for i in range(1):
         person = Person.from_random(world, namegen)
         person.tile = world[x//2][y//2]
         person.tile.people.add(person)
@@ -55,5 +55,5 @@ def novel(x, y):
 
 if __name__ == '__main__':
     import sys
-    random.seed(0)
     novel(int(sys.argv[1]), int(sys.argv[2]))
+

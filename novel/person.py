@@ -71,4 +71,10 @@ class Person:
         need = 'water'
 
         if need == 'water':
-            self.worldview.find_nearest('water')
+            path = self.worldview.path_to('water')
+            print('path to water:', path)
+
+
+
+
+
