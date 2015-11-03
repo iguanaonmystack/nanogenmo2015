@@ -28,7 +28,7 @@ def novel(x, y):
         namegen = NameGenerator(csvfile)
     
     people = []
-    for i in range(1):
+    for i in range(12):
         person = Person.from_random(world, namegen)
         person.tile = world[x//2][y//2]
         person.tile.people.add(person)
@@ -46,10 +46,11 @@ def novel(x, y):
         time.sleep(1)
         # move people:
         for person in people:
-            person.move()
+            person.tick()
         # do actions:
         for person in people:
             person.action()
+
         print()
         print(world)
 

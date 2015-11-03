@@ -12,7 +12,7 @@ class Person:
         self.tile = tile
 
         # fixed behaviour attributes
-        self.flighty = 0.5
+        self.shy = 0.5
 
         # knowledge
         self.previous_worldview = None # Tile
@@ -34,24 +34,12 @@ class Person:
         return "Person(%r, %r, %r, %r)" % ( 
             self.world, self.name, self.gender, self.posx, self.posx)
 
-    def move(self):
-        # chance of staying put
-        if random.random() > self.flighty:
-            return
-
-        # move
-        self.tile.people.remove(self)
-        neighbours = self.tile.neighbours
-        self.last_direction = random.choice(list(self.tile.neighbours))
-        self.tile = neighbours[self.last_direction]
-        self.tile.people.add(self)
-        
+    def tick(self):
+       
         # update stats
         self.thirsty += 1
 
-        # update worldview
-        self.observe()
-        
+       
 
     def observe(self):
         # update worldview
@@ -63,18 +51,51 @@ class Person:
         self.worldview = tile_as_observed
         
     def action(self):
-        # starting condition:
-        if self.worldview is None:
-            self.observe()
+        # update worldview
+        self.observe()
+
+        # What will character decide to do?
+        action = None
 
         # What is character's biggest need?
-        need = 'water'
+        need = None
+        if self.thirsty > 6:
+            need = 'water'
+        elif len(self.tile.people) > 1:
+            # run away if shy
+            if random.random() < self.shy:
+                need = 'escape'
 
-        if need == 'water':
+        if need is None:
+            # nothing in particular to do.
+            action = 'explore'
+        elif need == 'water':
             path = self.worldview.path_to('water')
-            print('path to water:', path)
+            if path is None:
+                # don't know any water, explore some more.
+                action = 'explore'
+            elif path[0][1] == '':
+                # we're already at water
+                action = 'drink'
+            else:
+                action = 'move ' + path[0][1]
 
-
-
+        if action is None:
+            pass
+        elif action in ('explore', 'escape'):
+            self.tile.people.remove(self)
+            neighbours = self.tile.neighbours
+            self.last_direction = random.choice(list(self.tile.neighbours))
+            self.tile = neighbours[self.last_direction]
+            self.tile.people.add(self)
+        elif action.startswith('move '):
+            direction = action.split(' ', 1)[1]
+            self.tile.people.remove(self)
+            self.last_direction = direction
+            self.tile = getattr(self.tile, direction)
+            self.tile.people.add(self)
+        elif action == 'drink':
+            self.thirst = 0
+  
 
 
