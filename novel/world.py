@@ -34,7 +34,7 @@ class World(list):
 
 class Tile:
     terrains = {
-        'water',
+        'river',
         'forest',
         'meadow',
     }

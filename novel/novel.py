@@ -28,18 +28,18 @@ def novel(x, y):
         namegen = NameGenerator(csvfile)
     
     people = []
-    for i in range(12):
+    for i in range(3):
         person = Person.from_random(world, namegen)
         person.tile = world[x//2][y//2]
         person.tile.people.add(person)
         people.append(person)
 
-    print("Dramatis Personae:")
+    print("Dramatis Personae")
+    print('-----------------')
+    print()
     for person in people:
         print(person)
-    
     print()
-    print(world)
 
     # tick:
     for i in range(10):
@@ -50,9 +50,18 @@ def novel(x, y):
         # do actions:
         for person in people:
             person.action()
-
+        
+        print('Map for time period', i + 1)
+        print('--------------------' + '-'*len(str(i + 1)))
         print()
         print(world)
+
+        for person in people:
+            print(person.name)
+            print('-' * len(person.name))
+            print()
+            print(person.diary())
+            print()
 
 if __name__ == '__main__':
     import sys
