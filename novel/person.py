@@ -57,13 +57,13 @@ class Person:
     def observe(self):
         # update worldview
         self.previous_worldview = self.worldview
-        tile_as_observed = Tile(self.tile.terrain)
-        tile_as_observed.people = copy(self.tile.people)
+        if self.worldview is None:
+            self.worldview = Tile(self.tile.terrain)
+        self.worldview.people = copy(self.tile.people)
         self.log('I\'m in a %s', self.tile.terrain)
         if self.previous_worldview is not None and self.last_direction is not None:
-            setattr(self.previous_worldview, self.last_direction, tile_as_observed)
-            setattr(tile_as_observed, opposite_direction(self.last_direction), self.previous_worldview)
-        self.worldview = tile_as_observed
+            setattr(self.previous_worldview, self.last_direction, self.worldview)
+            setattr(self.worldview, opposite_direction(self.last_direction), self.previous_worldview)
         
     def action(self):
         # What will character decide to do?
@@ -110,17 +110,20 @@ class Person:
         elif action in ('explore'):
             self.tile.people.remove(self)
             neighbours = self.tile.neighbours
-            self.last_direction = random.choice(list(self.tile.neighbours))
-            self.tile = neighbours[self.last_direction]
+            direction = random.choice(list(self.tile.neighbours))
+            self.tile = neighbours[direction]
+            self.worldview = getattr(self.worldview, direction, None)
             self.tile.people.add(self)
-            self.log('Moving %s', self.last_direction)
+            self.log('Moving %s', direction)
+            self.last_direction = direction
         elif action.startswith('move '):
             direction = action.split(' ', 1)[1]
             self.tile.people.remove(self)
-            self.last_direction = direction
             self.tile = getattr(self.tile, direction)
+            self.worldview = getattr(self.worldview, direction, None)
             self.tile.people.add(self)
             self.log('Moving %s', direction)
+            self.last_direction = direction
         elif action == 'drink':
             self.thirst = 0
             self.log('Thirst quenched')
