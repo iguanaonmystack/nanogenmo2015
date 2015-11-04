@@ -13,7 +13,7 @@ class World(list):
             row = []
             self.append(row)
             for j in range(y):
-                tile = Tile.from_random()
+                tile = Tile.from_random(i, j)
                 row.append(tile)
                 if j:
                     tile.west = self[i][j - 1]
@@ -39,8 +39,10 @@ class Tile:
         'meadow',
     ]
 
-    def __init__(self, terrain):
+    def __init__(self, posx, posy, terrain):
         self.terrain = terrain
+        self.posx = posx
+        self.posy = posy
         self.west = None
         self.east = None
         self.north = None
@@ -51,9 +53,9 @@ class Tile:
         self.people = PeopleSet()
 
     @classmethod
-    def from_random(cls):
+    def from_random(cls, posx, posy):
         terrain = random.choice(cls.terrains)
-        return cls(terrain)
+        return cls(posx, posy, terrain)
     
     def __str__(self):
         return "%06s %2d" % (self.terrain, len(self.people))

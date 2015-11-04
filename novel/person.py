@@ -20,7 +20,6 @@ class Person:
 
         # knowledge
         self.previous_worldview = None # Tile
-        self.last_direction = None
         self.worldview = None # Tile
         
         # current status/needs
@@ -56,16 +55,15 @@ class Person:
 
     def observe(self):
         # update worldview
-        self.previous_worldview = self.worldview
         if self.worldview is None:
-            self.worldview = Tile(self.tile.terrain)
+            self.worldview = Tile(
+                self.tile.posx, self.tile.posy, self.tile.terrain)
         self.worldview.people = copy(self.tile.people)
-        self.log('I\'m in a %s', self.tile.terrain)
-        if self.previous_worldview is not None and self.last_direction is not None:
-            setattr(self.previous_worldview, self.last_direction, self.worldview)
-            setattr(self.worldview, opposite_direction(self.last_direction), self.previous_worldview)
         
     def action(self):
+        self.log('I\'m in a %s at (%d, %d)',
+            self.tile.terrain, self.tile.posx, self.tile.posy)
+
         # What will character decide to do?
         action = None
 
@@ -75,7 +73,8 @@ class Person:
             self.log('Thirsty')
             need = 'water'
         elif len(self.worldview.people) > 1:
-            self.log('%s are here', ', '.join(p.name for p in self.worldview.people if p is not self))
+            self.log('%s are here', ', '.join(
+                p.name for p in self.worldview.people if p is not self))
             # run away if shy
             if random.random() < self.shy:
                 self.log('Must escape')
@@ -108,25 +107,27 @@ class Person:
             self.log('Nothing to do')
             pass
         elif action in ('explore'):
-            self.tile.people.remove(self)
             neighbours = self.tile.neighbours
-            direction = random.choice(list(sorted(self.tile.neighbours)))
-            self.tile = neighbours[direction]
-            self.worldview = getattr(self.worldview, direction, None)
-            self.tile.people.add(self)
-            self.log('Moving %s', direction)
-            self.last_direction = direction
+            direction = random.choice(list(sorted(neighbours)))
+            self._move(direction, neighbours[direction])
         elif action.startswith('move '):
             direction = action.split(' ', 1)[1]
-            self.tile.people.remove(self)
-            self.tile = getattr(self.tile, direction)
-            self.worldview = getattr(self.worldview, direction, None)
-            self.tile.people.add(self)
-            self.log('Moving %s', direction)
-            self.last_direction = direction
+            self._move(direction, getattr(self.tile, direction)) 
         elif action == 'drink':
             self.thirst = 0
             self.log('Thirst quenched')
   
 
+    def _move(self, direction, newtile):
+        self.log("Moving %s", direction)
+        self.tile.people.remove(self)
+        self.tile = newtile
+        self.previous_worldview = self.worldview
+        self.worldview = getattr(self.worldview, direction, None)
+        if not self.worldview:
+            self.observe()
+        setattr(self.previous_worldview, direction, self.worldview)
+        setattr(self.worldview, opposite_direction(direction),
+            self.previous_worldview)
+        self.tile.people.add(self)
 

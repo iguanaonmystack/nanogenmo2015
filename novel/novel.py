@@ -76,6 +76,7 @@ def novel(x, y):
                 
             if person.dead:
                 people.remove(person)
+                person.tile.people.remove(person)
 
         if len(people) == 1:
             print("*", people[0].name, 'has won.')
