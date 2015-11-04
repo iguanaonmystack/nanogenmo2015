@@ -1,618 +1,278 @@
+Random seed: 11
+
 Dramatis Personae
 -----------------
 
-Finley
-Sophie
-Logan
+Jessica
+Emily
+Noah
 
 Map for time period 1
 ---------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  3 | meadow  0 | forest  0 | 
-forest  0 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  0 |  river  0 |  river  0 | meadow  0 | meadow  0 | 
+meadow  0 | meadow  0 |  river  3 |  river  0 | forest  0 | 
+meadow  0 |  river  0 |  river  0 | meadow  0 | forest  0 | 
+forest  0 | meadow  0 | forest  0 | forest  0 | meadow  0 | 
 
-Finley
-------
+Jessica
+-------
 
-I'm in a river. Sophie, Logan are here. Must escape. Moving south.
+I'm in a river. Emily, Noah are here. Must escape. Moving east.
 
-Sophie
-------
-
-I'm in a river. Logan, Finley are here. Feeling brave. Bored. Moving north.
-
-Logan
+Emily
 -----
 
-I'm in a river. Sophie, Finley are here. Feeling brave. Bored. Moving west.
+I'm in a river. Jessica, Noah are here. Must escape. Moving north.
+
+Noah
+----
+
+I'm in a river. Emily, Jessica are here. Feeling brave. Bored. Moving east.
 
 Map for time period 2
 ---------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  1 | meadow  0 | forest  0 | 
-meadow  0 | forest  1 |  river  0 | meadow  0 | forest  0 | 
-forest  0 | meadow  0 | forest  1 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  0 |  river  0 |  river  1 | meadow  0 | meadow  0 | 
+meadow  0 | meadow  0 |  river  0 |  river  2 | forest  0 | 
+meadow  0 |  river  0 |  river  0 | meadow  0 | forest  0 | 
+forest  0 | meadow  0 | forest  0 | forest  0 | meadow  0 | 
 
-Finley
-------
+Jessica
+-------
 
-I'm in a forest. Bored. Moving south.
+I'm in a river. Noah are here. Feeling brave. Bored. Moving south.
 
-Sophie
-------
-
-I'm in a forest. Bored. Moving south.
-
-Logan
+Emily
 -----
 
-I'm in a forest. Bored. Moving east.
+I'm in a river. Bored. Moving west.
+
+Noah
+----
+
+I'm in a river. Jessica are here. Feeling brave. Bored. Moving north.
 
 Map for time period 3
 ---------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  2 | meadow  0 | forest  0 | 
-forest  0 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  1 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  0 |  river  1 |  river  0 | meadow  1 | meadow  0 | 
+meadow  0 | meadow  0 |  river  0 |  river  0 | forest  0 | 
+meadow  0 |  river  0 |  river  0 | meadow  1 | forest  0 | 
+forest  0 | meadow  0 | forest  0 | forest  0 | meadow  0 | 
 
-Finley
-------
+Jessica
+-------
 
-I'm in a meadow. Bored. Moving west.
+I'm in a meadow. Bored. Moving north.
 
-Sophie
-------
-
-I'm in a river. Logan are here. Must escape. Moving west.
-
-Logan
+Emily
 -----
 
-I'm in a river. Sophie are here. Feeling brave. Bored. Moving east.
+I'm in a river. Bored. Moving south.
+
+Noah
+----
+
+I'm in a meadow. Bored. Moving west.
 
 Map for time period 4
 ---------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  1 |  river  0 | meadow  1 | forest  0 | 
-forest  0 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  1 | meadow  0 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  0 |  river  0 |  river  1 | meadow  0 | meadow  0 | 
+meadow  0 | meadow  1 |  river  0 |  river  1 | forest  0 | 
+meadow  0 |  river  0 |  river  0 | meadow  0 | forest  0 | 
+forest  0 | meadow  0 | forest  0 | forest  0 | meadow  0 | 
 
-Finley
-------
+Jessica
+-------
 
-I'm in a meadow. Bored. Moving north.
+I'm in a river. Bored. Moving east.
 
-Sophie
-------
-
-I'm in a forest. Bored. Moving east.
-
-Logan
+Emily
 -----
 
-I'm in a meadow. Bored. Moving south.
+I'm in a meadow. Bored. Moving east.
+
+Noah
+----
+
+I'm in a river. Bored. Moving west.
 
 Map for time period 5
 ---------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  1 | meadow  0 | forest  0 | 
-forest  0 | meadow  1 | forest  0 | forest  1 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  0 |  river  1 |  river  0 | meadow  0 | meadow  0 | 
+meadow  0 | meadow  0 |  river  1 |  river  0 | forest  1 | 
+meadow  0 |  river  0 |  river  0 | meadow  0 | forest  0 | 
+forest  0 | meadow  0 | forest  0 | forest  0 | meadow  0 | 
 
-Finley
-------
-
-I'm in a meadow. Bored. Moving north.
-
-Sophie
-------
-
-I'm in a river. Bored. Moving west.
-
-Logan
------
+Jessica
+-------
 
 I'm in a forest. Bored. Moving west.
+
+Emily
+-----
+
+I'm in a river. Bored. Moving south.
+
+Noah
+----
+
+I'm in a river. Bored. Moving west.
 
 Map for time period 6
 ---------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  2 |  river  0 | meadow  0 | forest  0 | 
-forest  0 | meadow  0 | forest  1 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  1 |  river  0 |  river  0 | meadow  0 | meadow  0 | 
+meadow  0 | meadow  0 |  river  0 |  river  1 | forest  0 | 
+meadow  0 |  river  0 |  river  1 | meadow  0 | forest  0 | 
+forest  0 | meadow  0 | forest  0 | forest  0 | meadow  0 | 
 
-Finley
-------
+Jessica
+-------
 
-I'm in a forest. Sophie are here. Must escape. Moving west.
+I'm in a river. Bored. Moving east.
 
-Sophie
-------
-
-I'm in a forest. Finley are here. Feeling brave. Bored. Moving east.
-
-Logan
+Emily
 -----
+
+I'm in a river. Bored. Moving south.
+
+Noah
+----
 
 I'm in a forest. Bored. Moving north.
 
 Map for time period 7
 ---------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  1 | forest  0 |  river  2 | meadow  0 | forest  0 | 
-forest  0 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
+meadow  1 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  0 |  river  0 |  river  0 | meadow  0 | meadow  0 | 
+meadow  0 | meadow  0 |  river  0 |  river  0 | forest  1 | 
+meadow  0 |  river  0 |  river  0 | meadow  0 | forest  0 | 
+forest  0 | meadow  0 | forest  1 | forest  0 | meadow  0 | 
 
-Finley
-------
+Jessica
+-------
 
-I'm in a meadow. Thirsty. Need water. I know there is water east. Moving east.
+I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving north.
 
-Sophie
-------
-
-I'm in a river. Thirsty. Need water. There is water here. Thirst quenched.
-
-Logan
+Emily
 -----
 
-I'm in a river. Thirsty. Need water. There is water here. Thirst quenched.
+I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving west.
+
+Noah
+----
+
+I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving south.
 
 Map for time period 8
 ---------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  1 |  river  2 | meadow  0 | forest  0 | 
-forest  0 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  1 |  river  0 |  river  0 | meadow  0 | meadow  1 | 
+meadow  0 | meadow  0 |  river  0 |  river  0 | forest  0 | 
+meadow  0 |  river  0 |  river  0 | meadow  0 | forest  0 | 
+forest  0 | meadow  1 | forest  0 | forest  0 | meadow  0 | 
 
-Finley
-------
+Jessica
+-------
 
-I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving west.
+I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving north.
 
-Sophie
-------
-
-I'm in a river. Logan are here. Feeling brave. Bored. Moving south.
-
-Logan
+Emily
 -----
 
-I'm in a river. Sophie are here. Feeling brave. Bored. Moving east.
+I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving east.
+
+Noah
+----
+
+I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving south.
 
 Map for time period 9
 ---------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  1 | forest  0 |  river  0 | meadow  1 | forest  0 | 
-forest  0 | meadow  0 | forest  1 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  1 | 
+forest  0 |  river  0 |  river  0 | meadow  0 | meadow  0 | 
+meadow  1 | meadow  0 |  river  0 |  river  0 | forest  0 | 
+meadow  0 |  river  0 |  river  0 | meadow  0 | forest  0 | 
+forest  0 | meadow  0 | forest  1 | forest  0 | meadow  0 | 
 
-Finley
-------
+Jessica
+-------
 
-I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving south.
+I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving south.
 
-Sophie
-------
-
-I'm in a forest. Bored. Moving south.
-
-Logan
+Emily
 -----
 
-I'm in a meadow. Bored. Moving north.
+I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving north.
+
+Noah
+----
+
+I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving east.
 
 Map for time period 10
 ----------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  1 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  1 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  0 |  river  0 |  river  0 | meadow  0 | meadow  1 | 
+meadow  0 | meadow  1 |  river  0 |  river  0 | forest  0 | 
+meadow  0 |  river  0 |  river  1 | meadow  0 | forest  0 | 
+forest  0 | meadow  0 | forest  0 | forest  0 | meadow  0 | 
 
-Finley
-------
+Jessica
+-------
 
-I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving south.
+I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving south.
 
-Sophie
-------
-
-I'm in a meadow. Bored. Moving north.
-
-Logan
+Emily
 -----
 
-I'm in a meadow. Bored. Moving west.
+I'm in a river. Thirsty. Need water. There is water here. Thirst quenched.
+
+Noah
+----
+
+I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving west.
 
 Map for time period 11
 ----------------------
 
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  1 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  0 | meadow  0 | forest  1 | forest  0 | forest  0 | 
-meadow  1 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
+meadow  0 |  river  0 | meadow  0 | forest  0 | forest  0 | 
+forest  0 |  river  0 |  river  0 | meadow  0 | meadow  0 | 
+meadow  1 | meadow  0 |  river  0 |  river  0 | forest  1 | 
+meadow  0 |  river  0 |  river  1 | meadow  0 | forest  0 | 
+forest  0 | meadow  0 | forest  0 | forest  0 | meadow  0 | 
 
-Finley
-------
-
-I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving north.
-
-Sophie
-------
-
-I'm in a forest. Bored. Moving west.
-
-Logan
------
-
-I'm in a forest. Bored. Moving north.
-
-* Finley has died of thirst.
-
-Map for time period 12
-----------------------
-
-forest  0 | forest  0 | forest  1 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  1 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a meadow. Bored. Moving south.
-
-Logan
------
-
-I'm in a forest. Bored. Moving east.
-
-Map for time period 13
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  1 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  1 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a meadow. Bored. Moving east.
-
-Logan
------
-
-I'm in a river. Bored. Moving west.
-
-Map for time period 14
-----------------------
-
-forest  0 | forest  0 | forest  1 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  1 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving north.
-
-Logan
------
-
-I'm in a forest. Thirsty. Need water. I know there is water east. Moving east.
-
-Map for time period 15
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  1 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  1 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving east.
-
-Logan
------
-
-I'm in a river. Thirsty. Need water. There is water here. Thirst quenched.
-
-Map for time period 16
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  1 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  1 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving west.
-
-Logan
------
-
-I'm in a river. Bored. Moving east.
-
-Map for time period 17
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  1 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  1 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
+Jessica
+-------
 
 I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving north.
 
-Logan
------
-
-I'm in a meadow. Bored. Moving west.
-
-Map for time period 18
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  1 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  1 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a river. Thirsty. Need water. There is water here. Thirst quenched.
-
-Logan
------
-
-I'm in a river. Bored. Moving south.
-
-Map for time period 19
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  1 | forest  0 | 
-meadow  0 | forest  0 |  river  1 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a river. Bored. Moving east.
-
-Logan
------
-
-I'm in a meadow. Bored. Moving north.
-
-Map for time period 20
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  1 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  1 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a meadow. Bored. Moving west.
-
-Logan
+Emily
 -----
 
 I'm in a river. Bored. Moving east.
 
-Map for time period 21
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  1 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  1 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a river. Bored. Moving west.
-
-Logan
------
-
-I'm in a meadow. Bored. Moving west.
-
-Map for time period 22
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  1 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  1 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a forest. Bored. Moving east.
-
-Logan
------
-
-I'm in a river. Thirsty. Need water. There is water here. Thirst quenched.
-
-Map for time period 23
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  1 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  1 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a river. Bored. Moving east.
-
-Logan
------
-
-I'm in a river. Bored. Moving south.
-
-Map for time period 24
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  1 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  1 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a meadow. Bored. Moving south.
-
-Logan
------
-
-I'm in a meadow. Bored. Moving north.
-
-Map for time period 25
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  1 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  1 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a forest. Thirsty. Need water. I know there is water north. Moving north.
-
-Logan
------
-
-I'm in a river. Bored. Moving east.
-
-Map for time period 26
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  1 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  1 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
+Noah
+----
 
 I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving south.
 
-Logan
------
+* Jessica has died of thirst.
 
-I'm in a meadow. Bored. Moving south.
+* Noah has died of thirst.
 
-Map for time period 27
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  1 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  1 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving south.
-
-Logan
------
-
-I'm in a forest. Bored. Moving south.
-
-Map for time period 28
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  0 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  1 | 
-forest  1 | meadow  0 | forest  0 | forest  0 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  1 |  river  0 | 
-
-Sophie
-------
-
-I'm in a meadow. Thirsty. Need water. I don't know where there is water. Moving north.
-
-Logan
------
-
-I'm in a forest. Bored. Moving north.
-
-Map for time period 29
-----------------------
-
-forest  0 | forest  0 | forest  0 |  river  0 | meadow  0 | 
-meadow  0 | meadow  0 | forest  0 | meadow  0 | forest  1 | 
-meadow  0 | forest  0 |  river  0 | meadow  0 | forest  0 | 
-forest  1 | meadow  0 | forest  0 | forest  1 | forest  0 | 
-meadow  0 | meadow  0 | meadow  0 | meadow  0 |  river  0 | 
-
-Sophie
-------
-
-I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving south.
-
-Logan
------
-
-I'm in a forest. Thirsty. Need water. I don't know where there is water. Moving north.
-
-* Sophie has died of thirst.
-
-* Logan has won.
+* Emily has won.
