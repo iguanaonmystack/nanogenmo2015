@@ -110,7 +110,7 @@ class Person:
         elif action in ('explore'):
             self.tile.people.remove(self)
             neighbours = self.tile.neighbours
-            direction = random.choice(list(self.tile.neighbours))
+            direction = random.choice(list(sorted(self.tile.neighbours)))
             self.tile = neighbours[direction]
             self.worldview = getattr(self.worldview, direction, None)
             self.tile.people.add(self)

@@ -33,11 +33,11 @@ class World(list):
 
 
 class Tile:
-    terrains = {
+    terrains = [
         'river',
         'forest',
         'meadow',
-    }
+    ]
 
     def __init__(self, terrain):
         self.terrain = terrain
@@ -52,7 +52,7 @@ class Tile:
 
     @classmethod
     def from_random(cls):
-        terrain = random.choice(list(cls.terrains))
+        terrain = random.choice(cls.terrains)
         return cls(terrain)
     
     def __str__(self):

@@ -86,5 +86,10 @@ def novel(x, y):
         
 if __name__ == '__main__':
     import sys
+    if len(sys.argv) > 3:
+        seed = int(sys.argv[3])
+        random.seed(seed)
+        print('Random seed: %d' % seed)
+        print()
     novel(int(sys.argv[1]), int(sys.argv[2]))
 
