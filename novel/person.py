@@ -1,7 +1,9 @@
 import random
-from copy import copy
+from copy import copy, deepcopy
 
 from world import World, Tile, opposite_direction
+from diary import Diary
+import event
 
 class Worldview(Tile):
     def __init__(self, posx, posy, terrain):
@@ -16,7 +18,7 @@ class Person:
         self.tile = tile
         
         # log
-        self._log = []
+        self.diary = Diary()
 
         # fixed behaviour attributes
         self.shy = 0.5
@@ -41,13 +43,12 @@ class Person:
         return "Person(%r, %r, %r)" % ( 
             self.world, self.name, self.gender)
     
-    def log(self, fmt, *args):
-        self._log.append(fmt % args)
-
-    def diary(self):
-        diary = '. '.join(self._log) + '.'
-        self._log = []
-        return diary
+    def log(self, event_cls, *args, **kw):
+        """Convenience method for self.diary.log(...)"""
+        # TODO - copy worldview and immediate neighbours
+        args = list(args)
+        args.append(self.worldview)
+        self.diary.log(event_cls(*args, **kw))
 
     def tick(self):
         # update stats
@@ -67,15 +68,7 @@ class Person:
         self.worldview.people = copy(self.tile.people)
         
     def action(self):
-        if self.worldview.visited == 1:
-            self.log('I\'ve come across a %s at (%d, %d)',
-                self.worldview.terrain,
-                self.worldview.posx, self.worldview.posy)
-        else:
-            self.log('Back at %s at (%d, %d) after %d hours',
-                self.worldview.terrain,
-                self.worldview.posx, self.worldview.posy,
-                self.worldview.visited - 1)
+        self.log(event.Terrain)
 
         # What will character decide to do?
         action = None
@@ -83,41 +76,40 @@ class Person:
         # What is character's biggest need?
         need = None
         if self.thirst > 6:
-            self.log('Thirsty')
+            self.log(event.Thirst, self.thirst)
             need = 'water'
         elif len(self.worldview.people) > 1:
-            self.log('%s are here', ', '.join(
-                p.name for p in self.worldview.people if p is not self))
+            self.log(event.Occupants)
             # run away if shy
             if random.random() < self.shy:
-                self.log('Must escape')
+                self.log(event.Emotion, 'afraid')
+                self.log(event.Motivation, 'escape')
                 need = 'escape'
             else:
-                self.log('Feeling brave')
+                self.log(event.Emotion, 'brave')
 
         if need is None:
             # nothing in particular to do.
-            self.log('Bored')
             action = 'explore'
         elif need == 'escape':
             action = 'explore'
         elif need == 'water':
-            self.log('Need water')
+            self.log(event.Motivation, 'get to water')
             path = self.worldview.path_to('river')
             if path is None:
                 # don't know any water, explore some more.
+                self.log(event.Knowledge, 'location', 'water', -1, None)
                 self.log('I don\'t know where there is water')
                 action = 'explore'
             elif path[0][1] == '':
                 # we're already at water
-                self.log('There is water here')
+                self.log(event.Surroundings, 'water')
                 action = 'drink'
             else:
-                self.log('I know there is water %s', path[0][1])
+                self.log(event.Knowledge, 'location', 'water', 1, path[0][1])
                 action = 'move ' + path[0][1]
 
         if action is None:
-            self.log('Nothing to do')
             pass
         elif action in ('explore'):
             neighbours = self.tile.neighbours
@@ -128,11 +120,10 @@ class Person:
             self._move(direction, getattr(self.tile, direction)) 
         elif action == 'drink':
             self.thirst = 0
-            self.log('Thirst quenched')
-  
+            self.log(event.Action, "drink")
 
     def _move(self, direction, newtile):
-        self.log("Moving %s", direction)
+        self.log(event.Movement, direction)
         self.tile.people.remove(self)
         self.tile = newtile
         self.previous_worldview = self.worldview

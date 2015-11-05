@@ -60,7 +60,9 @@ def novel(x, y):
             print(person.name)
             print('-' * len(person.name))
             print()
-            print(person.diary())
+            for clause in person.diary.write():
+                print(clause, end='')
+            print()
             print()
 
         # grim reaper:
