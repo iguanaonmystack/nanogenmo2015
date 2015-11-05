@@ -3,7 +3,10 @@ from copy import copy
 
 from world import World, Tile, opposite_direction
 
-
+class Worldview(Tile):
+    def __init__(self, posx, posy, terrain):
+        super().__init__(posx, posy, terrain)
+        self.visited = 0
 
 class Person:
     def __init__(self, world, name, gender, tile=None):
@@ -52,17 +55,27 @@ class Person:
 
         # update worldview
         self.observe()
+        def increase_last_visited_count(tile):
+            tile.visited += 1
+        self.worldview.recursive_update(increase_last_visited_count)
 
     def observe(self):
         # update worldview
         if self.worldview is None:
-            self.worldview = Tile(
+            self.worldview = Worldview(
                 self.tile.posx, self.tile.posy, self.tile.terrain)
         self.worldview.people = copy(self.tile.people)
         
     def action(self):
-        self.log('I\'m in a %s at (%d, %d)',
-            self.tile.terrain, self.tile.posx, self.tile.posy)
+        if self.worldview.visited == 1:
+            self.log('I\'ve come across a %s at (%d, %d)',
+                self.worldview.terrain,
+                self.worldview.posx, self.worldview.posy)
+        else:
+            self.log('Back at %s at (%d, %d) after %d hours',
+                self.worldview.terrain,
+                self.worldview.posx, self.worldview.posy,
+                self.worldview.visited - 1)
 
         # What will character decide to do?
         action = None

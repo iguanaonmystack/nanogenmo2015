@@ -76,7 +76,8 @@ class Tile:
         visited_nodes = set()
         distances = {}
         parents = {}
-        dest = _find(self, visited_nodes, distances, parents, target_terrain)
+        dest = _find(self, visited_nodes, distances, parents,
+            target=target_terrain)
         if dest is not None:
             path = [(dest, '')]
             while path[0][0] != self:
@@ -84,10 +85,16 @@ class Tile:
             return path
         return None
 
+    def recursive_update(self, action):
+        visited_nodes = set()
+        distances = {}
+        parents = {}
+        _find(self, visited_nodes, distances, parents,
+            target=None, action=action)
 
-def _find(current, visited_nodes, distances, parents, terrain):
+def _find(current, visited_nodes, distances, parents, target=None, action=None):
     # Dijkstra's algorithm.
-    if current.terrain == terrain:
+    if current.terrain == target:
         return current
     for direction, neighbour in current.neighbours.items():
         if neighbour not in visited_nodes:
@@ -99,6 +106,8 @@ def _find(current, visited_nodes, distances, parents, terrain):
             else:
                 distances[neighbour] = dist
                 parents[neighbour] = current, direction
+    if action:
+        action(current)
     visited_nodes.add(current)
     unvisited_distances = [
         (k, v) for k, v in distances.items() if k not in visited_nodes]
@@ -107,7 +116,8 @@ def _find(current, visited_nodes, distances, parents, terrain):
             unvisited_distances,
             key=operator.itemgetter(1))
         nearest_unvisited, dist = sorted_distances[0]
-        return _find(nearest_unvisited, visited_nodes, distances, parents, terrain)
+        return _find(nearest_unvisited, visited_nodes, distances, parents,
+            target=target, action=action)
     else:
         # no unvisted nodes, unable to find target
         return None
