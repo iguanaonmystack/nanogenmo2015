@@ -106,10 +106,10 @@ class Person:
         elif need == 'escape':
             action = 'explore'
         elif need == 'water':
-            self.log(event.Motivation, 'get to water')
             path = self.worldview.path_to('river')
             if path is None:
                 # don't know any water, explore some more.
+                self.log(event.Motivation, 'get to water')
                 self.log(event.Knowledge, 'location', 'water', -1, None)
                 self.log('I don\'t know where there is water')
                 action = 'explore'
@@ -118,6 +118,7 @@ class Person:
                 self.log(event.Surroundings, 'water')
                 action = 'drink'
             else:
+                self.log(event.Motivation, 'get to water')
                 self.log(event.Knowledge, 'location', 'water', 1, path[0][1])
                 action = 'move ' + path[0][1]
 
