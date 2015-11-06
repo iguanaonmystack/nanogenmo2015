@@ -56,6 +56,7 @@ class Person:
         """Convenience method for self.diary.log(...)"""
         # TODO - copy worldview and immediate neighbours
         args = list(args)
+        args.append(self)
         args.append(self.worldview.locality_copy())
         self.diary.log(event_cls(*args, **kw))
 

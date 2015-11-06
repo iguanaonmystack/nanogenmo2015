@@ -2,8 +2,9 @@ import math
 import random
 
 class Event:
-    def __init__(self, worldview):
+    def __init__(self, person, worldview):
         self.worldview = worldview
+        self.person = person
     def clauses(self):
         """A generator that yields diary text."""
         raise NotImplementedError('Must be implemented in Event subclass')
@@ -48,11 +49,19 @@ class Occupants(Event):
             # first consecutive tick in this tile
             peoplelist = []
             for p in self.worldview.people:
-                if p is self:
+                if p is self.person:
                     continue
                 peoplelist.append(p.name)
-            peoplelist[-1] = 'and ' + peoplelist[-1]
-            yield '%s are here' % ', '.join(peoplelist)
+            if len(peoplelist) > 1:
+                peoplelist[-1] = 'and ' + peoplelist[-1]
+            are = 'are' if len(peoplelist) != 1 else 'is'
+            if random.random() > 0.5:
+                if len(peoplelist) > 2:
+                    yield '%s %s here' % (', '.join(peoplelist), are)
+                else:
+                    yield '%s %s here' % (' '.join(peoplelist), are)
+            else:
+                yield 'I can see %s' % (' '.join(peoplelist))
         else:
             # Only log if someone arrived or departed.
             # TODO
