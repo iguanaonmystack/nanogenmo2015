@@ -99,12 +99,15 @@ class Knowledge(Event):
         self.specific = specific
 
     def clauses(self):
-        yield "I %sknow the %s of %s" % (
-            self.posneg < 0 and "don't " or '',
-            self.what,
-            self.noun)
-        if self.specific:
-            yield "it is %swards" % self.specific
+        if not self.specific or random.random() > 0.8:
+            yield "I %sknow the %s of %s" % (
+                self.posneg < 0 and "don't " or '',
+                self.what,
+                self.noun)
+            if self.specific:
+                yield "it is %s" % self.specific
+        else:
+            yield 'there is %s %s' % (self.noun, self.specific)
 
 class Surroundings(Event):
     def __init__(self, item, *args, **kw):
