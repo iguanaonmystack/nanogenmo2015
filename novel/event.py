@@ -22,7 +22,7 @@ class Terrain(Event):
             self.worldview.terrain)
 
     def subsequent_visit(self):
-        yield "I'm back at the %s at" % (
+        yield "I'm back at the %s" % (
             self.worldview.terrain)
         yield "It's been %d hours since I was last here" % (
             self.worldview.visited - 1)
@@ -77,7 +77,7 @@ class Motivation(Event):
     def clauses(self):
         yield random.choice([
             "I need to %s",
-            "Gotta %s",
+            "gotta %s",
             "I have to %s",
             "I want to %s"]) % (self.motivation)
 
@@ -95,7 +95,7 @@ class Knowledge(Event):
             self.what,
             self.noun)
         if self.specific:
-            yield "It is %s" % self.specific
+            yield "it is %swards" % self.specific
 
 class Surroundings(Event):
     def __init__(self, item, *args, **kw):
@@ -103,7 +103,7 @@ class Surroundings(Event):
         self.item = item
 
     def clauses(self):
-        yield "There is %s here" % (self.item)
+        yield "there is %s here" % (self.item)
 
 class Action(Event):
     def __init__(self, verb, *args, **kw):
@@ -136,4 +136,4 @@ class Tick(Event):
             suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(days % 10, 'th')
             yield random.choice([
                 "I've now been in the game for %d full days" % (days),
-                "This is now my %d%s day in the game" % (days + 1, suffix)])
+                "this is now my %d%s day in the game" % (days + 1, suffix)])
