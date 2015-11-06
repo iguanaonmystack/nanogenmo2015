@@ -10,6 +10,15 @@ class Worldview(Tile):
         super().__init__(posx, posy, terrain)
         self.visited = 0
 
+    def locality_copy(self):
+        """Copy the worldview and its immediate neighbours."""
+        new = copy(self)
+        new.north = copy(self.north)
+        new.south = copy(self.south)
+        new.east = copy(self.east)
+        new.west = copy(self.west)
+        return new
+
 class Person:
     def __init__(self, world, name, gender, tile=None):
         self.name = name
@@ -47,10 +56,10 @@ class Person:
         """Convenience method for self.diary.log(...)"""
         # TODO - copy worldview and immediate neighbours
         args = list(args)
-        args.append(self.worldview)
+        args.append(self.worldview.locality_copy())
         self.diary.log(event_cls(*args, **kw))
 
-    def tick(self):
+    def tick(self, i):
         # update stats
         self.thirst += 1
 
@@ -59,6 +68,8 @@ class Person:
         def increase_last_visited_count(tile):
             tile.visited += 1
         self.worldview.recursive_update(increase_last_visited_count)
+
+        self.log(event.Tick, i)
 
     def observe(self):
         # update worldview

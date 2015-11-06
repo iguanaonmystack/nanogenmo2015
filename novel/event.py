@@ -1,3 +1,4 @@
+import math
 import random
 
 class Event:
@@ -17,12 +18,12 @@ class Terrain(Event):
             yield from self.subsequent_visit()
 
     def first_visit(self):
-        yield "I've come across a %s at (%d, %d)" % (
-            self.worldview.terrain, self.worldview.posx, self.worldview.posy)
+        yield "I've come across a %s" % (
+            self.worldview.terrain)
 
     def subsequent_visit(self):
-        yield "I'm back at the %s at (%d, %d)" % (
-            self.worldview.terrain, self.worldview.posx, self.worldview.posy)
+        yield "I'm back at the %s at" % (
+            self.worldview.terrain)
         yield "It's been %d hours since I was last here" % (
             self.worldview.visited - 1)
 
@@ -45,8 +46,13 @@ class Occupants(Event):
     def clauses(self):
         if self.worldview.visited == 1:
             # first consecutive tick in this tile
-            yield '%s are here' % ', '.join(
-                p.name for p in self.worldview.people if p is not self)
+            peoplelist = []
+            for p in self.worldview.people:
+                if p is self:
+                    continue
+                peoplelist.append(p.name)
+            peoplelist[-1] = 'and ' + peoplelist[-1]
+            yield '%s are here' % ', '.join(peoplelist)
         else:
             # Only log if someone arrived or departed.
             # TODO
@@ -116,5 +122,18 @@ class Movement(Event):
         neighbour = getattr(self.worldview, self.direction, None)
         yield "I move %s%s" % (
             self.direction,
-            ' to the %s' % (neighbour.terrain if neighbour else '')
+            ' to the %s' % (neighbour.terrain) if neighbour else ''
         )
+
+class Tick(Event):
+    def __init__(self, hour, *args, **kw):
+        super().__init__(*args, **kw)
+        self.hour = hour
+
+    def clauses(self):
+        if self.hour > 0 and self.hour % 24 == 0:
+            days = self.hour // 24
+            suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(days % 10, 'th')
+            yield random.choice([
+                "I've now been in the game for %d full days" % (days),
+                "This is now my %d%s day in the game" % (days + 1, suffix)])

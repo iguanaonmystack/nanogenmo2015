@@ -41,22 +41,27 @@ def novel(x, y):
         print(person)
     print()
 
+    last_diary = None
     # tick:
     for i in range(100):
-        print('Map for time period', i + 1)
-        print('--------------------' + '-'*len(str(i + 1)))
-        print()
-        print(world)
+        #print('Map for time period', i + 1)
+        #print('--------------------' + '-'*len(str(i + 1)))
+        #print()
+        #print(world)
 
         # update everyone's stats and have them look around:
         for person in people:
-            person.tick()
+            person.tick(i)
         
         # do actions:
         for person in people:
             person.action()
 
         for person in people:
+            if random.random() > 1.0 / len(people):
+                continue
+            if person == last_diary:
+                continue
             print(person.name)
             print('-' * len(person.name))
             print()
@@ -64,6 +69,7 @@ def novel(x, y):
                 print(clause, end='')
             print()
             print()
+            last_diary = person
 
         # grim reaper:
         for person in people:
