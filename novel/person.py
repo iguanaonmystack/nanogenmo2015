@@ -31,6 +31,7 @@ class Person:
 
         # fixed behaviour attributes
         self.shy = 0.5
+        self.explorer = 0.9
 
         # knowledge
         self.previous_worldview = None # Tile
@@ -102,7 +103,10 @@ class Person:
 
         if need is None:
             # nothing in particular to do.
-            action = 'explore'
+            if random.random() < self.explorer:
+                action = 'explore'
+            else:
+                action = None
         elif need == 'escape':
             action = 'explore'
         elif need == 'water':
@@ -123,7 +127,7 @@ class Person:
                 action = 'move ' + path[0][1]
 
         if action is None:
-            pass
+            self.log(event.Chill)
         elif action in ('explore'):
             neighbours = self.tile.neighbours
             direction = random.choice(list(sorted(neighbours)))

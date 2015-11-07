@@ -6,6 +6,7 @@ import itertools
 
 from world import World, Tile
 from person import Person
+import event
 
 class NameGenerator:
     def __init__(self, csvfile):
@@ -43,7 +44,7 @@ def novel(x, y):
 
     last_diary = None
     # tick:
-    for i in range(100):
+    for i in range(1000):
         #print('Map for time period', i + 1)
         #print('--------------------' + '-'*len(str(i + 1)))
         #print()
@@ -58,18 +59,17 @@ def novel(x, y):
             person.action()
 
         for person in people:
-            if random.random() > 1.0 / len(people):
-                continue
-            if person == last_diary:
-                continue
-            print(person.name)
-            print('-' * len(person.name))
-            print()
-            for clause in person.diary.write():
-                print(clause, end='')
-            print()
-            print()
-            last_diary = person
+            if person.diary.events \
+                and isinstance(person.diary.events[-1], event.Chill):
+                
+                print(person.name)
+                print('-' * len(person.name))
+                print()
+                for clause in person.diary.write():
+                    print(clause, end='')
+                print()
+                print()
+                last_diary = person
 
         # grim reaper:
         for person in people:

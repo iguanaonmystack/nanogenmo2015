@@ -149,3 +149,7 @@ class Tick(Event):
             yield random.choice([
                 "I've now been in the game for %d full days" % (days),
                 "this is now my %d%s day in the game" % (days + 1, suffix)])
+
+class Chill(Event):
+    def clauses(self):
+        return ['and here I am']
