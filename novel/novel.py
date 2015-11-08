@@ -22,14 +22,14 @@ class NameGenerator:
         x = random.random() * self.cumdist[-1]
         return self.choices[bisect.bisect(self.cumdist, x)]
 
-def novel(x, y):
+def novel(x, y, num_people):
     world = World.from_random(x, y)
     names = []
     with open('names.csv') as csvfile:
         namegen = NameGenerator(csvfile)
     
     people = []
-    for i in range(3):
+    for i in range(num_people):
         person = Person.from_random(world, namegen)
         person.tile = world[x//2][y//2]
         person.tile.people.add(person)
@@ -94,11 +94,23 @@ def novel(x, y):
             break
         
 if __name__ == '__main__':
-    import sys
-    if len(sys.argv) > 3:
-        seed = int(sys.argv[3])
-        random.seed(seed)
-        print('Random seed: %d' % seed)
-        print()
-    novel(int(sys.argv[1]), int(sys.argv[2]))
+    import sys, argparse
+    parser = argparse.ArgumentParser(
+        description='NaNoGenMo 2015 novel generator.')
+    parser.add_argument('-x', dest='xsize', type=int, default=32,
+        help='X (West-East) dimension of world')
+    parser.add_argument('-y', dest='ysize', type=int, default=32,
+        help='Y (North-South) dimension of world')
+    parser.add_argument('-r', '--random-seed', dest='seed', type=int,
+        default=None, help='Random seed')
+    parser.add_argument('-p', '--people', dest='people', type=int, default=12,
+        help='Number of people in world')
+    args = parser.parse_args()
+    if not args.seed:
+        args.seed = random.randint(0, sys.maxsize)
+    random.seed(args.seed)
+    print('World size: %dx%d' % (args.xsize, args.ysize))
+    print('Random seed: %d' % args.seed)
+    print()
+    novel(args.xsize, args.ysize, args.people)
 
