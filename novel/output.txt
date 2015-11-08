@@ -1,3 +1,4 @@
+World size: 5x5
 Random seed: 11
 
 Dramatis Personae
@@ -7,247 +8,232 @@ Jessica
 Emily
 Noah
 
-Emily
------
+Noah
+----
 
-I've come across a river; Jessica, Noah, and Emily are here; I'm afraid. I want to escape, I move north!
+I've come across a river. Jessica and Emily are here. 
 
-Jessica
--------
+I'm feeling brave; I move west! I've come across a meadow; I move east to the river! I'm back at the river. It's been 2 hours since I was last here; I move north, I've come across a river. I move east! I've come across a meadow. 
 
-I've come across a river! Jessica, Noah, and Emily are here. I'm feeling afraid. I want to escape; I move east; I've come across a river! Jessica, and Noah are here; I'm brave. I move east; I've come across a forest. I move north, I've come across a meadow. Jessica, and Noah are here! I'm feeling brave. I move north; I've come across a forest! Jessica, and Noah are here, I'm afraid. 
+I move west to the river; I'm back at the river; It's been 2 hours since I was last here! I move east to the meadow, I'm back at the meadow, It's been 2 hours since I was last here! 
 
-Gotta escape; I move south to the meadow.
-
-Emily
------
-
-I've come across a river; I move south to the river; I'm back at the river at; It's been 2 hours since I was last here; I move west; I've come across a meadow! I move north. I've come across a river. I move south to the meadow, I'm back at the meadow at; It's been 2 hours since I was last here! I move north to the river! I'm back at the river at; It's been 2 hours since I was last here. I'm getting thirsty! I need to get to water, There is water here; I drink.
-
-Jessica
--------
-
-I'm back at the meadow at! It's been 2 hours since I was last here. I move south to the forest, I'm back at the forest at; It's been 4 hours since I was last here. I'm getting thirsty! Gotta get to water. I know the location of water! It is west, I move west to the river. 
-
-I'm back at the river at. It's been 6 hours since I was last here, I need to get to water. There is water here, I drink.
+I'm getting thirsty. Gotta get to water. There is water west! I move west to the river! I'm back at the river; It's been 4 hours since I was last here! There is water here; I drink; I'm back at the river; It's been 5 hours since I was last here; and here I am.
 
 Noah
 ----
 
-I've come across a river. Jessica, Noah, and Emily are here! I'm brave! I move east. I've come across a river. Jessica, and Noah are here. I need to escape! I move north! I've come across a meadow. I move east; I've come across a meadow; Jessica, and Noah are here; I'm afraid! Gotta escape, I move north! I've come across a forest; Jessica, and Noah are here! I'm feeling afraid; I want to escape; I move west, I've come across a forest; I move west; I've come across a meadow; I'm getting thirsty! I need to get to water. I know the location of water, It is east; I move east to the forest. I'm back at the forest at, It's been 2 hours since I was last here; I'm thirsty! I want to get to water, I know the location of water! It is east. I move east to the forest. I'm back at the forest at, It's been 4 hours since I was last here, I need to get to water; I know the location of water! It is south. I move south to the meadow, I'm back at the meadow at; It's been 6 hours since I was last here; I'm thirsty. I have to get to water. I know the location of water; It is west! I move west to the meadow. I'm back at the meadow at. It's been 8 hours since I was last here, I'm really thirsty, Gotta get to water! I know the location of water; It is south. I move south to the river!
-
-* Noah has died of thirst.
+I'm back at the river; It's been 6 hours since I was last here! I move east to the meadow! I'm back at the meadow; It's been 6 hours since I was last here. And here I am!
 
 Jessica
 -------
 
-I'm back at the river at. It's been 7 hours since I was last here, I move north! I've come across a meadow; I move west. I've come across a river. I move west! I've come across a river, I move north!
+I've come across a river. I can see Emily and Noah. I'm afraid! I need to escape. 
+
+I move east. I've come across a river! I move north! I've come across a meadow! I move south to the river. I'm back at the river. It's been 2 hours since I was last here. I move east. I've come across a forest! I move north. I've come across a meadow; I move west; I've come across a meadow; I'm getting thirsty, I want to get to water! There is water east, I move east to the meadow; I'm back at the meadow! It's been 2 hours since I was last here; I'm thirsty! I have to get to water; there is water south! I move south to the forest. I'm back at the forest, It's been 4 hours since I was last here; I want to get to water, I know the location of water! It is west! I move west to the river! I'm back at the river. It's been 8 hours since I was last here. There is water here, I drink, I'm back at the river. It's been 9 hours since I was last here! I move east to the forest. I'm back at the forest, It's been 7 hours since I was last here; I move west to the river; I'm back at the river. It's been 11 hours since I was last here. I move east to the forest, I'm back at the forest. It's been 9 hours since I was last here; I move south! I've come across a forest. I move south. I've come across a meadow, I move north to the forest, I'm back at the forest; It's been 2 hours since I was last here! I'm getting thirsty; I need to get to water! There is water north; I move north to the forest! I'm back at the forest. It's been 13 hours since I was last here, gotta get to water. I know the location of water. It is west! I move west to the river, I'm back at the river, It's been 17 hours since I was last here, I'm thirsty. There is water here. 
+
+I drink, I'm back at the river! It's been 18 hours since I was last here! I need to escape! I move east to the forest; I'm back at the forest, It's been 16 hours since I was last here; I'm brave! And here I am.
+
+Noah
+----
+
+I'm back at the meadow; It's been 7 hours since I was last here, I move north; I've come across a forest, I move east! I've come across a forest. I move south! 
+
+I've come across a meadow. I'm getting thirsty! I need to get to water! 
+
+There is water north! I move north to the forest! I'm back at the forest! It's been 2 hours since I was last here, I want to get to water, there is water west! I move west to the forest, I'm back at the forest; It's been 4 hours since I was last here. 
+
+I need to get to water, there is water south, I move south to the meadow; I'm back at the meadow! It's been 13 hours since I was last here. I'm thirsty; I want to get to water. There is water west; I move west to the river; I'm back at the river; It's been 15 hours since I was last here; I'm really thirsty; there is water here; I drink, I'm back at the river; It's been 16 hours since I was last here, I move south to the river, I'm back at the river; It's been 20 hours since I was last here; I move west to the meadow; I'm back at the meadow. It's been 20 hours since I was last here; I move south; I've come across a river. I move south. I've come across a meadow! And here I am.
+
+Noah
+----
+
+this is now my 2st day in the game. I'm back at the meadow, It's been 1 hours since I was last here; and here I am.
 
 Emily
 -----
 
-I'm back at the river at. It's been 3 hours since I was last here. 
+I've come across a river; Jessica and Noah are here! 
 
-I move east, I've come across a river! I move south! I've come across a river; I move east. I've come across a river. I move west to the river, I'm back at the river at; It's been 2 hours since I was last here! I move west!
+I want to escape! I move north, I've come across a river! I move south to the river, I'm back at the river. It's been 2 hours since I was last here. I want to escape, I move east, I've come across a river! Jessica is here. I need to escape! I move south; I've come across a meadow, I move east, I've come across a forest, I move west to the meadow. I'm back at the meadow; It's been 2 hours since I was last here! I'm getting thirsty, I have to get to water! There is water north; I move north to the river. I'm back at the river, It's been 4 hours since I was last here! I'm thirsty. There is water here, I drink, I'm back at the river; It's been 5 hours since I was last here! I move east. I've come across a forest! I move south. I've come across a forest. I move west. I've come across a meadow, I move south! I've come across a forest. I move north to the meadow! 
+
+I'm back at the meadow, It's been 2 hours since I was last here, I move north, I've come across a river, I'm getting thirsty! There is water here. I drink. I'm back at the river. It's been 1 hours since I was last here; I move east! I've come across a forest; I move south! I've come across a forest. I move north to the forest! I'm back at the forest! It's been 2 hours since I was last here, I move west to the river, I'm back at the river! It's been 5 hours since I was last here, I'm brave. 
+
+I move east to the forest; I'm back at the forest. It's been 4 hours since I was last here! I'm brave! 
+
+I move south to the forest, I'm back at the forest. It's been 4 hours since I was last here; I'm getting thirsty! I have to get to water; there is water north. I move north to the forest! I'm back at the forest; It's been 6 hours since I was last here. 
+
+I need to get to water; I know the location of water, it is west; I move west to the river. I'm back at the river; It's been 9 hours since I was last here! There is water here! I drink; this is now my 2st day in the game; I'm back at the river; It's been 10 hours since I was last here! I move south to the meadow, I'm back at the meadow, It's been 14 hours since I was last here, gotta escape, I move east to the forest; I'm back at the forest; It's been 16 hours since I was last here; I move west to the meadow; I'm back at the meadow. It's been 16 hours since I was last here. I move north to the river! 
+
+I'm back at the river. It's been 14 hours since I was last here, and here I am.
 
 Jessica
 -------
 
-I've come across a river! I move south to the river; I'm back at the river at, It's been 2 hours since I was last here; I move south, I've come across a meadow! I'm getting thirsty. I want to get to water. I know the location of water. It is north! I move north to the river. I'm back at the river at; It's been 4 hours since I was last here. I want to get to water, There is water here; I drink!
+I'm back at the forest! It's been 17 hours since I was last here, I move south to the forest, I'm back at the forest; It's been 8 hours since I was last here; I move west, I've come across a meadow, I move west, I've now been in the game for 1 full days, I've come across a river! I move east to the meadow, I'm back at the meadow! It's been 2 hours since I was last here, I'm getting thirsty! I want to get to water; there is water west, I move west to the river. I'm back at the river! It's been 2 hours since I was last here; I'm thirsty, there is water here! I drink; I'm back at the river; It's been 3 hours since I was last here. I move west, I've come across a river. I move south. I've come across a meadow, I move west. I've come across a forest! 
+
+I move north, I've come across a meadow. I move east, I've come across a river. I move west to the meadow. 
+
+I'm back at the meadow; It's been 2 hours since I was last here. I'm getting thirsty! Gotta get to water! There is water east! I move east to the river, I'm back at the river, It's been 2 hours since I was last here; there is water here. I drink. I'm back at the river, It's been 3 hours since I was last here. I move south. I've come across a meadow. I move north to the river. I'm back at the river! It's been 5 hours since I was last here; I move west to the meadow; I'm back at the meadow; It's been 7 hours since I was last here! I move east to the river, I'm back at the river; It's been 7 hours since I was last here! And here I am!
+
+Noah
+----
+
+I'm back at the meadow, It's been 2 hours since I was last here. I'm getting thirsty; I need to get to water! There is water north; I move north to the river! I'm back at the river; It's been 4 hours since I was last here! There is water here, I drink; I'm back at the river, It's been 5 hours since I was last here. I move north to the meadow; I'm back at the meadow. It's been 27 hours since I was last here; I move east to the river; I'm back at the river. It's been 29 hours since I was last here. I move south! 
+
+I've come across a river, I move south. I've come across a forest! I move east. I've come across a forest! I move west to the forest! I'm back at the forest; It's been 2 hours since I was last here, I'm getting thirsty, I have to get to water! 
+
+There is water north! I move north to the river. I'm back at the river; It's been 4 hours since I was last here. I'm thirsty. There is water here. I drink! I'm back at the river. It's been 5 hours since I was last here. I move north to the river; I'm back at the river; It's been 36 hours since I was last here, I move east! I've come across a river, I move west to the river, I'm back at the river! It's been 38 hours since I was last here. I move north to the river; I'm back at the river! It's been 36 hours since I was last here, I move south to the river, I'm back at the river, It's been 40 hours since I was last here! I move north to the river, I'm back at the river! It's been 38 hours since I was last here. I'm getting thirsty. There is water here; I drink; I'm back at the river; It's been 39 hours since I was last here! 
+
+I move north! I've come across a meadow. I move west. I've come across a river. I move south. I've come across a river! I move south; I've come across a meadow; Jessica is here! I'm feeling afraid! I have to escape; I move north to the river. I'm back at the river; It's been 2 hours since I was last here, and here I am!
 
 Emily
 -----
 
-I've come across a meadow, I move east to the river! I'm back at the river at! It's been 4 hours since I was last here. I'm getting thirsty. Gotta get to water. 
+I'm back at the river; It's been 15 hours since I was last here; I move north; I've come across a meadow. I'm getting thirsty; I need to get to water; there is water south! I move south to the river, I'm back at the river. It's been 17 hours since I was last here, there is water here. I drink; I'm back at the river; It's been 18 hours since I was last here. I move north to the meadow, I'm back at the meadow; It's been 3 hours since I was last here, I move north; I've come across a forest. I move west. I've come across a meadow, I move west; I've come across a river, I move south; I've come across a river; I move west. I've come across a forest! I'm getting thirsty; I have to get to water! There is water east. I move east to the river! I'm back at the river; It's been 2 hours since I was last here! There is water here, I drink; I'm back at the river, It's been 3 hours since I was last here; I move east, I've come across a river. I can see Noah; I'm brave. I move east! I've come across a meadow! I move east! I've come across a meadow! I move west to the meadow! I'm back at the meadow. It's been 2 hours since I was last here, I move south! I've come across a river. I move west. I've come across a river! I'm getting thirsty, there is water here, I drink. I'm back at the river! It's been 1 hours since I was last here! I'm feeling brave; I move west, this is now my 3nd day in the game; I've come across a meadow. I move east to the river, I'm back at the river! It's been 3 hours since I was last here; I move south; I've come across a river! And here I am.
 
-There is water here; I drink; I'm back at the river at. It's been 5 hours since I was last here, I move north to the river, I'm back at the river at; It's been 7 hours since I was last here! I move south to the river.
+Noah
+----
+
+this is now my 3nd day in the game! I'm back at the river; It's been 3 hours since I was last here, I'm getting thirsty! There is water here; I drink; I'm back at the river, It's been 4 hours since I was last here. I move north to the river; I'm back at the river, It's been 6 hours since I was last here; I move south to the river; I'm back at the river, It's been 6 hours since I was last here, I move north to the river, I'm back at the river. It's been 8 hours since I was last here; I move south to the river, I'm back at the river; It's been 8 hours since I was last here; I move north to the river, I'm back at the river; It's been 10 hours since I was last here. I move south to the river. I'm back at the river. It's been 10 hours since I was last here. 
+
+I'm getting thirsty, there is water here, I drink! I'm back at the river. It's been 11 hours since I was last here; I move east; I've come across a river; I move east, I've come across a meadow. I move north; I've come across a forest. I move south to the meadow! 
+
+I'm back at the meadow! 
+
+It's been 2 hours since I was last here. And here I am!
+
+Noah
+----
+
+I'm back at the meadow. It's been 3 hours since I was last here; I move north to the forest, I'm back at the forest, It's been 3 hours since I was last here. I'm getting thirsty; I want to get to water! 
+
+There is water south, I move south to the meadow, I'm back at the meadow; It's been 5 hours since I was last here. I'm thirsty. Gotta get to water! I know the location of water; it is west! I move west to the river. I'm back at the river, It's been 7 hours since I was last here; there is water here; I drink! I'm back at the river; It's been 8 hours since I was last here! I move east to the meadow! I'm back at the meadow; It's been 8 hours since I was last here! I move east! I've come across a meadow. I move south, I've come across a forest, I move west. I've come across a river, I move east to the forest! I'm back at the forest; It's been 2 hours since I was last here, I move north to the meadow. I'm back at the meadow; It's been 4 hours since I was last here, I'm getting thirsty; gotta get to water. 
+
+There is water south! I move south to the forest! I've now been in the game for 3 full days, I'm back at the forest! It's been 4 hours since I was last here! 
+
+Gotta get to water. There is water west! I move west to the river; I'm back at the river, It's been 4 hours since I was last here, I'm thirsty! There is water here; I drink, I'm back at the river! It's been 5 hours since I was last here! I move east to the forest, I'm back at the forest; It's been 7 hours since I was last here. I move north to the meadow, I'm back at the meadow; It's been 9 hours since I was last here; I move south to the forest. I'm back at the forest! It's been 9 hours since I was last here, I move north to the meadow. I'm back at the meadow; It's been 11 hours since I was last here, and here I am.
 
 Jessica
 -------
 
-I'm back at the river at; It's been 5 hours since I was last here; I move south to the meadow, I'm back at the meadow at; It's been 3 hours since I was last here, I move east, I've come across a river; I move north; I've come across a river; I move north.
+I'm back at the river. It's been 8 hours since I was last here. I move east. I've come across a river, I'm getting thirsty, there is water here! I drink; I'm back at the river; It's been 1 hours since I was last here! I move east; I've come across a meadow, I move north; I've come across a river. I move west! I've come across a river! I move west, I've come across a meadow. I can see Noah. I move east to the river! I'm back at the river, It's been 2 hours since I was last here! I'm feeling afraid. 
 
-Emily
------
+I have to escape, I move north, this is now my 3nd day in the game; I've come across a river! I'm getting thirsty, there is water here, I drink. I'm back at the river; It's been 1 hours since I was last here. I move north! I've come across a meadow. I move west! I've come across a river! I move east to the meadow! 
 
-I'm back at the river at; It's been 7 hours since I was last here; I move north to the river. I'm back at the river at. It's been 9 hours since I was last here! I move west to the river; I'm back at the river at; It's been 14 hours since I was last here! I move north. 
+I'm back at the meadow; It's been 2 hours since I was last here, I move east, I've come across a forest! I move south. I've come across a meadow; I move east, I've come across a meadow; I'm getting thirsty, gotta get to water; there is water west! 
 
-I've come across a river, I move west!
+I move west to the meadow! I'm back at the meadow. It's been 2 hours since I was last here, I need to get to water. There is water north! I move north to the forest; I'm back at the forest; It's been 4 hours since I was last here; I want to get to water, there is water west, I move west to the meadow, I'm back at the meadow! It's been 8 hours since I was last here; gotta get to water; I know the location of water. It is west, I move west to the river. I'm back at the river! 
 
-Jessica
--------
+It's been 8 hours since I was last here! I'm really thirsty. There is water here! I drink! I'm back at the river, It's been 9 hours since I was last here, I move south, I've come across a river; I move west, I've come across a forest; I move east to the river; I'm back at the river! It's been 2 hours since I was last here; I move west to the forest, I'm back at the forest; It's been 2 hours since I was last here; I move south; I've come across a meadow! I move south, I've come across a meadow; I'm getting thirsty; I need to get to water! I know the location of water; it is north, I move north to the meadow, I'm back at the meadow! It's been 2 hours since I was last here! I'm thirsty; I need to get to water; there is water north. I move north to the forest; I'm back at the forest, It's been 6 hours since I was last here, I'm thirsty. I need to get to water! There is water east! I move east to the river, I'm back at the river; It's been 8 hours since I was last here! There is water here; I drink! I'm back at the river; It's been 9 hours since I was last here, I move north to the river; I'm back at the river! It's been 20 hours since I was last here. I move east to the meadow, this is now my 4rd day in the game! I'm back at the meadow, It's been 22 hours since I was last here. I move south to the river; I'm back at the river, It's been 25 hours since I was last here! I move north to the meadow; I'm back at the meadow. It's been 24 hours since I was last here, I move south to the river, I'm back at the river. It's been 27 hours since I was last here. I move north to the meadow, I'm back at the meadow. 
 
-I've come across a meadow! I move east; I've come across a forest. I move south; I've come across a meadow, I'm getting thirsty. Gotta get to water! 
-
-I know the location of water. It is north! I move north to the forest, I'm back at the forest at! It's been 2 hours since I was last here, I need to get to water; I know the location of water; It is west! I move west to the meadow!
-
-Emily
------
-
-I've come across a meadow; I'm getting thirsty; I need to get to water. I know the location of water. It is east! I move east to the river; I'm back at the river at, It's been 2 hours since I was last here, I need to get to water; There is water here! I drink, I'm back at the river at, It's been 3 hours since I was last here! I move east! I've come across a meadow; I move east.
+It's been 26 hours since I was last here, I'm getting thirsty! Gotta get to water! There is water west! I move west to the river; I'm back at the river, It's been 26 hours since I was last here, there is water here, I drink; I'm back at the river! It's been 27 hours since I was last here. I move west. I've come across a meadow. And here I am!
 
 Jessica
 -------
 
-I've now been in the game for 1 full days. I'm back at the meadow at. It's been 4 hours since I was last here, I want to get to water; I know the location of water. It is south! I move south to the river.
+I'm back at the meadow. 
+
+It's been 1 hours since I was last here; I move south; I've come across a forest, I can see Emily, I'm afraid, I want to escape, I move east, I've come across a river, I move south. I've come across a meadow, and here I am.
 
 Emily
 -----
 
-I've now been in the game for 1 full days, I've come across a forest! I move south. I've come across a meadow! 
+I'm back at the river; It's been 1 hours since I was last here. I move west, I've come across a river. I move east to the river. I'm back at the river, It's been 3 hours since I was last here! I'm getting thirsty; there is water here! I drink; I'm back at the river, It's been 4 hours since I was last here. I move south, I've come across a forest; I move north to the river, I'm back at the river. It's been 6 hours since I was last here! I move north to the river. I'm back at the river, It's been 11 hours since I was last here! I move south to the river! I'm back at the river. It's been 8 hours since I was last here! I move north to the river! I'm back at the river! It's been 13 hours since I was last here! I move east to the river. I'm back at the river. It's been 15 hours since I was last here! I'm getting thirsty. There is water here, I drink; I'm back at the river! It's been 16 hours since I was last here, I move south, I've come across a meadow; I move west! I've come across a river! 
 
-I move east!
+I move south; I've come across a forest! I move north to the river; I'm back at the river; It's been 2 hours since I was last here. I move south to the forest, I'm back at the forest, It's been 2 hours since I was last here. I move east. I've come across a forest, I'm getting thirsty, I want to get to water; there is water west! I move west to the forest, I'm back at the forest; It's been 4 hours since I was last here. I want to get to water; there is water north! I move north to the river. I'm back at the river; It's been 6 hours since I was last here, there is water here, I drink. I'm back at the river; It's been 7 hours since I was last here, I move north. I've come across a river! 
+
+I move south to the river! I've now been in the game for 3 full days. I'm back at the river; It's been 9 hours since I was last here, I move north to the river; I'm back at the river! It's been 2 hours since I was last here, I move west, I've come across a meadow, I move north; I've come across a river; I move west; I've come across a forest; I'm getting thirsty; I want to get to water. There is water east, I move east to the river, I'm back at the river, It's been 2 hours since I was last here; there is water here. I drink, I'm back at the river, It's been 3 hours since I was last here! I move west to the forest. I'm back at the forest! It's been 3 hours since I was last here! I move east to the river; I'm back at the river. It's been 5 hours since I was last here, I move west to the forest! I'm back at the forest. It's been 5 hours since I was last here, I'm feeling afraid! I want to escape! I move north! I've come across a meadow! I move south to the forest, I'm back at the forest! It's been 7 hours since I was last here! I move south, I've come across a meadow, I'm getting thirsty. Gotta get to water. There is water north, I move north to the forest! I'm back at the forest, It's been 9 hours since I was last here. I'm thirsty. I need to get to water! There is water east, I move east to the river. I'm back at the river, It's been 11 hours since I was last here. There is water here. I drink! I'm back at the river! It's been 12 hours since I was last here. I move north. I've come across a river! I move east; I've come across a meadow. And here I am.
 
 Jessica
 -------
 
-I'm back at the river at; It's been 6 hours since I was last here! I want to get to water. There is water here! I drink! I'm back at the river at, It's been 7 hours since I was last here, I move south to the river! I'm back at the river at, It's been 9 hours since I was last here, I move west to the meadow. 
+I'm back at the meadow; It's been 1 hours since I was last here; I'm getting thirsty! Gotta get to water! 
 
-I'm back at the meadow at; It's been 14 hours since I was last here. I move west! I've come across a meadow! 
-
-I move south!
-
-Emily
------
-
-I've come across a meadow; I move south. I've come across a forest! I move west; I've come across a river. 
-
-I'm getting thirsty! Gotta get to water. There is water here; I drink. I'm back at the river at; It's been 1 hours since I was last here! I move east to the forest, I'm back at the forest at! It's been 3 hours since I was last here; I move west to the river, I'm back at the river at; It's been 3 hours since I was last here; I move north!
+There is water north. I move north to the river, I'm back at the river! It's been 3 hours since I was last here. There is water here, I drink, I'm back at the river. It's been 4 hours since I was last here! I'm feeling afraid. I need to escape. I move north; I've come across a river. I move south to the river, I'm back at the river, It's been 6 hours since I was last here, I move east; I've come across a river; I move south! I've come across a river; and here I am!
 
 Jessica
 -------
 
-I've come across a meadow; I move east, I've come across a river; I move east; I've come across a river; I'm getting thirsty; I need to get to water. 
+I'm back at the river; It's been 1 hours since I was last here; I move east. I've come across a river, I'm getting thirsty, there is water here, I drink; I'm back at the river, It's been 1 hours since I was last here. I move east! I've come across a forest! I move north. 
 
-There is water here, I drink! 
-
-I'm back at the river at. It's been 1 hours since I was last here, I move south.
+I've come across a meadow. I move north! This is now my 5th day in the game; I've come across a forest. I move west. I've come across a forest! And here I am!
 
 Emily
 -----
 
-I've come across a meadow, I move east, I've come across a meadow! I move south. I've come across a forest! I move north to the meadow; I'm back at the meadow at! It's been 2 hours since I was last here, I'm getting thirsty! I have to get to water; I know the location of water, It is west, I move west to the meadow.
+I'm back at the meadow, It's been 1 hours since I was last here; I move west to the river. I'm back at the river! It's been 3 hours since I was last here, I move east to the meadow. I'm back at the meadow; It's been 3 hours since I was last here, I move west to the river, I'm back at the river! It's been 5 hours since I was last here, I'm getting thirsty! 
 
-Jessica
--------
+There is water here. 
 
-I've come across a forest. 
+I drink; I'm back at the river, It's been 6 hours since I was last here, I move west. I've come across a meadow; I move south, this is now my 5th day in the game. I've come across a forest! 
 
-I move west; I've come across a meadow. I move north! I've come across a river, I move west, I've come across a meadow; I move north; I've come across a meadow, I move east, I've come across a meadow, I'm getting thirsty. I want to get to water, I know the location of water! It is west, I move west to the meadow!
+I move north to the meadow. I'm back at the meadow, It's been 2 hours since I was last here. I move south to the forest; I'm back at the forest. It's been 2 hours since I was last here! I move east. I've come across a river. And here I am.
 
-Emily
------
-
-I'm back at the meadow at! It's been 4 hours since I was last here; I have to get to water. I know the location of water! It is south; I move south to the river, I'm back at the river at! It's been 9 hours since I was last here; I want to get to water, There is water here. I drink. I'm back at the river at, It's been 10 hours since I was last here. I move west! 
-
-I've come across a river, I move west.
-
-Jessica
--------
-
-I'm back at the meadow at. It's been 2 hours since I was last here. 
-
-I'm thirsty. I want to get to water; I know the location of water; It is south! I move south to the meadow!
+* Jessica has died of thirst.
 
 Emily
 -----
 
-I've come across a meadow. I move south. I've come across a river, I move west. I've come across a meadow. I move north.
+I'm back at the river; It's been 1 hours since I was last here. I'm getting thirsty; there is water here. I drink, I'm back at the river! It's been 2 hours since I was last here! I move east; I've come across a river! I move south! I've come across a river! I move east; I've come across a river, and here I am.
 
-Jessica
--------
+Noah
+----
 
-I'm back at the meadow at. It's been 4 hours since I was last here! Gotta get to water! I know the location of water, It is east; I move east to the river! I'm back at the river at, It's been 6 hours since I was last here, I'm thirsty. I need to get to water, There is water here; I drink; I'm back at the river at. It's been 7 hours since I was last here. I move south to the meadow.
+I'm back at the meadow, It's been 12 hours since I was last here! I move south to the forest; I'm back at the forest! It's been 12 hours since I was last here. I'm getting thirsty! I want to get to water! There is water west. I move west to the river; I'm back at the river. It's been 12 hours since I was last here, I'm thirsty! There is water here; I drink! I'm back at the river, It's been 13 hours since I was last here, I move east to the forest. I'm back at the forest; It's been 15 hours since I was last here; I move west to the river; I'm back at the river, It's been 15 hours since I was last here. I move north; I've come across a meadow; I move north, I've come across a forest, I move west, I've come across a meadow. I move east to the forest, I'm back at the forest, It's been 2 hours since I was last here. I'm getting thirsty. I have to get to water, there is water south; I move south to the meadow, I'm back at the meadow! 
 
-Emily
------
+It's been 4 hours since I was last here. Gotta get to water! I know the location of water; it is south. I move south to the river; I'm back at the river, It's been 21 hours since I was last here, there is water here, I drink; I'm back at the river! It's been 22 hours since I was last here, I move north to the meadow, I'm back at the meadow; It's been 7 hours since I was last here, I move west, I've come across a river; I move east to the meadow. I'm back at the meadow. It's been 9 hours since I was last here. I move south to the river. I'm back at the river. It's been 26 hours since I was last here, I move east to the forest, this is now my 5th day in the game; I'm back at the forest. It's been 28 hours since I was last here. I move west to the river! I'm back at the river. It's been 28 hours since I was last here; I'm getting thirsty. There is water here, I drink! I'm back at the river. It's been 29 hours since I was last here! I move south! 
 
-I've come across a meadow; I move south to the meadow.
+I've come across a meadow. I move south, I've come across a forest, I move north to the meadow, I'm back at the meadow; It's been 2 hours since I was last here, I move east; I've come across a forest; I move west to the meadow! I'm back at the meadow. It's been 4 hours since I was last here, I move east to the forest; I'm back at the forest. It's been 2 hours since I was last here; I'm getting thirsty. I have to get to water, I know the location of water. It is west; I move west to the meadow; I'm back at the meadow. 
 
-Jessica
--------
+It's been 6 hours since I was last here. I want to get to water; there is water north, I move north to the river; I'm back at the river, It's been 37 hours since I was last here! 
 
-I'm back at the meadow at; It's been 9 hours since I was last here! I move north to the river.
+I'm thirsty, there is water here. I drink, I'm back at the river, It's been 38 hours since I was last here! I move west! I've come across a river; I move north; I've come across a river, I move west! I've come across a river, I move west; I've come across a forest; and here I am!
 
 Emily
 -----
 
-I'm back at the meadow at, It's been 2 hours since I was last here! I'm getting thirsty, I want to get to water, I know the location of water! It is east, I move east to the river.
+I'm back at the river! It's been 1 hours since I was last here! I move north; I've come across a meadow, I move west; I've come across a river! I'm getting thirsty. There is water here. 
 
-Jessica
--------
+I drink. I'm back at the river. It's been 1 hours since I was last here; I move west; I've come across a river. I move west! I've come across a forest, I move north, I've come across a meadow; I move south to the forest; I'm back at the forest; It's been 2 hours since I was last here, I'm feeling brave; I move south; I've come across a meadow; I move south! I've come across a meadow. I'm getting thirsty; I need to get to water; there is water north. I move north to the meadow, I'm back at the meadow; It's been 2 hours since I was last here. I'm thirsty! I have to get to water. 
 
-I'm back at the river at; It's been 9 hours since I was last here; I'm afraid, I need to escape; I move north.
+There is water north. I move north to the forest; I'm back at the forest; It's been 6 hours since I was last here, I'm thirsty. I want to get to water, there is water east! I move east to the river; I'm back at the river; It's been 8 hours since I was last here! There is water here! I drink, I'm back at the river; It's been 9 hours since I was last here. I move north; I've come across a river. 
 
-Emily
------
+I can see Noah! I move south to the river. I've now been in the game for 5 full days; I'm back at the river, It's been 11 hours since I was last here. And here I am!
 
-I'm back at the river at, It's been 4 hours since I was last here; I'm thirsty, I need to get to water; There is water here; I drink. I'm back at the river at; It's been 5 hours since I was last here; I move west to the meadow. I'm back at the meadow at. It's been 5 hours since I was last here! 
+Noah
+----
 
-I move north to the meadow!
+I'm back at the forest! It's been 1 hours since I was last here; I'm brave; I move east to the river, I'm back at the river; It's been 3 hours since I was last here! I'm getting thirsty, there is water here, I drink. I'm back at the river. It's been 4 hours since I was last here. I move north! I've come across a river! I move east! I've come across a meadow! 
 
-Jessica
--------
+I move east, I've come across a forest! I move west to the meadow. I'm back at the meadow. It's been 2 hours since I was last here! 
 
-I've come across a meadow. I move south to the river! I'm back at the river at! It's been 11 hours since I was last here; I move north to the meadow, This is now my 3nd day in the game, I'm back at the meadow at! 
-
-It's been 2 hours since I was last here, I move east!
+I move west to the river, I'm back at the river. It's been 4 hours since I was last here! I need to escape! I move east to the meadow. This is now my 6th day in the game! I'm back at the meadow, It's been 4 hours since I was last here, I'm getting thirsty; gotta get to water! I know the location of water; it is west; I move west to the river, I'm back at the river, It's been 6 hours since I was last here; there is water here! I drink; I'm back at the river. It's been 7 hours since I was last here. I move east to the meadow, I'm back at the meadow! It's been 7 hours since I was last here! I move west to the river. I'm back at the river; It's been 9 hours since I was last here. I move south to the river, I'm back at the river! It's been 15 hours since I was last here; and here I am!
 
 Emily
 -----
 
-This is now my 3nd day in the game! I'm back at the meadow at. It's been 5 hours since I was last here. I move east; I've come across a meadow; I move east, I've come across a river! Jessica, and Emily are here, I'm brave. I move east.
+I'm back at the river. It's been 12 hours since I was last here! I move south. I've come across a meadow! I move south! I've come across a river, I move west. 
 
-Jessica
--------
-
-I've come across a river, I'm getting thirsty! I have to get to water! There is water here. I drink. I'm back at the river at; It's been 1 hours since I was last here; I need to escape! I move west to the meadow. I'm back at the meadow at. It's been 5 hours since I was last here. I move west.
+I've come across a meadow; I'm getting thirsty! Gotta get to water; there is water east. I move east to the river! I'm back at the river, It's been 2 hours since I was last here; there is water here, I drink. I'm back at the river. It's been 3 hours since I was last here, and here I am!
 
 Emily
 -----
 
-I've come across a river! I move east.
+I'm back at the river. It's been 4 hours since I was last here! 
 
-Jessica
--------
+And here I am.
 
-I've come across a meadow; I move south!
+Noah
+----
 
-Emily
------
+I'm back at the river. It's been 16 hours since I was last here. I move north to the river; I'm back at the river, It's been 12 hours since I was last here, I move south to the river, I'm back at the river. It's been 18 hours since I was last here! 
 
-I've come across a forest! I'm getting thirsty! I have to get to water; I know the location of water. It is west; I move west to the river!
+I'm getting thirsty. There is water here; I drink, I'm back at the river. It's been 19 hours since I was last here. I move south! I've come across a meadow! I move south; I've come across a river! I move west; I've come across a meadow! 
 
-Jessica
--------
+I move east to the river; I'm back at the river; It's been 2 hours since I was last here. I move east! 
 
-I've come across a meadow, I move north to the meadow; I'm back at the meadow at, It's been 2 hours since I was last here; I move north; I've come across a forest; I move east.
-
-Emily
------
-
-I'm back at the river at! It's been 2 hours since I was last here, I have to get to water, There is water here! I drink! I'm back at the river at; It's been 3 hours since I was last here; I move north. I've come across a meadow, I move north; I've come across a forest, I move east.
-
-Jessica
--------
-
-I've come across a river, I'm getting thirsty; I have to get to water; There is water here; I drink. I'm back at the river at! It's been 1 hours since I was last here; I move east!
-
-Emily
------
-
-I've come across a forest; I move south! I've come across a meadow! I move west; I've come across a meadow, I move north.
-
-Jessica
--------
-
-I've come across a river. I move west to the river; I'm back at the river at! It's been 3 hours since I was last here. I move east to the river! I'm back at the river at! It's been 2 hours since I was last here! I move south!
-
-Emily
------
-
-I've come across a forest. I'm getting thirsty, I want to get to water! I know the location of water, It is south. I move south to the meadow! I'm back at the meadow at, It's been 2 hours since I was last here, I'm thirsty. I want to get to water; I know the location of water! It is east! I move east to the meadow.
+I've come across a river. Emily is here. I want to escape, I move west to the river. I'm back at the river. It's been 4 hours since I was last here! I'm getting thirsty; there is water here, I drink. I'm back at the river, It's been 5 hours since I was last here! And here I am!
 
 * Emily has died of thirst.
 
-* Jessica has won.
+* Noah has won.
