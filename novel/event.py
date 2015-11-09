@@ -13,15 +13,15 @@ class Event:
 class Terrain(Event):
 
     def clauses(self):
-        if self.worldview.visited == 0:
+        if self.worldview.visited == 1:
             # first visit
             yield from self.first_visit()
         else:
             yield from self.subsequent_visit()
 
     def first_visit(self):
-        yield "I've come across a %s (%d)" % (
-            self.worldview.terrain, self.time)
+        yield "I've come across a %s" % (
+            self.worldview.terrain)
 
     def subsequent_visit(self):
         yield "I'm back at the %s" % (
