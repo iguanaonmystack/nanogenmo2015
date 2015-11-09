@@ -39,7 +39,7 @@ def novel(x, y, num_people):
     print('-----------------')
     print()
     for person in people:
-        print(person)
+        print('*', person)
     print()
 
     last_diary = None
