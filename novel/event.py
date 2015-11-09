@@ -2,7 +2,8 @@ import math
 import random
 
 class Event:
-    def __init__(self, person, worldview):
+    def __init__(self, time, person, worldview):
+        self.time = time
         self.worldview = worldview
         self.person = person
     def clauses(self):
@@ -12,21 +13,22 @@ class Event:
 class Terrain(Event):
 
     def clauses(self):
-        if self.worldview.visited == 1:
+        if self.worldview.visited == 0:
             # first visit
             yield from self.first_visit()
         else:
             yield from self.subsequent_visit()
 
     def first_visit(self):
-        yield "I've come across a %s" % (
-            self.worldview.terrain)
+        yield "I've come across a %s (%d)" % (
+            self.worldview.terrain, self.time)
 
     def subsequent_visit(self):
         yield "I'm back at the %s" % (
             self.worldview.terrain)
-        yield "It's been %d hours since I was last here" % (
-            self.worldview.visited - 1)
+        if self.worldview.visited > 1:
+            yield "It's been %d hours since I was last here" % (
+                self.worldview.visited - 1)
 
 class Thirst(Event):
     def __init__(self, thirst, *args, **kw):
@@ -153,3 +155,41 @@ class Tick(Event):
 class Chill(Event):
     def clauses(self):
         return ['and here I am']
+
+class Attack(Event):
+    def __init__(self, opponent, *args, **kw):
+        super().__init__(*args, **kw)
+        self.opponent = opponent
+    def clauses(self):
+        yield "I attack %s" % self.opponent.name
+
+class Attacked(Event):
+    def __init__(self, opponent, *args, **kw):
+        super().__init__(*args, **kw)
+        self.opponent = opponent
+    def clauses(self):
+        yield "%s attacks me" % self.opponent.name
+
+class Fight(Event):
+    def __init__(self, fight, *args, **kw):
+        super().__init__(*args, **kw)
+        self.fight = fight
+    
+    def clauses(self):
+        for action in self.fight.actions:
+            weapon_adjective = random.choice(action.weapon.adjectives)
+            if action.subject is self.person:
+                yield "I %s %s with my %s %s in the %s" % (
+                    action.verb, action.victim,
+                    weapon_adjective, action.weapon.name,
+                    action.victim_part)
+                victim_health = action.victim_health - action.strike_power
+                if action.victim_health - action.strike_power <= 0.0:
+                    yield "I've killed %s" % (action.victim)
+            else:
+                yield "%s %s me in the %s with their %s %s" % (
+                    action.subject, action.verb,
+                    action.victim_part,
+                    weapon_adjective, action.weapon.name)
+                if action.victim_health - action.strike_power < 0.1:
+                    yield "I don't think I'll last much longer"

@@ -3,6 +3,8 @@ from copy import copy, deepcopy
 
 from world import World, Tile, opposite_direction
 from diary import Diary
+from fight import Fight
+import tools
 import event
 
 class Worldview(Tile):
@@ -25,6 +27,13 @@ class Person:
         self.gender = gender
         self.world = world
         self.tile = tile
+        # (Imemdiately) available tools
+        self.tools = [tools.Fist(adjectives=['left']),
+            tools.Fist(adjectives=['right']),
+            tools.Foot(adjectives=['left']),
+            tools.Foot(adjectives=['right'])]
+        # Other inventory
+        self.inventory = []
         
         # log
         self.diary = Diary()
@@ -38,9 +47,17 @@ class Person:
         self.worldview = None # Tile
         
         # current status/needs
-        self.dead = False
+        self.time = 0
+        self.health = 1.0
         self.thirst = 0
 
+    @property
+    def dead(self):
+        return self.health == 0
+    
+    def __lt__(self, other):
+        """Allow sorting of people."""
+        return self.name < other.name
 
     @classmethod
     def from_random(cls, world, namegen):
@@ -52,17 +69,24 @@ class Person:
     def __repr__(self):
         return "Person(%r, %r, %r)" % ( 
             self.world, self.name, self.gender)
+
+    def injure(self, amount):
+        """Injure this person by a certain amount (0.0<=amount<=1.0)"""
+        self.health -= amount
+        if self.health < 0.0:
+            self.health = 0.0
     
     def log(self, event_cls, *args, **kw):
         """Convenience method for self.diary.log(...)"""
-        # TODO - copy worldview and immediate neighbours
         args = list(args)
+        args.append(self.time)
         args.append(self)
         args.append(self.worldview.locality_copy())
         self.diary.log(event_cls(*args, **kw))
 
     def tick(self, i):
         # update stats
+        self.time = i
         self.thirst += 1
 
         # update worldview
@@ -99,7 +123,17 @@ class Person:
                 self.log(event.Motivation, 'escape')
                 need = 'escape'
             else:
-                self.log(event.Emotion, 'brave')
+                # pick a person and attempt to fight them
+                opponent = self.worldview.people.random(self, 1)[0]
+                self.log(event.Attack, opponent)
+                opponent.log(event.Attacked, self)
+                fight = Fight(self, opponent)
+                fight()
+                if not self.dead:
+                    self.log(event.Fight, fight)
+                else:
+                    opponent.log(event.Fight, fight)
+                return
 
         if need is None:
             # nothing in particular to do.
@@ -138,6 +172,8 @@ class Person:
         elif action == 'drink':
             self.thirst = 0
             self.log(event.Action, "drink")
+        else:
+            self.log(event.Action, 'DEBUG SHOULD NOT REACH HERE')
 
     def _move(self, direction, newtile):
         self.log(event.Movement, direction)

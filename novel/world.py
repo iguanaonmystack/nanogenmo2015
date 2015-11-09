@@ -50,6 +50,9 @@ class Tile:
         class PeopleSet(set):
             def __str__(self):
                 return ', '.join(str(p) for p in self)
+            def random(self, person, k):
+                return random.sample(
+                    [p for p in sorted(self) if p is not person], k)
         self.people = PeopleSet()
 
     @classmethod

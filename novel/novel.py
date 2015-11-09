@@ -73,21 +73,24 @@ def novel(x, y, num_people):
 
         # grim reaper:
         for person in people:
-            if person.dead:
-                # died during their turn
-                print("*", person.name, 'has died.')
-                print()
-            elif person.thirst > 10:
-                print("*", person.name, 'has died of thirst.')
-                print()
-                person.dead = True
+            if person.thirst > 10:
+                print("*", person.name, 'perishes from thirst.')
+                person.injure(-100000)
                 
             if person.dead:
                 people.remove(person)
                 person.tile.people.remove(person)
 
         if len(people) == 1:
-            print("*", people[0].name, 'has won.')
+            person = people[0]
+            print(person.name)
+            print('-' * len(person.name))
+            print()
+            for clause in person.diary.write():
+                print(clause, end='')
+            print()
+            print()
+            print("*", person.name, 'has won.')
             break
         if len(people) == 0:
             print("*", "Everybody has died.")
