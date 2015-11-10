@@ -1,5 +1,4 @@
 import random
-import event
 
 class Diary:
     def __init__(self):

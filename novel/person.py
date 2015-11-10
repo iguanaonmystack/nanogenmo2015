@@ -1,11 +1,11 @@
 import random
 from copy import copy, deepcopy
 
-from world import World, Tile, opposite_direction
-from diary import Diary
-from fight import Fight
-import tools
-import event
+from .world import World, Tile, opposite_direction
+from .diary import Diary
+from .fight import Fight
+from . import tools
+from . import event
 
 class Worldview(Tile):
     def __init__(self, posx, posy, terrain):
@@ -149,7 +149,6 @@ class Person:
                 # don't know any water, explore some more.
                 self.log(event.Motivation, 'get to water')
                 self.log(event.Knowledge, 'location', 'water', -1, None)
-                self.log('I don\'t know where there is water')
                 action = 'explore'
             elif path[0][1] == '':
                 # we're already at water

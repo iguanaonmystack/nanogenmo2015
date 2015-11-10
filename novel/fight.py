@@ -1,7 +1,7 @@
 import random
 import itertools
 
-from tools import Weapon
+from .tools import Weapon
 
 class FightAction:
     def __init__(self, subject, verb, weapon, strike_power, victim, victim_health, victim_part):
