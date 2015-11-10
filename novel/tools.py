@@ -12,7 +12,7 @@ class Weapon(Tool):
 
 class Fist(Weapon):
     name = 'fist'
-    verbs = ['punch', 'pummel', 'connect', 'swipe']
+    verbs = ['punch', 'pummel', 'punch', 'swipe']
     targets = ['face', 'arm', 'chest', 'stomach', 'neck', 'ear']
 
 class Foot(Weapon):

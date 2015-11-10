@@ -1,6 +1,9 @@
 import math
 import random
 
+from .pattern import en as pattern_en
+from . import pattern
+
 class Event:
     def __init__(self, time, person, worldview):
         self.time = time
@@ -134,7 +137,9 @@ class Movement(Event):
 
     def clauses(self):
         neighbour = getattr(self.worldview, self.direction, None)
-        yield "I move %s%s" % (
+        move = pattern_en.conjugate('move', '1sgp')
+        yield "I %s %s%s" % (
+            move,
             self.direction,
             ' to the %s' % (neighbour.terrain) if neighbour else ''
         )
@@ -180,15 +185,15 @@ class Fight(Event):
             weapon_adjective = random.choice(action.weapon.adjectives)
             if action.subject is self.person:
                 yield "I %s %s with my %s %s in the %s" % (
-                    action.verb, action.victim,
+                    pattern_en.conjugate(action.verb, '1sgp'), action.victim,
                     weapon_adjective, action.weapon.name,
                     action.victim_part)
                 victim_health = action.victim_health - action.strike_power
                 if action.victim_health - action.strike_power <= 0.0:
-                    yield "I've killed %s" % (action.victim)
+                    yield "I killed %s" % (action.victim)
             else:
                 yield "%s %s me in the %s with their %s %s" % (
-                    action.subject, action.verb,
+                    action.subject, pattern_en.conjugate(action.verb, '3sgp'),
                     action.victim_part,
                     weapon_adjective, action.weapon.name)
                 if action.victim_health - action.strike_power < 0.1:
