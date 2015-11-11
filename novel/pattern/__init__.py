@@ -1661,8 +1661,8 @@ class Verbs(lazydict):
                 for id1, id2 in list(self._default.items()):
                     if id2 in a:
                         a.add(id1)
-        a = (TENSES[id][:-2] for id in a)
-        a = Tenses(sorted(a))
+        a = [TENSES[id][:-2] for id in a]
+        a = Tenses(a)
         return a
 
     def find_lemma(self, verb):
