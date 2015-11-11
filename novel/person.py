@@ -21,6 +21,10 @@ class Worldview(Tile):
         new.west = copy(self.west)
         return new
 
+    def is_most_recent_location(self, person):
+        """Test whether this location is the last place the current
+        person has visited."""
+
 class Person:
     def __init__(self, world, name, gender, tile=None):
         self.name = name
@@ -82,7 +86,7 @@ class Person:
         args.append(self.time)
         args.append(self)
         args.append(self.worldview.locality_copy())
-        self.diary.log(event_cls(*args, **kw))
+        self.diary.log(self.time, event_cls(*args, **kw))
 
     def tick(self, i):
         # update stats

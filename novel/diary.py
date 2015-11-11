@@ -4,17 +4,19 @@ class Diary:
     def __init__(self):
         self.events = []
         self._punct = ['. ', '; ', ', ', '! ']
+        self.time = None # most recent update time
 
     def punct(self):
         sentence_end = False
         ret = random.choice(self._punct)
         if ret in ('. ', '! '):
             sentence_end = True
-            if random.random() < 0.1:
+            if random.random() < 0.2:
                 ret += '\n\n'
         return ret, sentence_end
 
-    def log(self, event):
+    def log(self, time, event):
+        self.time = time
         self.events.append(event)
 
     def write(self):
@@ -25,7 +27,7 @@ class Diary:
                 punct, end = self.punct()
                 yield punct
             between = False
-            for j, clause in enumerate(event.clauses()):
+            for j, clause in enumerate(event.clauses(self)):
                 between = True
                 if j > 0:
                     punct, end = self.punct()
