@@ -80,7 +80,7 @@ class Occupants(Event):
                     yield '%s %s %s' % (' '.join(peoplelist), are, here)
             else:
                 can = pattern_en.conjugate('could', tense=tense)
-                yield 'I %s see %s' % (can, ' '.join(peoplelist))
+                yield 'I %s see %s' % (can, ', '.join(peoplelist))
         else:
             # Only log if someone arrived or departed.
             # TODO
@@ -238,3 +238,6 @@ class Fight(Event):
                 if action.victim_health - action.strike_power < 0.1:
                     yield "I didn't think I'd last much longer"
 
+class Sleep(Event):
+    def clauses(self, diary):
+        yield "I fell asleep"

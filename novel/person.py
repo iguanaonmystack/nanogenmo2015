@@ -1,11 +1,12 @@
 import random
+import logging
 from copy import copy, deepcopy
 
 from .world import World, Tile, opposite_direction
 from .diary import Diary
-from .fight import Fight
 from . import tools
 from . import event
+from . import goals
 
 class Worldview(Tile):
     def __init__(self, posx, posy, terrain):
@@ -38,6 +39,8 @@ class Person:
             tools.Foot(adjectives=['right'])]
         # Other inventory
         self.inventory = []
+        # several-move missions to consider
+        self.goals = goals.Goals(self)
         
         # log
         self.diary = Diary()
@@ -54,6 +57,7 @@ class Person:
         self.time = 0
         self.health = 1.0
         self.thirst = 0
+        self.awake = 0
 
     @property
     def dead(self):
@@ -92,6 +96,7 @@ class Person:
         # update stats
         self.time = i
         self.thirst += 1
+        self.awake += 1
 
         # update worldview
         self.observe()
@@ -109,74 +114,68 @@ class Person:
         self.worldview.people = copy(self.tile.people)
         
     def action(self):
-        self.log(event.Terrain)
+        if not self.previous_worldview \
+        or self.previous_worldview.visited < 1:
+            self.log(event.Terrain)
 
-        # What will character decide to do?
-        action = None
+        # Analyse character's needs and goals:
 
-        # What is character's biggest need?
-        need = None
         if self.thirst > 6:
             self.log(event.Thirst, self.thirst)
-            need = 'water'
-        elif len(self.worldview.people) > 1:
+            self.goals.add_or_replace(goals.Drink, self.thirst + 1)
+            self.goals.add_or_replace(goals.GoTo, 'river', self.thirst)
+
+        if len(self.worldview.people) > 1:
             self.log(event.Occupants)
-            # run away if shy
+            # run away if shy # TODO or hide
             if random.random() < self.shy:
                 self.log(event.Emotion, 'afraid')
                 self.log(event.Motivation, 'escape')
-                need = 'escape'
+                self.goals.add_or_replace(goals.Escape, 5)
+                # TODO calc priority better
             else:
-                # pick a person and attempt to fight them
+                # TODO pick opponent more cannily
                 opponent = self.worldview.people.random(self, 1)[0]
-                self.log(event.Attack, opponent)
-                opponent.log(event.Attacked, self)
-                fight = Fight(self, opponent)
-                fight()
-                if not self.dead:
-                    self.log(event.Fight, fight)
-                else:
-                    opponent.log(event.Fight, fight)
-                return
+                self.goals.add_or_replace(goals.Fight, opponent, 5)
+                # TODO calc priority better
+        
+        if self.awake > 6:
+            if self.awake > 10:
+                self.log(event.Emotion('sleepy'))
+            self.goals.add_or_replace(goals.Rest, self.awake)
 
-        if need is None:
-            # nothing in particular to do.
-            if random.random() < self.explorer:
-                action = 'explore'
-            else:
-                action = None
-        elif need == 'escape':
-            action = 'explore'
-        elif need == 'water':
-            path = self.worldview.path_to('river')
-            if path is None:
-                # don't know any water, explore some more.
-                self.log(event.Motivation, 'get to water')
-                self.log(event.Knowledge, 'location', 'water', -1, None)
-                action = 'explore'
-            elif path[0][1] == '':
-                # we're already at water
-                self.log(event.Surroundings, 'water')
-                action = 'drink'
-            else:
-                self.log(event.Motivation, 'get to water')
-                self.log(event.Knowledge, 'location', 'water', 1, path[0][1])
-                action = 'move ' + path[0][1]
+        # Add low-priority sleep function if nothing better to do.
+        #if goals.Rest not in self.goals:
+        #    self.goals.add(goals.Rest, 1)
 
-        if action is None:
-            self.log(event.Chill)
-        elif action in ('explore'):
-            neighbours = self.tile.neighbours
-            direction = random.choice(list(sorted(neighbours)))
-            self._move(direction, neighbours[direction])
-        elif action.startswith('move '):
-            direction = action.split(' ', 1)[1]
-            self._move(direction, getattr(self.tile, direction)) 
-        elif action == 'drink':
-            self.thirst = 0
-            self.log(event.Action, "drink")
-        else:
-            self.log(event.Action, 'DEBUG SHOULD NOT REACH HERE')
+        # Add low-priority explore function if nothing better to do.
+        if goals.Explore not in self.goals:
+            self.goals.add(goals.Explore, None, 1)
+
+        # Perform highest priority action that is currently possible:
+
+        logging.debug('choosing highest priority goal from %r', self.goals)
+        goal_cache = []
+        while True:
+            # TODO if more than one top priority, randomise
+            # Pick highest priority goal:
+            goal = self.goals[-1]
+            logging.debug("Selected goal: %s", goal)
+
+            # is goal possible right now?
+            logging.debug('checking goal possible')
+            if goal.possible():
+                logging.debug('achieving goal')
+                goal.achieve()
+                break
+            else:
+                logging.debug('goal not possible')
+                goal_cache.append(goal)
+                if goal in self.goals: # possible() may have removed itself
+                    self.goals.remove(goal)
+                continue
+        for goal in goal_cache:
+            self.goals.add_inst(goal)
 
     def _move(self, direction, newtile):
         self.log(event.Movement, direction)

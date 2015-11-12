@@ -60,8 +60,8 @@ def novel(x, y, num_people):
             person.action()
 
         for person in people:
-            if person.diary.events \
-                and isinstance(person.diary.events[-1], event.Chill):
+            #if person.diary.events \
+            #and isinstance(person.diary.events[-1], event.Chill):
                 
                 print(person.name)
                 print('-' * len(person.name))
