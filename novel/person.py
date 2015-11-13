@@ -141,7 +141,7 @@ class Person:
         
         if self.awake > 6:
             if self.awake > 10:
-                self.log(event.Emotion('sleepy'))
+                self.log(event.Emotion, 'sleepy')
             self.goals.add_or_replace(goals.Rest, self.awake)
 
         # Add low-priority sleep function if nothing better to do.
