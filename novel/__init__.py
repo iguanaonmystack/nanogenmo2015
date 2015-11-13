@@ -13,6 +13,7 @@ class NameGenerator:
     def __init__(self, csvfile):
         self.choices = []
         self.weights = []
+        self.past = set()
         reader = csv.reader(csvfile)
         for firstname, gender, weighting in reader:
             self.choices.append((firstname, gender))
@@ -20,8 +21,12 @@ class NameGenerator:
             self.cumdist = list(itertools.accumulate(self.weights))
 
     def __call__(self):
-        x = random.random() * self.cumdist[-1]
-        return self.choices[bisect.bisect(self.cumdist, x)]
+        choice = None
+        while choice is None or choice in self.past:
+            x = random.random() * self.cumdist[-1]
+            choice = self.choices[bisect.bisect(self.cumdist, x)]
+        self.past.add(choice)
+        return choice
 
 def novel(x, y, num_people):
     world = World.from_random(x, y)
