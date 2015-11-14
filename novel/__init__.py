@@ -50,7 +50,7 @@ def novel(x, y, num_people):
 
     last_diary = None
     # tick:
-    for i in range(1000):
+    for i in range(100):
         #print('Map for time period', i + 1)
         #print('--------------------' + '-'*len(str(i + 1)))
         #print()
@@ -62,11 +62,22 @@ def novel(x, y, num_people):
         
         # do actions:
         for person in people:
+            # TODO randomise to avoid first player always attacking first.
             person.action()
+
+            # grim reaper:
+            for person in people:
+                if person.thirst > 10:
+                    print("*", person.name, 'perishes from thirst.')
+                    person.injure(-100000)
+                    
+                if person.dead:
+                    people.remove(person)
+                    person.tile.people.remove(person)
 
         for person in people:
             #if person.diary.events \
-            #and isinstance(person.diary.events[-1], event.Chill):
+            #and isinstance(person.diary.events[-1], event.Wake):
                 
                 print(person.name)
                 print('-' * len(person.name))
@@ -76,16 +87,6 @@ def novel(x, y, num_people):
                 print()
                 print()
                 last_diary = person
-
-        # grim reaper:
-        for person in people:
-            if person.thirst > 10:
-                print("*", person.name, 'perishes from thirst.')
-                person.injure(-100000)
-                
-            if person.dead:
-                people.remove(person)
-                person.tile.people.remove(person)
 
         if len(people) == 1:
             person = people[0]

@@ -41,6 +41,8 @@ class Goal:
         self.priority = priority
         self.person = person
         logging.debug("Goal created for %s: %s (%d)", self.person, self.__class__, self.priority)
+    def __repr__(self):
+        return '%s(%r)' % (self.__class__.__name__, self.priority)
     def __lt__(self, other):
         return self.priority < other.priority
     def possible(self):
@@ -59,18 +61,22 @@ class GoTo(Goal):
         self.terrain = terrain
         self.person.log(event.Motivation, 'get to ' + self.terrain)
     def possible(self):
+        logging.debug("Calculating path to %s", self.terrain)
         self.path = self.person.worldview.path_to(self.terrain)
         if self.path is None:
+            logging.debug('no path available')
             # Character doesn't know where there is water; explore.
             self.person.log(event.Knowledge, 'location', self.terrain, -1, None)
             self.person.goals.add_or_replace(Explore, None, self.priority)
             return False
         elif self.path[0][1] == '':
+            logging.debug('already at target')
             # already at water, so this goal is redundant
             self.person.log(event.Surroundings, 'water')
             self.person.goals.remove(self)
             return False
         else:
+            logging.debug('successful path calculated')
             self.person.log(event.Knowledge, 'location', self.terrain, 1, self.path[0][1])
             return True
     def achieve(self):
@@ -139,18 +145,27 @@ class Rest(Goal):
         # only rest/sleep when alone.
         if len(self.person.tile.people) > 1:
             return False
-        self.person.log(event.Chill)
         return True
     def achieve(self):
-        if self.person.awake > 6:
+        if self.person.awake > 6 and not self.sleeping:
             # fall asleep rather than resting
             self.sleeping = True
             self.person.log(event.Sleep)
-        self.person.awake -= 2 # 2 to compensate for per-tick increase by 1
-        if self.person.awake < 3:
-            if random.random() < 0.3:
+            return
+
+        if self.sleeping and self.person.awake < 3:
+            # Update person awake status, this goal priority.
+            self.person.awake -= 2 # 2 to compensate for per-tick increase by 1
+            self.priority = self.person.awake
+            self.person.goals.remove(self) # list would be unsorted otherwise
+            self.person.goals.add_inst(self)
+            if self.priority < 1:
                 # Wake up
+                self.person.log(event.Wake)
                 self.sleeping = False
+                self.person.goals.remove(self) 
+                return
+                
         if self.person.awake < 0:
             self.person.awake = 0
-
+        self.person.log(event.Rest)

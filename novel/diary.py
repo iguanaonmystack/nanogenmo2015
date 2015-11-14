@@ -22,6 +22,7 @@ class Diary:
     def write(self):
         between = False
         end = False
+        i = -1
         for i, event in enumerate(self.events):
             if between:
                 punct, end = self.punct()
@@ -36,6 +37,8 @@ class Diary:
                     yield clause[0].upper() + clause[1:] # TODO this is bad
                 else:
                     yield clause
+        if i == -1:
+            raise RuntimeError('No events generated')
         yield random.choice(['.', '!'])
 
         self.events[:] = []

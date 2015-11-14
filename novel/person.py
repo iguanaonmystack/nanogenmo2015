@@ -145,8 +145,8 @@ class Person:
             self.goals.add_or_replace(goals.Rest, self.awake)
 
         # Add low-priority sleep function if nothing better to do.
-        #if goals.Rest not in self.goals:
-        #    self.goals.add(goals.Rest, 1)
+        if goals.Rest not in self.goals:
+            self.goals.add(goals.Rest, 1)
 
         # Add low-priority explore function if nothing better to do.
         if goals.Explore not in self.goals:

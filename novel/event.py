@@ -1,5 +1,6 @@
 import math
 import random
+import logging
 
 from .pattern import en as pattern_en
 from . import pattern
@@ -190,10 +191,6 @@ class Tick(Event):
                     "I've now been in the game for %d full days" % (days),
                     "this is now my %d%s day in the game" % (days + 1, suffix)])
 
-class Chill(Event):
-    def clauses(self, diary):
-        return ['and here I am']
-
 class Attack(Event):
     def __init__(self, opponent, *args, **kw):
         super().__init__(*args, **kw)
@@ -228,6 +225,7 @@ class Fight(Event):
                     weapon_adjective, action.weapon.name,
                     action.victim_part)
                 victim_health = action.victim_health - action.strike_power
+                logging.debug('victim health now %f', victim_health)
                 if action.victim_health - action.strike_power <= 0.0:
                     yield "I killed %s" % (action.victim)
             else:
@@ -241,3 +239,9 @@ class Fight(Event):
 class Sleep(Event):
     def clauses(self, diary):
         yield "I fell asleep"
+class Wake(Event):
+    def clauses(self, diary):
+        yield "I woke up"
+class Rest(Event):
+    def clauses(self, diary):
+        yield "I rested"
