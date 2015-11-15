@@ -77,7 +77,7 @@ def novel(x, y, num_people):
 
         for person in people:
             #if person.diary.events \
-            #and isinstance(person.diary.events[-1], event.Wake):
+            #and isinstance(person.diary.events[-1], (event.Rest, event.Wake)):
                 
                 print(person.name)
                 print('-' * len(person.name))

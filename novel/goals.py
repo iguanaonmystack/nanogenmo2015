@@ -137,35 +137,16 @@ class Escape(Explore):
 class Rest(Goal):
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
-        self.sleeping = False
     def possible(self):
-        # don't wake up if asleep
-        if self.sleeping:
-            return True
-        # only rest/sleep when alone.
+        # only rest when alone.
         if len(self.person.tile.people) > 1:
             return False
         return True
     def achieve(self):
-        if self.person.awake > 6 and not self.sleeping:
-            # fall asleep rather than resting
-            self.sleeping = True
-            self.person.log(event.Sleep)
-            return
-
-        if self.sleeping and self.person.awake < 3:
-            # Update person awake status, this goal priority.
-            self.person.awake -= 2 # 2 to compensate for per-tick increase by 1
-            self.priority = self.person.awake
-            self.person.goals.remove(self) # list would be unsorted otherwise
-            self.person.goals.add_inst(self)
-            if self.priority < 1:
-                # Wake up
-                self.person.log(event.Wake)
-                self.sleeping = False
-                self.person.goals.remove(self) 
-                return
-                
+        # This compensates for the hourly +=1 but player will
+        # not be able to stay awake just by resting (unless they
+        # rest /every/ move).
+        self.awake -= 1
         if self.person.awake < 0:
             self.person.awake = 0
         self.person.log(event.Rest)

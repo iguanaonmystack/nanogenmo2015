@@ -58,6 +58,7 @@ class Person:
         self.health = 1.0
         self.thirst = 0
         self.awake = 0
+        self.sleeping = False
 
     @property
     def dead(self):
@@ -114,6 +115,19 @@ class Person:
         self.worldview.people = copy(self.tile.people)
         
     def action(self):
+        # Sleep cycle:
+        if self.sleeping:
+            self.awake -= 2 # 2 to compensate for +=1 in tick()
+            # TODO there are probably some things that should also
+            #  have a chance of waking the character up.
+            # And being fought should always wake them up
+            if self.awake < 4 and random.random() < 0.3:
+                self.sleeping = False
+                self.log(event.Wake)
+            else:
+                # Player continues to sleep
+                return
+
         if not self.previous_worldview \
         or self.previous_worldview.visited < 1:
             self.log(event.Terrain)
@@ -139,12 +153,21 @@ class Person:
                 self.goals.add_or_replace(goals.Fight, opponent, 5)
                 # TODO calc priority better
         
-        if self.awake > 6:
-            if self.awake > 10:
-                self.log(event.Emotion, 'sleepy')
-            self.goals.add_or_replace(goals.Rest, self.awake)
+        if self.awake > 10:
+            self.log(event.Emotion, 'sleepy')
+            if self.awake > 15:
+                self.sleeping = True
+                self.log(event.Sleep)
+            elif goals.GoTo not in self.goals:
+                # TODO implement more specific search in self.goals
+                # TODO find somewhere proper to hide to sleep.
+                self.goals.add_or_replace(goals.GoTo, 'forest', self.awake)
+            else:
+                # Chararacter is somewhere suitable to sleep
+                self.sleeping = True
+                self.log(event.Sleep)
 
-        # Add low-priority sleep function if nothing better to do.
+        # Add low-priority rest function if nothing better to do.
         if goals.Rest not in self.goals:
             self.goals.add(goals.Rest, 1)
 
@@ -156,11 +179,21 @@ class Person:
 
         logging.debug('choosing highest priority goal from %r', self.goals)
         goal_cache = []
+        # Pick highest priority goal:
         while True:
-            # TODO if more than one top priority, randomise
-            # Pick highest priority goal:
-            goal = self.goals[-1]
-            logging.debug("Selected goal: %s", goal)
+            top_goals = []
+            top_goals.append(self.goals[-1])
+            for i in range(len(self.goals) - 2, 0, -1):
+                if self.goals[i].priority == top_goals[0].priority:
+                    top_goals.append(self.goals[i])
+                    continue
+                break
+            if len(top_goals) > 1:
+                goal = random.choice(top_goals)
+                logging.debug("Randomly selected goal %s", goal)
+            else:
+                goal = top_goals[0]
+                logging.debug("Selected goal: %s", goal)
 
             # is goal possible right now?
             logging.debug('checking goal possible')

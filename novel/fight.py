@@ -1,3 +1,4 @@
+import logging
 import random
 import itertools
 
@@ -39,7 +40,10 @@ class Fight:
             self.actions.append(FightAction(
                 person, verb, weapon, weapon.power,
                 opponent, opponent.health, target))
+            assert weapon.power > 0
             opponent.injure(weapon.power)
+            logging.debug("injured opponent %d, health now %d",
+                weapon.power, opponent.health)
             if opponent.dead:
                 break
 
