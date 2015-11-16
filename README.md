@@ -6,4 +6,4 @@ My attempt involves creating a set of virtual people who will fight to the death
 
 The latest output is [here](novel/output.md).
 
-My code is licensed under the MIT license; see [LICENSE](LICENSE) for the text of the license. This package also includes code from the [pattern.en module](http://www.clips.ua.ac.be/pages/pattern-en); see [novel/pattern/LICENSE](novel/pattern/LICENSE) for details.
+My code is licensed under the MIT licence; see [LICENSE](LICENSE) for details.
