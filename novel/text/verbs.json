@@ -1623,6 +1623,10 @@
             "past": "pulled"
         },
         {
+            "present": "pummel",
+            "past": "pummelled"
+        },
+        {
             "present": "pump",
             "past": "pumped"
         },
@@ -2199,8 +2203,16 @@
             "past": "suspended"
         },
         {
+            "present": "swipe",
+            "past": "swiped"
+        },
+        {
             "present": "switch",
             "past": "switched"
+        },
+        {
+            "present": "tackle",
+            "past": "tackled"
         },
         {
             "present": "talk",
