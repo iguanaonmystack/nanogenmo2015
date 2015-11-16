@@ -2,8 +2,7 @@ import math
 import random
 import logging
 
-from .pattern import en as pattern_en
-from . import pattern
+from .text import verbs
 
 class Event:
     def __init__(self, time, person, worldview):
@@ -59,10 +58,10 @@ class Thirst(Event):
 class Occupants(Event):
     
     def clauses(self, diary):
-        tense = pattern_en.PRESENT
+        tense = 'present'
         here = 'here'
         if diary.time - self.time:
-            tense = pattern_en.PAST
+            tense = 'past'
             here = 'there'
         if self.worldview.visited == 1:
             # first consecutive tick in this tile
@@ -73,15 +72,15 @@ class Occupants(Event):
                 peoplelist.append(p.name)
             if len(peoplelist) > 1:
                 peoplelist[-1] = 'and ' + peoplelist[-1]
-            number = pattern_en.PL if len(peoplelist) != 1 else pattern_en.SG
+            number = 'plural' if len(peoplelist) != 1 else 'singular'
             if random.random() > 0.5:
-                are = pattern_en.conjugate('is', tense=tense, number=number)
+                are = verbs.conjugate('is', tense, 3, number)
                 if len(peoplelist) > 2:
                     yield '%s %s %s' % (', '.join(peoplelist), are, here)
                 else:
                     yield '%s %s %s' % (' '.join(peoplelist), are, here)
             else:
-                can = pattern_en.conjugate('could', tense=tense)
+                can = verbs.conjugate('can', tense, 1, 'singular')
                 yield 'I %s see %s' % (can, ', '.join(peoplelist))
         else:
             # Only log if someone arrived or departed.
@@ -95,11 +94,11 @@ class Emotion(Event):
 
     def clauses(self, diary):
         if random.random() > 0.3:
-            tense = pattern_en.PRESENT
+            tense = 'present'
             if diary.time - self.time:
-                tense = pattern_en.PAST
-            am = pattern_en.conjugate('am', tense=tense)
-            feel = pattern_en.conjugate('felt', tense=tense, person=1)
+                tense = 'past'
+            am = verbs.conjugate('am', tense, 1, 'singular')
+            feel = verbs.conjugate('felt', tense, 1, 'singular')
             yield random.choice([
                 "I %s feeling %s" % (am, self.emotion),
                 "I %s %s" % (feel, self.emotion)])
@@ -157,7 +156,7 @@ class Action(Event):
     def clauses(self, diary):
         verb = self.verb
         if diary.time - self.time:
-            verb = pattern_en.conjugate(self.verb, '1sgp')
+            verb = verbs.past(self.verb)
         yield "I %s" % (self.verb)
 
 class Movement(Event):
@@ -167,7 +166,7 @@ class Movement(Event):
 
     def clauses(self, diary):
         neighbour = getattr(self.worldview, self.direction, None)
-        move = pattern_en.conjugate('move', '1sgp')
+        move = verbs.past('move')
         yield "I %s %s%s" % (
             move,
             self.direction,
@@ -222,7 +221,7 @@ class Fight(Event):
             weapon_adjective = random.choice(action.weapon.adjectives)
             if action.subject is self.person:
                 yield "I %s %s with my %s %s in the %s" % (
-                    pattern_en.conjugate(action.verb, '1sgp'), action.victim,
+                    verbs.past(action.verb), action.victim,
                     weapon_adjective, action.weapon.name,
                     action.victim_part)
                 victim_health = action.victim_health - action.strike_power
@@ -231,7 +230,7 @@ class Fight(Event):
                     yield "I killed %s" % (action.victim)
             else:
                 yield "%s %s me in the %s with their %s %s" % (
-                    action.subject, pattern_en.conjugate(action.verb, '3sgp'),
+                    action.subject, verbs.present_3s(action.verb),
                     action.victim_part,
                     weapon_adjective, action.weapon.name)
                 if action.victim_health - action.strike_power < 0.1:
