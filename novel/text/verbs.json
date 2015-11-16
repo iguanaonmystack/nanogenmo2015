@@ -163,6 +163,16 @@
             "past": "beamed"
         },
         {
+            "infinitive": "be",
+            "present_1s": "am",
+            "present_2s": "are",
+            "present_3s": "is",
+            "present_1p": "are",
+            "present_2p": "are",
+            "present_3p": "are",
+            "past": "was"
+        },
+        {
             "present": "beg",
             "past": "begged"
         },
@@ -289,6 +299,10 @@
         {
             "present": "camp",
             "past": "camped"
+        },
+        {
+            "present": "can",
+            "past": "could"
         },
         {
             "present": "care",
@@ -635,6 +649,10 @@
             "past": "dressed"
         },
         {
+            "present": "drink",
+            "past": "drank"
+        },
+        {
             "present": "drip",
             "past": "dripped"
         },
@@ -769,6 +787,10 @@
         {
             "present": "fear",
             "past": "feared"
+        },
+        {
+            "present": "feel",
+            "past": "felt"
         },
         {
             "present": "fence",

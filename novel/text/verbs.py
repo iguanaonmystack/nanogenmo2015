@@ -6,8 +6,9 @@ data = json.load(open(os.path.join(os.path.dirname(__file__), 'verbs.json')))
 
 def find(word):
     for datum in data['verbs']:
-        if datum['present'] == word or datum['past'] == word:
-            return datum
+        for tense, form in datum.items():
+            if form == word:
+                return datum
     raise RuntimeError('Unknown verb: %s' % word)
 
 def past(word):
@@ -18,7 +19,10 @@ def past(word):
 def present_1s(word):
     """Simple present, 1st person singular"""
     tenses = find(word)
-    return tenses['present']
+    try:
+        return tenses['present_1s']
+    except KeyError:
+        return tenses['present']
 
 def present_3s(word):
     """Simle present, 3rd person singular"""
