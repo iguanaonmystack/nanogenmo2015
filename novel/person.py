@@ -46,7 +46,7 @@ class Person:
         self.diary = Diary()
 
         # fixed behaviour attributes
-        self.shy = 0.5
+        self.shy = 0.9
         self.explorer = 0.9
 
         # knowledge
@@ -95,8 +95,10 @@ class Person:
 
     def tick(self, i):
         # update stats
+
         self.time = i
-        self.thirst += 1
+        if not self.sleeping:
+            self.thirst += 1
         self.awake += 1
 
         # update worldview
@@ -159,6 +161,7 @@ class Person:
             if self.awake > 15:
                 self.sleeping = True
                 self.log(event.Sleep)
+                return
             elif goals.GoTo not in self.goals:
                 # TODO implement more specific search in self.goals
                 # TODO find somewhere proper to hide to sleep.
@@ -184,11 +187,12 @@ class Person:
         while True:
             top_goals = []
             top_goals.append(self.goals[-1])
-            for i in range(len(self.goals) - 2, 0, -1):
+            for i in range(len(self.goals) - 2, -1, -1):
                 if self.goals[i].priority == top_goals[0].priority:
                     top_goals.append(self.goals[i])
                     continue
                 break
+            logging.debug('Top goals: %r', top_goals)
             if len(top_goals) > 1:
                 goal = random.choice(top_goals)
                 logging.debug("Randomly selected goal %s", goal)

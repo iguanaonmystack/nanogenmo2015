@@ -154,7 +154,7 @@ class Rest(Goal):
         # This compensates for the hourly +=1 but player will
         # not be able to stay awake just by resting (unless they
         # rest /every/ move).
-        self.awake -= 1
+        self.person.awake -= 1
         if self.person.awake < 0:
             self.person.awake = 0
         self.person.log(event.Rest)

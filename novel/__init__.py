@@ -51,7 +51,7 @@ def novel(x, y, num_people):
 
     last_diary = None
     # tick:
-    for i in range(100):
+    while True:
         #print('Map for time period', i + 1)
         #print('--------------------' + '-'*len(str(i + 1)))
         #print()
