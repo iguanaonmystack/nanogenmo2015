@@ -230,7 +230,7 @@ class Fight(Event):
                     yield "I killed %s" % (action.victim)
             else:
                 yield "%s %s me in the %s with their %s %s" % (
-                    action.subject, verbs.present_3s(action.verb),
+                    action.subject, verbs.past(action.verb),
                     action.victim_part,
                     weapon_adjective, action.weapon.name)
                 if action.victim_health - action.strike_power < 0.1:
