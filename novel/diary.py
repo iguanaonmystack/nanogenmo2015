@@ -37,8 +37,7 @@ class Diary:
                     yield clause[0].upper() + clause[1:] # TODO this is bad
                 else:
                     yield clause
-        if i == -1:
-            raise RuntimeError('No events generated')
-        yield random.choice(['.', '!'])
+        if i != -1:
+            yield random.choice(['.', '!'])
 
         self.events[:] = []

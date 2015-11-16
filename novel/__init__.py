@@ -3,6 +3,7 @@ import csv
 import time
 import random
 import bisect
+import logging
 import itertools
 
 from .world import World, Tile
@@ -57,6 +58,7 @@ def novel(x, y, num_people):
         #print(world)
 
         # update everyone's stats and have them look around:
+        logging.debug('ticking %d people', len(people))
         for person in people:
             person.tick(i)
         
@@ -69,10 +71,12 @@ def novel(x, y, num_people):
             for person in people:
                 if person.thirst > 10:
                     print("*", person.name, 'perishes from thirst.')
-                    person.injure(-100000)
+                    person.injure(100000)
+                    assert person.dead, person.health
                     
                 if person.dead:
                     people.remove(person)
+                    logging.debug("%d people remain", len(people))
                     person.tile.people.remove(person)
 
         for person in people:

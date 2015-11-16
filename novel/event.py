@@ -17,6 +17,7 @@ class Event:
 class Terrain(Event):
 
     def clauses(self, diary):
+        logging.debug('Last visited tile: %d', self.worldview.visited)
         if self.worldview.visited == 1:
             # first visit
             yield from self.first_visit(diary)

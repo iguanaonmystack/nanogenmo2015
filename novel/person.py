@@ -128,16 +128,17 @@ class Person:
                 # Player continues to sleep
                 return
 
-        if not self.previous_worldview \
-        or self.previous_worldview.visited < 1:
-            self.log(event.Terrain)
+        self.log(event.Terrain)
 
         # Analyse character's needs and goals:
 
         if self.thirst > 6:
             self.log(event.Thirst, self.thirst)
-            self.goals.add_or_replace(goals.Drink, self.thirst + 1)
-            self.goals.add_or_replace(goals.GoTo, 'river', self.thirst)
+            goto_goal = goals.GoTo('river', self.thirst, person=self)
+            drink_goal = goals.Drink(self.thirst + 1, person=self)
+            drink_goal.subgoals.append(goto_goal)
+            self.goals.add_or_replace(goto_goal)
+            self.goals.add_or_replace(drink_goal)
 
         if len(self.worldview.people) > 1:
             self.log(event.Occupants)
@@ -208,7 +209,7 @@ class Person:
                     self.goals.remove(goal)
                 continue
         for goal in goal_cache:
-            self.goals.add_inst(goal)
+            self.goals.add(goal)
 
     def _move(self, direction, newtile):
         self.log(event.Movement, direction)

@@ -42,7 +42,7 @@ class Fight:
                 opponent, opponent.health, target))
             assert weapon.power > 0
             opponent.injure(weapon.power)
-            logging.debug("injured opponent %d, health now %d",
+            logging.debug("injured opponent %f, health now %f",
                 weapon.power, opponent.health)
             if opponent.dead:
                 break

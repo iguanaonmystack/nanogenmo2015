@@ -20,26 +20,31 @@ class Goals(list):
         else:
             return super().__contains__(item)
 
-    def add(self, goal_cls, *args, **kw):
-        kw['person'] = self.person
-        goal = goal_cls(*args, **kw)
+    def add(self, goal, *args, **kw):
+        if isinstance(goal, type):
+            kw['person'] = self.person
+            goal = goal(*args, **kw)
         bisect.insort(self, goal)
 
-    def add_inst(self, goal):
-        bisect.insort(self, goal)
-
-    def add_or_replace(self, goal_cls, *args, **kw):
-        for item in self:
-            if isinstance(item, goal_cls):
-                self.remove(item)
-                break
-        self.add(goal_cls, *args, **kw)
+    def add_or_replace(self, goal, *args, **kw):
+        if isinstance(goal, type):
+            for item in self:
+                if isinstance(item, goal):
+                    self.remove(item)
+                    break
+        else:
+            for item in self:
+                if item.__class__ == goal.__class__:
+                    self.remove(item)
+                    break
+        self.add(goal, *args, **kw)
 
 class Goal:
     """A (potentially) multi-move aim of a person."""
     def __init__(self, priority, person=None):
         self.priority = priority
         self.person = person
+        self.subgoals = []
         logging.debug("Goal created for %s: %s (%d)", self.person, self.__class__, self.priority)
     def __repr__(self):
         return '%s(%r)' % (self.__class__.__name__, self.priority)
@@ -53,6 +58,9 @@ class Goal:
         goal."""
         logging.debug('goal %s achieved', self)
         self.person.goals.remove(self)
+        for subgoal in self.subgoals:
+            logging.debug('subgoal %s achieved', subgoal)
+            subgoal.person.goals.remove(subgoal)
 
 class GoTo(Goal):
     """Character aims to reach a certain location."""
