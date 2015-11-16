@@ -80,8 +80,8 @@ def novel(x, y, num_people):
                     person.tile.people.remove(person)
 
         for person in people:
-            #if person.diary.events \
-            #and isinstance(person.diary.events[-1], (event.Rest, event.Wake)):
+            if person.diary.events \
+            and isinstance(person.diary.events[-1], (event.Rest, event.Wake)):
                 
                 print(person.name)
                 print('-' * len(person.name))
