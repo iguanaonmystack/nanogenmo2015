@@ -156,7 +156,7 @@ class Action(Event):
     def clauses(self, diary):
         verb = self.verb
         if diary.time - self.time:
-            verb = verbs.past(self.verb)
+            verb = verbs.past_1s(self.verb)
         yield "I %s" % (self.verb)
 
 class Movement(Event):
@@ -166,7 +166,7 @@ class Movement(Event):
 
     def clauses(self, diary):
         neighbour = getattr(self.worldview, self.direction, None)
-        move = verbs.past('move')
+        move = verbs.past_1s('move')
         yield "I %s %s%s" % (
             move,
             self.direction,
@@ -221,7 +221,7 @@ class Fight(Event):
             weapon_adjective = random.choice(action.weapon.adjectives)
             if action.subject is self.person:
                 yield "I %s %s with my %s %s in the %s" % (
-                    verbs.past(action.verb), action.victim,
+                    verbs.past_1s(action.verb), action.victim,
                     weapon_adjective, action.weapon.name,
                     action.victim_part)
                 victim_health = action.victim_health - action.strike_power
@@ -230,7 +230,7 @@ class Fight(Event):
                     yield "I killed %s" % (action.victim)
             else:
                 yield "%s %s me in the %s with their %s %s" % (
-                    action.subject, verbs.past(action.verb),
+                    action.subject, verbs.past_3s(action.verb),
                     action.victim_part,
                     weapon_adjective, action.weapon.name)
                 if action.victim_health - action.strike_power < 0.1:

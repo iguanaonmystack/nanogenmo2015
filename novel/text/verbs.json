@@ -170,7 +170,12 @@
             "present_1p": "are",
             "present_2p": "are",
             "present_3p": "are",
-            "past": "was"
+            "past_1s": "was",
+            "past_2s": "were",
+            "past_3s": "was",
+            "past_1p": "were",
+            "past_2p": "were",
+            "past_3p": "were"
         },
         {
             "present": "beg",
