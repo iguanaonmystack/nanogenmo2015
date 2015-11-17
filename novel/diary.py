@@ -1,4 +1,5 @@
 import random
+import logging
 
 class Diary:
     def __init__(self):
@@ -16,6 +17,7 @@ class Diary:
         return ret, sentence_end
 
     def log(self, time, event):
+        logging.debug('logging event %r with time %r', event, time)
         self.time = time
         self.events.append(event)
 

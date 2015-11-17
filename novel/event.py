@@ -24,6 +24,7 @@ class Terrain(Event):
             yield from self.subsequent_visit(diary)
 
     def first_visit(self, diary):
+        logging.debug('diary.time %r, self.time: %r', diary.time, self.time)
         if diary.time - self.time:
             yield "I came across a %s" % (self.worldview.terrain)
         else:
@@ -244,4 +245,4 @@ class Wake(Event):
         yield "I woke up"
 class Rest(Event):
     def clauses(self, diary):
-        yield "I rested"
+        yield "I am resting"

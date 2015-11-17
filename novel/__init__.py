@@ -50,8 +50,9 @@ def novel(x, y, num_people):
     print()
 
     last_diary = None
-    # tick:
+    tick = -1
     while True:
+        tick += 1
         #print('Map for time period', i + 1)
         #print('--------------------' + '-'*len(str(i + 1)))
         #print()
@@ -60,7 +61,7 @@ def novel(x, y, num_people):
         # update everyone's stats and have them look around:
         logging.debug('ticking %d people', len(people))
         for person in people:
-            person.tick(i)
+            person.tick(tick)
         
         # do actions:
         for person in people:
