@@ -16,17 +16,17 @@ class World(list):
                 tile = Tile.from_random(i, j)
                 row.append(tile)
                 if j:
-                    tile.west = self[i][j - 1]
-                    self[i][j - 1].east = tile
+                    tile.south = self[i][j - 1]
+                    self[i][j - 1].north = tile
                 if i:
-                    tile.south = self[i - 1][j]
-                    self[i - 1][j].north = tile
+                    tile.west = self[i - 1][j]
+                    self[i - 1][j].east = tile
         return self
     
     def __str__(self):
         s = []
-        for x in reversed(range(self.sizex)):
-            for y in range(self.sizey):
+        for y in reversed(range(self.sizey)):
+            for x in range(self.sizex):
                 s.append("%s | " % (self[x][y]))
             s.append('\n')
         return ''.join(s)
