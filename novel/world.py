@@ -9,12 +9,53 @@ class World(list):
     @classmethod
     def from_random(cls, x, y):
         self = cls(x, y)
+        tiles = x * y
+
+        # Generate blank grid:
         for i in range(x):
             row = []
             self.append(row)
             for j in range(y):
-                tile = Tile.from_random(i, j)
+                tile = Tile(i, j)
                 row.append(tile)
+
+        # Generate some forests:
+        for n in range(tiles // 10):
+            sizex = random.randint(0, self.sizex // 2)
+            sizey = random.randint(0, self.sizey // 2)
+            origin = random.randint(0, x - sizex - 1), random.randint(0, y - sizey - 1)
+            for i in range(origin[0], origin[0] + sizex):
+                for j in range(origin[1], origin[1] + sizey):
+                    self[i][j].terrain = 'forest'
+
+        # Generate some lakes:
+        for n in range(tiles // 12):
+            centre = random.randint(0, x - 1), random.randint(0, y - 1)
+            radius = random.randint(0, min(x // 8, y // 8))
+            radius_sq = radius ** 2
+            self[centre[0]][centre[1]].terrain = 'lake'
+            for offset_i in range(- radius, radius + 1):
+                i = centre[0] + offset_i
+                if i < 0 or i >= self.sizex:
+                    continue
+                offset_i_sq = offset_i ** 2
+                for offset_j in range(- radius, radius + 1):
+                    j = centre[1] + offset_j
+                    if j < 0 or j >= self.sizey:
+                        continue
+                    offset_j_sq = offset_j ** 2
+                    if offset_i_sq * offset_j_sq < radius_sq:
+                        self[i][j].terrain = 'lake'
+
+        # Rest of the map is meadow:
+        for i in range(x):
+            for j in range(y):
+                if self[i][j].terrain is None:
+                    self[i][j].terrain = 'meadow'
+
+        # Link up grid:
+        for i in range(x):
+            for j in range(y):
                 if j:
                     tile.south = self[i][j - 1]
                     self[i][j - 1].north = tile
@@ -34,15 +75,15 @@ class World(list):
 
 class Tile:
     terrains = [
-        'river',
+        'lake',
         'forest',
         'meadow',
     ]
 
-    def __init__(self, posx, posy, terrain):
-        self.terrain = terrain
+    def __init__(self, posx, posy):
         self.posx = posx
         self.posy = posy
+        self.terrain = None
         self.west = None
         self.east = None
         self.north = None
@@ -58,7 +99,9 @@ class Tile:
     @classmethod
     def from_random(cls, posx, posy):
         terrain = random.choice(cls.terrains)
-        return cls(posx, posy, terrain)
+        self = cls(posx, pos)
+        self.terrain = terrain
+        return self
     
     def __str__(self):
         return "%06s %2d" % (self.terrain, len(self.people))

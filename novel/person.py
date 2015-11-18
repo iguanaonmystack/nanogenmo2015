@@ -10,7 +10,8 @@ from . import goals
 
 class Worldview(Tile):
     def __init__(self, posx, posy, terrain):
-        super().__init__(posx, posy, terrain)
+        super().__init__(posx, posy)
+        self.terrain = terrain
         self.visited = 0
 
     def locality_copy(self):
