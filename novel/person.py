@@ -44,7 +44,7 @@ class Person:
         self.goals = goals.Goals(self)
         
         # log
-        self.diary = Diary()
+        self.diary = Diary(self)
 
         # fixed behaviour attributes
         self.shy = 0.9
@@ -137,7 +137,7 @@ class Person:
 
         if self.thirst > 6:
             self.log(event.Thirst, self.thirst)
-            goto_goal = goals.GoTo('river', self.thirst, person=self)
+            goto_goal = goals.GoTo('lake', self.thirst, person=self)
             drink_goal = goals.Drink(self.thirst + 1, person=self)
             drink_goal.subgoals.append(goto_goal)
             self.goals.add_or_replace(goto_goal)

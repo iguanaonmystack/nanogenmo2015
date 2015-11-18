@@ -132,8 +132,8 @@ class Knowledge(Event):
             is_ = 'was'
         if not self.specific or random.random() > 0.8:
             yield "I %s%s the %s of %s" % (
-                self.posneg < 0 and "don't " or '',
                 know,
+                self.posneg < 0 and " not" or '',
                 self.what,
                 self.noun)
             if self.specific:

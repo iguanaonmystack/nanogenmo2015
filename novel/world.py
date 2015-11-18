@@ -29,7 +29,7 @@ class World(list):
                     self[i][j].terrain = 'forest'
 
         # Generate some lakes:
-        for n in range(tiles // 12):
+        for n in range(tiles // 8):
             centre = random.randint(0, x - 1), random.randint(0, y - 1)
             radius = random.randint(0, min(x // 8, y // 8))
             radius_sq = radius ** 2

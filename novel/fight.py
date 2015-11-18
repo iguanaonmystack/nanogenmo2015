@@ -45,5 +45,6 @@ class Fight:
             logging.debug("injured opponent %f, health now %f",
                 weapon.power, opponent.health)
             if opponent.dead:
+                print("*", person.name, "killed", opponent.name)
                 break
 

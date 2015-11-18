@@ -2,7 +2,8 @@ import random
 import logging
 
 class Diary:
-    def __init__(self):
+    def __init__(self, person):
+        self.person = person
         self.events = []
         self._punct = ['. ', '; ', ', ', '! ']
         self.time = None # most recent update time
@@ -43,3 +44,12 @@ class Diary:
             yield random.choice(['.', '!'])
 
         self.events[:] = []
+
+    def print(self):
+        print(self.person.name)
+        print('-' * len(self.person.name))
+        print()
+        for clause in self.write():
+            print(clause, end='')
+        print()
+        print()

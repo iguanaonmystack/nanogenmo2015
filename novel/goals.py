@@ -95,7 +95,7 @@ class GoTo(Goal):
 class Drink(Goal):
     """Character aims to quench their thirst."""
     def possible(self):
-        if self.person.worldview.terrain == 'river':
+        if self.person.worldview.terrain == 'lake':
             return True
         return False
     def achieve(self):
