@@ -22,6 +22,10 @@ class Lake(Terrain):
     props_available = [
         (props.Water, 1)]
 
+    def __str__(self):
+        """As far as the characters are concerned, this is the shoreline"""
+        return 'beach'
+
 
 class Forest(Terrain):
     symbol = '||' # trees?

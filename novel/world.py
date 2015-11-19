@@ -65,6 +65,13 @@ class World(list):
                 if i:
                     tile.west = self[i - 1][j]
                     self[i - 1][j].east = tile
+                # unlink lakes so players can't walk out into them
+                if isinstance(tile.terrain, terrains.Lake):
+                    for direction in ('north', 'south', 'east', 'west'):
+                        neighbour = getattr(tile, direction)
+                        if neighbour is not None \
+                        and isinstance(neighbour.terrain, terrains.Lake):
+                            setattr(tile, direction, None)
         return self
     
     def __str__(self):
