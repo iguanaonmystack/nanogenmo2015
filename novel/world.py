@@ -1,5 +1,8 @@
-import operator
 import random
+import operator
+
+from . import terrains
+from . import props
 
 class World(list):
     def __init__(self, x, y):
@@ -26,14 +29,14 @@ class World(list):
             origin = random.randint(0, x - sizex - 1), random.randint(0, y - sizey - 1)
             for i in range(origin[0], origin[0] + sizex):
                 for j in range(origin[1], origin[1] + sizey):
-                    self[i][j].terrain = 'forest'
+                    self[i][j].populate(terrains.Forest)
 
         # Generate some lakes:
         for n in range(tiles // 8):
             centre = random.randint(0, x - 1), random.randint(0, y - 1)
             radius = random.randint(0, min(x // 8, y // 8))
             radius_sq = radius ** 2
-            self[centre[0]][centre[1]].terrain = 'lake'
+            self[centre[0]][centre[1]].populate(terrains.Lake)
             for offset_i in range(- radius, radius + 1):
                 i = centre[0] + offset_i
                 if i < 0 or i >= self.sizex:
@@ -45,13 +48,13 @@ class World(list):
                         continue
                     offset_j_sq = offset_j ** 2
                     if offset_i_sq * offset_j_sq < radius_sq:
-                        self[i][j].terrain = 'lake'
+                        self[i][j].populate(terrains.Lake)
 
         # Rest of the map is meadow:
         for i in range(x):
             for j in range(y):
                 if self[i][j].terrain is None:
-                    self[i][j].terrain = 'meadow'
+                    self[i][j].populate(terrains.Meadow)
 
         # Link up grid:
         for i in range(x):
@@ -74,12 +77,6 @@ class World(list):
 
 
 class Tile:
-    terrains = [
-        'lake',
-        'forest',
-        'meadow',
-    ]
-
     def __init__(self, posx, posy):
         self.posx = posx
         self.posy = posy
@@ -95,16 +92,11 @@ class Tile:
                 return random.sample(
                     [p for p in sorted(self) if p is not person], k)
         self.people = PeopleSet()
+        self.props = []
 
-    @classmethod
-    def from_random(cls, posx, posy):
-        terrain = random.choice(cls.terrains)
-        self = cls(posx, pos)
-        self.terrain = terrain
-        return self
-    
     def __str__(self):
-        return "%06s %2d" % (self.terrain, len(self.people))
+        s = "%02s" % (self.terrain.symbol,)
+        return s
 
     def __repr__(self):
         return "<Tile terrain=%r people=%r>" % (self.terrain, self.people)
@@ -117,13 +109,30 @@ class Tile:
                 d[direction] = getattr(self, direction)
         return d
 
-    
-    def path_to(self, target_terrain):
+    def populate(self, terrain_cls):
+        """Set the terrain and generate props"""
+        self.terrain = terrain_cls()
+        for prop_cls, likelihood in self.terrain.props_available:
+            if random.random() < likelihood:
+                self.props.append(prop_cls())
+
+    def path_to(self, target_cls):
         visited_nodes = set()
         distances = {}
         parents = {}
+        if issubclass(target_cls, terrains.Terrain):
+            def target_fn(tile):
+                return isinstance(tile, target_cls)
+        elif issubclass(target_cls, props.Prop):
+            def target_fn(tile):
+                for prop in tile.props:
+                    if isinstance(prop, target_cls):
+                        return True
+                return False
+        else:
+            raise RuntimeError('path_to() for unknown class %r' % (target_cls,))
         dest = _find(self, visited_nodes, distances, parents,
-            target=target_terrain)
+            target_fn=target_fn)
         if dest is not None:
             path = [(dest, '')]
             while path[0][0] != self:
@@ -136,11 +145,11 @@ class Tile:
         distances = {}
         parents = {}
         _find(self, visited_nodes, distances, parents,
-            target=None, action=action)
+            target_fn=None, action=action)
 
-def _find(current, visited_nodes, distances, parents, target=None, action=None):
+def _find(current, visited_nodes, distances, parents, target_fn=None, action=None):
     # Dijkstra's algorithm.
-    if current.terrain == target:
+    if target_fn and target_fn(current):
         return current
     for direction, neighbour in current.neighbours.items():
         if neighbour not in visited_nodes:
@@ -163,7 +172,7 @@ def _find(current, visited_nodes, distances, parents, target=None, action=None):
             key=operator.itemgetter(1))
         nearest_unvisited, dist = sorted_distances[0]
         return _find(nearest_unvisited, visited_nodes, distances, parents,
-            target=target, action=action)
+            target_fn=target_fn, action=action)
     else:
         # no unvisted nodes, unable to find target
         return None
@@ -175,4 +184,5 @@ def opposite_direction(direction):
         'south': 'north',
         'west': 'east'}
     return d[direction]
+
 

@@ -42,6 +42,11 @@ def novel(x, y, num_people):
         person.tile.people.add(person)
         people.append(person)
 
+    print('Map of Arena')
+    print('------------' + '-'*len(str(i + 1)))
+    print()
+    print(world)
+
     print("Dramatis Personae")
     print('-----------------')
     print()

@@ -4,6 +4,7 @@ import logging
 
 from . import event
 from . import fight
+from . import terrains
 
 class Goals(list):
     def __init__(self, person, *args, **kw):
@@ -64,17 +65,17 @@ class Goal:
 
 class GoTo(Goal):
     """Character aims to reach a certain location."""
-    def __init__(self, terrain, *args, **kw):
+    def __init__(self, prop, *args, **kw):
         super().__init__(*args, **kw)
-        self.terrain = terrain
-        self.person.log(event.Motivation, 'get to ' + self.terrain)
+        self.prop = prop
+        self.person.log(event.Motivation, 'get to %s' % self.prop.__doc__)
     def possible(self):
-        logging.debug("Calculating path to %s", self.terrain)
-        self.path = self.person.worldview.path_to(self.terrain)
+        logging.debug("Calculating path to %s", self.prop)
+        self.path = self.person.worldview.path_to(self.prop)
         if self.path is None:
             logging.debug('no path available')
             # Character doesn't know where there is water; explore.
-            self.person.log(event.Knowledge, 'location', self.terrain, -1, None)
+            self.person.log(event.Knowledge, 'location', self.prop.__doc__, -1, None)
             self.person.goals.add_or_replace(Explore, None, self.priority)
             return False
         elif self.path[0][1] == '':
@@ -85,7 +86,7 @@ class GoTo(Goal):
             return False
         else:
             logging.debug('successful path calculated')
-            self.person.log(event.Knowledge, 'location', self.terrain, 1, self.path[0][1])
+            self.person.log(event.Knowledge, 'location', self.prop.__doc__, 1, self.path[0][1])
             return True
     def achieve(self):
         # don't call super; we don't want to remove ourself until dest reached.
@@ -95,7 +96,7 @@ class GoTo(Goal):
 class Drink(Goal):
     """Character aims to quench their thirst."""
     def possible(self):
-        if self.person.worldview.terrain == 'lake':
+        if isinstance(self.person.worldview.terrain, terrains.Lake):
             return True
         return False
     def achieve(self):

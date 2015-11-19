@@ -7,6 +7,7 @@ from .diary import Diary
 from . import tools
 from . import event
 from . import goals
+from . import props
 
 class Worldview(Tile):
     def __init__(self, posx, posy, terrain):
@@ -137,7 +138,7 @@ class Person:
 
         if self.thirst > 6:
             self.log(event.Thirst, self.thirst)
-            goto_goal = goals.GoTo('lake', self.thirst, person=self)
+            goto_goal = goals.GoTo(props.Water, self.thirst, person=self)
             drink_goal = goals.Drink(self.thirst + 1, person=self)
             drink_goal.subgoals.append(goto_goal)
             self.goals.add_or_replace(goto_goal)
@@ -166,7 +167,8 @@ class Person:
             elif goals.GoTo not in self.goals:
                 # TODO implement more specific search in self.goals
                 # TODO find somewhere proper to hide to sleep.
-                self.goals.add_or_replace(goals.GoTo, 'forest', self.awake)
+                self.goals.add_or_replace(goals.GoTo,
+                    props.PlaceToSleep, self.awake)
             else:
                 # Chararacter is somewhere suitable to sleep
                 self.sleeping = True
