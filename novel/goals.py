@@ -86,7 +86,7 @@ class GoTo(Goal):
             return False
         else:
             logging.debug('successful path calculated')
-            self.person.log(event.Knowledge, 'location', self.prop.__doc__, 1, self.path[0][1])
+            self.person.log(event.Knowledge, 'location', self.prop, 1, self.path[0][1])
             return True
     def achieve(self):
         # don't call super; we don't want to remove ourself until dest reached.

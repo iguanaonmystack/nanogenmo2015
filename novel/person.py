@@ -11,8 +11,7 @@ from . import props
 
 class Worldview(Tile):
     def __init__(self, posx, posy, terrain):
-        super().__init__(posx, posy)
-        self.terrain = terrain
+        super().__init__(posx, posy, terrain)
         self.visited = 0
 
     def locality_copy(self):
@@ -117,6 +116,7 @@ class Person:
             self.worldview = Worldview(
                 self.tile.posx, self.tile.posy, self.tile.terrain)
         self.worldview.people = copy(self.tile.people)
+        self.worldview.props = copy(self.tile.props)
         
     def action(self):
         # Sleep cycle:

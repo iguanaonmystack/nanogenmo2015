@@ -27,8 +27,12 @@ class Terrain(Event):
         logging.debug('diary.time %r, self.time: %r', diary.time, self.time)
         if diary.time - self.time:
             yield "I came across a %s" % (self.worldview.terrain)
+            is_ = 'was'
         else:
             yield "I'm now in a %s" % (self.worldview.terrain)
+            is_ = 'is'
+        for prop in self.worldview.props:
+            yield "there %s %s here" % (is_, prop)
 
     def subsequent_visit(self, diary):
         if diary.time - self.time:

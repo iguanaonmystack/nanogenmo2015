@@ -19,8 +19,7 @@ class World(list):
             row = []
             self.append(row)
             for j in range(y):
-                tile = Tile(i, j)
-                row.append(tile)
+                row.append(None)
 
         # Generate some forests:
         for n in range(tiles // 10):
@@ -29,14 +28,14 @@ class World(list):
             origin = random.randint(0, x - sizex - 1), random.randint(0, y - sizey - 1)
             for i in range(origin[0], origin[0] + sizex):
                 for j in range(origin[1], origin[1] + sizey):
-                    self[i][j].populate(terrains.Forest)
+                    self[i][j] = Tile(i, j, terrains.Forest)
 
         # Generate some lakes:
         for n in range(tiles // 8):
             centre = random.randint(0, x - 1), random.randint(0, y - 1)
             radius = random.randint(0, min(x // 8, y // 8))
             radius_sq = radius ** 2
-            self[centre[0]][centre[1]].populate(terrains.Lake)
+            self[centre[0]][centre[1]] = Tile(centre[0], centre[1], terrains.Lake)
             for offset_i in range(- radius, radius + 1):
                 i = centre[0] + offset_i
                 if i < 0 or i >= self.sizex:
@@ -48,17 +47,18 @@ class World(list):
                         continue
                     offset_j_sq = offset_j ** 2
                     if offset_i_sq * offset_j_sq < radius_sq:
-                        self[i][j].populate(terrains.Lake)
+                        self[i][j] = Tile(i, j, terrains.Lake)
 
         # Rest of the map is meadow:
         for i in range(x):
             for j in range(y):
-                if self[i][j].terrain is None:
-                    self[i][j].populate(terrains.Meadow)
+                if self[i][j] is None:
+                    self[i][j] = Tile(i, j, terrains.Meadow)
 
         # Link up grid:
         for i in range(x):
             for j in range(y):
+                tile = self[i][j]
                 if j:
                     tile.south = self[i][j - 1]
                     self[i][j - 1].north = tile
@@ -84,10 +84,14 @@ class World(list):
 
 
 class Tile:
-    def __init__(self, posx, posy):
+    def __init__(self, posx, posy, terrain):
         self.posx = posx
         self.posy = posy
-        self.terrain = None
+        if isinstance(terrain, type):
+            # class (hopefully of Terrain)
+            self.terrain = terrain()
+        else:
+            self.terrain = terrain
         self.west = None
         self.east = None
         self.north = None
@@ -100,6 +104,9 @@ class Tile:
                     [p for p in sorted(self) if p is not person], k)
         self.people = PeopleSet()
         self.props = []
+        for prop_cls, likelihood in self.terrain.props_available:
+            if random.random() < likelihood:
+                self.props.append(prop_cls())
 
     def __str__(self):
         s = "%02s" % (self.terrain.symbol,)
@@ -115,13 +122,6 @@ class Tile:
             if getattr(self, direction) is not None:
                 d[direction] = getattr(self, direction)
         return d
-
-    def populate(self, terrain_cls):
-        """Set the terrain and generate props"""
-        self.terrain = terrain_cls()
-        for prop_cls, likelihood in self.terrain.props_available:
-            if random.random() < likelihood:
-                self.props.append(prop_cls())
 
     def path_to(self, target_cls):
         visited_nodes = set()
