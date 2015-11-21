@@ -219,6 +219,7 @@ class Person:
             self.goals.add(goal)
 
     def _move(self, direction, newtile):
+        assert newtile is not None, 'tried to move %s to empty tile' % direction
         self.log(event.Movement, direction)
         self.tile.people.remove(self)
         self.tile = newtile

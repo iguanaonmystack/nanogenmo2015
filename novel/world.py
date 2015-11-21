@@ -65,12 +65,18 @@ class World(list):
                 if i:
                     tile.west = self[i - 1][j]
                     self[i - 1][j].east = tile
-                # unlink lakes so players can't walk out into them
+
+        # unlink lakes so players can't walk out into them
+        for i in range(x):
+            for j in range(y):
+                tile = self[i][j]
                 if isinstance(tile.terrain, terrains.Lake):
                     for direction in ('north', 'south', 'east', 'west'):
                         neighbour = getattr(tile, direction)
-                        if neighbour is not None \
-                        and isinstance(neighbour.terrain, terrains.Lake):
+                        if neighbour is None:
+                            # edge of map
+                            continue
+                        if isinstance(neighbour.terrain, terrains.Lake):
                             setattr(tile, direction, None)
         return self
     
@@ -110,10 +116,14 @@ class Tile:
 
     def __str__(self):
         s = "%02s" % (self.terrain.symbol,)
+        s += '<' if self.west else ' '
+        s += '>' if self.east else ' '
+        s += '^' if self.north else ' '
+        s += 'v' if self.south else ' '
         return s
 
     def __repr__(self):
-        return "<Tile terrain=%r people=%r>" % (self.terrain, self.people)
+        return "<Tile at (%s, %s) terrain=%r>" % (self.posx, self.posy, self.terrain,)
 
     @property
     def neighbours(self):
@@ -124,28 +134,35 @@ class Tile:
         return d
 
     def path_to(self, target_cls):
+        """Determine the path to a terrain type or a prop type.
+        
+        Returns a tuple of (path, item), where:
+        * path -- None if target not found, otherwise a list of
+            (tile, direction)
+        * item -- None if not found, otherwise the specific tile or prop found
+        """
         visited_nodes = set()
         distances = {}
         parents = {}
         if issubclass(target_cls, terrains.Terrain):
             def target_fn(tile):
-                return isinstance(tile, target_cls)
+                return isinstance(tile, target_cls) and tile or None
         elif issubclass(target_cls, props.Prop):
             def target_fn(tile):
                 for prop in tile.props:
                     if isinstance(prop, target_cls):
-                        return True
-                return False
+                        return prop
+                return None
         else:
             raise RuntimeError('path_to() for unknown class %r' % (target_cls,))
-        dest = _find(self, visited_nodes, distances, parents,
+        dest, item = _find(self, visited_nodes, distances, parents,
             target_fn=target_fn)
         if dest is not None:
             path = [(dest, '')]
             while path[0][0] != self:
                 path = [parents[path[0][0]]] + path
-            return path
-        return None
+            return path, item
+        return None, None
 
     def recursive_update(self, action):
         visited_nodes = set()
@@ -156,8 +173,9 @@ class Tile:
 
 def _find(current, visited_nodes, distances, parents, target_fn=None, action=None):
     # Dijkstra's algorithm.
-    if target_fn and target_fn(current):
-        return current
+    item = target_fn and target_fn(current)
+    if item is not None:
+        return current, item
     for direction, neighbour in current.neighbours.items():
         if neighbour not in visited_nodes:
             dist = distances.setdefault(current, 0) + 1
@@ -182,7 +200,7 @@ def _find(current, visited_nodes, distances, parents, target_fn=None, action=Non
             target_fn=target_fn, action=action)
     else:
         # no unvisted nodes, unable to find target
-        return None
+        return None, None
 
 
 def opposite_direction(direction):

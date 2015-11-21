@@ -71,7 +71,7 @@ class GoTo(Goal):
         self.person.log(event.Motivation, 'get to %s' % self.prop.__doc__)
     def possible(self):
         logging.debug("Calculating path to %s", self.prop)
-        self.path = self.person.worldview.path_to(self.prop)
+        self.path, prop = self.person.worldview.path_to(self.prop)
         if self.path is None:
             logging.debug('no path available')
             # Character doesn't know where there is water; explore.
@@ -81,16 +81,17 @@ class GoTo(Goal):
         elif self.path[0][1] == '':
             logging.debug('already at target')
             # already at water, so this goal is redundant
-            self.person.log(event.Surroundings, 'water')
+            self.person.log(event.Surroundings, prop)
             self.person.goals.remove(self)
             return False
         else:
             logging.debug('successful path calculated')
-            self.person.log(event.Knowledge, 'location', self.prop, 1, self.path[0][1])
+            self.person.log(event.Knowledge, 'location', prop, 1, self.path[0][1])
             return True
     def achieve(self):
         # don't call super; we don't want to remove ourself until dest reached.
         direction = self.path[0][1]
+        assert getattr(self.person.tile, direction) != None, "%r %s" %(self.person.tile, direction)
         self.person._move(direction, getattr(self.person.tile, direction))
 
 class Drink(Goal):

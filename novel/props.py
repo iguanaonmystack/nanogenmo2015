@@ -4,18 +4,30 @@ class Prop:
     """a prop"""
     def __str__(self):
         return self.__class__.__doc__
+    def noteworthy(self, other_props):
+        return True
 
 class PlaceToSleep(Prop):
     """a place to sleep"""
 
 class Tree(PlaceToSleep):
     """a tree"""
+    def noteworthy(self, other_props):
+        tree_count = 0
+        for prop in other_props:
+            if prop.__class__ == Tree: tree_count += 1
+        if tree_count > 1: # 1 is us.
+            return False
+        return True
 
 class Bush(PlaceToSleep):
     """a bush"""
 
 class Water(Prop):
     """water"""
+    def noteworthy(self, other_props):
+        if self.__class__ == Water: return False
+        return True
 
 class Brook(Water):
     """a brook"""

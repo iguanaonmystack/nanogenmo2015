@@ -32,7 +32,8 @@ class Terrain(Event):
             yield "I'm now in a %s" % (self.worldview.terrain)
             is_ = 'is'
         for prop in self.worldview.props:
-            yield "there %s %s here" % (is_, prop)
+            if prop.noteworthy(self.worldview.props):
+                yield "there %s %s here" % (is_, prop)
 
     def subsequent_visit(self, diary):
         if diary.time - self.time:
@@ -43,7 +44,7 @@ class Terrain(Event):
         else:
             yield "I returned to the %s" % (self.worldview.terrain)
             if self.worldview.visited > 1:
-                yield "It was the first time I had been here for %d hours" % (
+                yield "it was the first time I had been here for %d hours" % (
                     self.worldview.visited - 1)
 
 class Thirst(Event):
