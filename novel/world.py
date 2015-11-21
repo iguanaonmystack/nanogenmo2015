@@ -116,10 +116,10 @@ class Tile:
 
     def __str__(self):
         s = "%02s" % (self.terrain.symbol,)
-        s += '<' if self.west else ' '
-        s += '>' if self.east else ' '
-        s += '^' if self.north else ' '
-        s += 'v' if self.south else ' '
+        # s += '<' if self.west else ' '
+        # s += '>' if self.east else ' '
+        # s += '^' if self.north else ' '
+        # s += 'v' if self.south else ' '
         return s
 
     def __repr__(self):

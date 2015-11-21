@@ -5,6 +5,7 @@ import logging
 from . import event
 from . import fight
 from . import terrains
+from . import props
 
 class Goals(list):
     def __init__(self, person, *args, **kw):
@@ -97,8 +98,9 @@ class GoTo(Goal):
 class Drink(Goal):
     """Character aims to quench their thirst."""
     def possible(self):
-        if isinstance(self.person.worldview.terrain, terrains.Lake):
-            return True
+        for prop in self.person.tile.props:
+            if isinstance(prop, props.Water):
+                return True
         return False
     def achieve(self):
         super().achieve()
