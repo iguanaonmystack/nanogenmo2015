@@ -22,24 +22,32 @@ class Terrain(Event):
             yield from self.first_visit(diary)
         else:
             yield from self.subsequent_visit(diary)
+        # TODO better segues when terrain type hasn't changed between tiles
 
     def first_visit(self, diary):
         logging.debug('diary.time %r, self.time: %r', diary.time, self.time)
+        description = str(self.worldview.terrain)
+        adjectives = list(self.worldview.terrain.adjectives)
+        # TODO - synonyms?
+        description = ', '.join(adjectives) + (' ' if adjectives else '') + description
         if diary.time - self.time:
-            yield "I came across a %s" % (self.worldview.terrain)
+            yield "I came across a %s" % description
             is_ = 'was'
         else:
-            yield "I'm now in a %s" % (self.worldview.terrain)
+            yield "I'm now in a %s" % description
             is_ = 'is'
-        for prop in self.worldview.props:
-            if prop.noteworthy(self.worldview.props):
+        for prop in self.worldview.terrain.props:
+            if prop.noteworthy(self.worldview.terrain.props):
                 yield "there %s %s here" % (is_, prop)
 
     def subsequent_visit(self, diary):
         description = str(self.worldview.terrain)
+        adjectives = list(self.worldview.terrain.adjectives)
+        # TODO - synonyms?
+        description = ', '.join(adjectives) + (' ' if adjectives else '') + description
         noteworthy = []
-        for prop in self.worldview.props:
-            if prop.noteworthy(self.worldview.props):
+        for prop in self.worldview.terrain.props:
+            if prop.noteworthy(self.worldview.terrain.props):
                 noteworthy.append(prop.definite)
         if len(noteworthy) > 1:
             noteworthy.insert(len(noteworthy) - 1, 'and')

@@ -116,7 +116,7 @@ class Person:
             self.worldview = Worldview(
                 self.tile.posx, self.tile.posy, self.tile.terrain)
         self.worldview.people = copy(self.tile.people)
-        self.worldview.props = copy(self.tile.props)
+        self.worldview.terrain = copy(self.tile.terrain) # TODO check for copy of props list - if someone picks up something this character shouldn't know
         
     def action(self):
         # Sleep cycle:

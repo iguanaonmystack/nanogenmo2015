@@ -109,10 +109,6 @@ class Tile:
                 return random.sample(
                     [p for p in sorted(self) if p is not person], k)
         self.people = PeopleSet()
-        self.props = []
-        for prop_cls, likelihood in self.terrain.props_available:
-            if random.random() < likelihood:
-                self.props.append(prop_cls())
 
     def __str__(self):
         s = "%02s" % (self.terrain.symbol,)
@@ -149,7 +145,7 @@ class Tile:
                 return isinstance(tile, target_cls) and tile or None
         elif issubclass(target_cls, props.Prop):
             def target_fn(tile):
-                for prop in tile.props:
+                for prop in tile.terrain.props:
                     if isinstance(prop, target_cls):
                         return prop
                 return None

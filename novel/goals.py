@@ -98,7 +98,7 @@ class GoTo(Goal):
 class Drink(Goal):
     """Character aims to quench their thirst."""
     def possible(self):
-        for prop in self.person.tile.props:
+        for prop in self.person.tile.terrain.props:
             if isinstance(prop, props.Water):
                 return True
         return False
