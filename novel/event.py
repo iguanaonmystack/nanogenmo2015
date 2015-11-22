@@ -36,13 +36,23 @@ class Terrain(Event):
                 yield "there %s %s here" % (is_, prop)
 
     def subsequent_visit(self, diary):
+        description = str(self.worldview.terrain)
+        noteworthy = []
+        for prop in self.worldview.props:
+            if prop.noteworthy(self.worldview.props):
+                noteworthy.append(prop.definite)
+        if len(noteworthy) > 1:
+            noteworthy.insert(len(noteworthy) - 1, 'and')
+        if noteworthy:
+            comma = ', ' if len(noteworthy) > 3 else ' '
+            description += ' with ' + comma.join(noteworthy)
         if diary.time - self.time:
-            yield "I'm now back at the %s" % (self.worldview.terrain)
+            yield "I'm now back at the %s" % (description)
             if self.worldview.visited > 1:
                 yield "It's been %d hours since I was last here" % (
                     self.worldview.visited - 1)
         else:
-            yield "I returned to the %s" % (self.worldview.terrain)
+            yield "I returned to the %s" % (description)
             if self.worldview.visited > 1:
                 yield "it was the first time I had been here for %d hours" % (
                     self.worldview.visited - 1)

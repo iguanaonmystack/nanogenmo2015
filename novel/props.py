@@ -1,17 +1,18 @@
 import random
 
 class Prop:
-    """a prop"""
     def __str__(self):
-        return self.__class__.__doc__
+        return self.indefinite
     def noteworthy(self, other_props):
         return True
 
 class PlaceToSleep(Prop):
-    """a place to sleep"""
+    indefinite = 'a place to sleep'
+    definite = 'the place to sleep'
 
 class Tree(PlaceToSleep):
-    """a tree"""
+    indefinite = 'a tree'
+    definite = 'the tree'
     def noteworthy(self, other_props):
         tree_count = 0
         for prop in other_props:
@@ -21,19 +22,23 @@ class Tree(PlaceToSleep):
         return True
 
 class Bush(PlaceToSleep):
-    """a bush"""
+    indefinite = 'a bush'
+    definite = 'the bush'
 
 class Water(Prop):
-    """water"""
+    indefinite = 'water'
+    definite = 'water'
     def noteworthy(self, other_props):
         if self.__class__ == Water: return False
         return True
 
 class Brook(Water):
-    """a brook"""
+    indefinite = 'a brook'
+    definite = 'the brook'
 
 class Stream(Water):
-    """a stream"""
+    indefinite = 'a stream'
+    definite = 'the stream'
 
 class Landmark(Prop):
     """a non-functional but distinctive prop"""
@@ -48,8 +53,11 @@ class Landmark(Prop):
             'abandoned car',
             'derelict shack',
             'orange'])
-    def __str__(self):
+    @property
+    def indefinite(self):
         if self.item[0] in 'aeiou':
             return 'an ' + self.item
         return 'a ' + self.item
-
+    @property
+    def definite(self):
+        return 'the ' + self.item
