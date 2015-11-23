@@ -67,6 +67,9 @@ def novel(x, y, num_people):
         logging.debug('ticking %d people', len(people))
         for person in people:
             person.tick(tick)
+
+            if person.dead:
+                print("*", person.name, "collapses from their wounds")
         
         # do actions:
         for person in people:

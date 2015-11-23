@@ -54,6 +54,11 @@ class Fight:
             opponent.injure(weapon.power)
             logging.debug("injured opponent %f, health now %f",
                 weapon.power, opponent.health)
+            # each attack has a chance of fatally wounding opponent
+            if random.random() < 0.05:
+                logging.debug('opponent is fatally wounded')
+                opponent.health_delta -= 0.10
+            # cleanup
             if opponent.dead:
                 print("*", person.name, "killed", opponent.name)
                 break

@@ -57,6 +57,7 @@ class Person:
         
         # current status/needs
         self.time = 0
+        self.health_delta = 0.03 # how much they heal each day
         self.health = 1.0
         self.thirst = 0
         self.awake = 0
@@ -82,10 +83,14 @@ class Person:
             self.world, self.name, self.gender)
 
     def injure(self, amount):
-        """Injure this person by a certain amount (0.0<=amount<=1.0)"""
+        """Injure this person by a certain amount (amount<=1.0)
+        
+        amount may be negative to heal"""
         self.health -= amount
         if self.health < 0.0:
             self.health = 0.0
+        if self.health > 1.0:
+            self.health = 1.0
     
     def log(self, event_cls, *args, **kw):
         """Convenience method for self.diary.log(...)"""
@@ -102,6 +107,11 @@ class Person:
         if not self.sleeping:
             self.thirst += 1
         self.awake += 1
+
+        # heal/continue to die
+        self.injure(-self.health_delta)
+        if self.health_delta < 0.03:
+            self.health_delta += 0.05
 
         # update worldview
         self.observe()
