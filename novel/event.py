@@ -3,6 +3,7 @@ import random
 import logging
 
 from .text import verbs
+from .fight import Escape, FightAction
 
 class Event:
     def __init__(self, time, person, worldview):
@@ -242,6 +243,17 @@ class Fight(Event):
     
     def clauses(self, diary):
         for action in self.fight.actions:
+            if isinstance(action, Escape):
+                if action.person == self.person:
+                    yield random.choice([
+                        'I got away',
+                        'I ran and escaped'])
+                else:
+                    yield random.choice([
+                        '%s got away' % action.person,
+                        '%s ran away' % action.person])
+                continue
+            # FightAction:
             weapon_adjective = random.choice(action.weapon.adjectives)
             if action.subject is self.person:
                 yield "I %s %s with my %s %s in the %s" % (

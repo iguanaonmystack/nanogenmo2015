@@ -49,6 +49,7 @@ class Person:
         # fixed behaviour attributes
         self.shy = 0.9
         self.explorer = 0.9
+        self.escapologist = 0.2
 
         # knowledge
         self.previous_worldview = None # Tile

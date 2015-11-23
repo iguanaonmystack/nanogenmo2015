@@ -14,6 +14,10 @@ class FightAction:
         self.victim_health = victim_health
         self.victim_part = victim_part
 
+class Escape:
+    def __init__(self, person):
+        self.person = person
+
 class Fight:
 
     def __init__(self, p1, p2):
@@ -24,6 +28,11 @@ class Fight:
     def __call__(self):
         for person, opponent in itertools.cycle((
             (self.p1, self.p2), (self.p2, self.p1))):
+            # attacked person gets a chance to escape
+            if person == self.p2:
+                if random.random() < person.escapologist:
+                    self.actions.append(Escape(person))
+                    break
             # pick best weapon:
             weapons = [t for t in person.tools if isinstance(t, Weapon)]
             weapons = sorted(weapons, key=lambda w: -w.power)
@@ -35,6 +44,7 @@ class Fight:
                 else:
                     break
             weapon = random.choice(choices)
+            # pick target and action
             verb = random.choice(weapon.verbs)
             target = random.choice(weapon.targets)
             self.actions.append(FightAction(
