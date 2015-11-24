@@ -69,7 +69,7 @@ class GoTo(Goal):
     def __init__(self, prop, *args, **kw):
         super().__init__(*args, **kw)
         self.prop = prop
-        self.person.log(event.Motivation, 'get to %s' % self.prop.__doc__)
+        self.person.log(event.Motivation, 'get to %s' % self.prop.indefinite)
     def possible(self):
         logging.debug("Calculating path to %s", self.prop)
         self.path, prop = self.person.worldview.path_to(self.prop)
