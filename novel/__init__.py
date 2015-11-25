@@ -38,6 +38,7 @@ def novel(x, y, num_people):
     people = []
     for i in range(num_people):
         person = Person.from_random(world, namegen)
+        person.seq_id = i
         person.tile = world[x//2][y//2]
         person.tile.people.add(person)
         people.append(person)

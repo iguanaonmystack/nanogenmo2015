@@ -30,6 +30,7 @@ class Worldview(Tile):
 class Person:
     def __init__(self, world, name, gender, tile=None):
         self.name = name
+        self.seq_id = None # used by diary for image filenames
         self.gender = gender
         self.world = world
         self.tile = tile
