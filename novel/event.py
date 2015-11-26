@@ -58,7 +58,7 @@ class Terrain(Event):
         if diary.time - self.time:
             yield "I'm now back at the %s" % (description)
             if self.worldview.visited > 1:
-                yield "It's been %d hours since I was last here" % (
+                yield "it's been %d hours since I was last here" % (
                     self.worldview.visited - 1)
         else:
             yield "I returned to the %s" % (description)

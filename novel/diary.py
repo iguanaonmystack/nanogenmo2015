@@ -13,7 +13,7 @@ class Diary:
     def __init__(self, person):
         self.person = person
         self.events = []
-        self._punct = ['. ', '; ', ', ', '! ']
+        self._punct = ['. ', '. ', '; ', '; ', ', ', ', ', '! ']
         self.time = None # most recent update time
         self.icon = None
 
@@ -34,6 +34,7 @@ class Diary:
     def write(self):
         between = False
         end = False
+        start = True
         i = -1
         for i, event in enumerate(self.events):
             if between:
@@ -45,7 +46,8 @@ class Diary:
                 if j > 0:
                     punct, end = self.punct()
                     yield punct
-                if end:
+                if end or start:
+                    start = False
                     yield clause[0].upper() + clause[1:] # TODO this is bad
                 else:
                     yield clause
