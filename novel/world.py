@@ -83,6 +83,7 @@ class World(list):
     def __str__(self):
         s = []
         for y in reversed(range(self.sizey)):
+            s.append('    ')
             for x in range(self.sizex):
                 s.append("%s | " % (self[x][y]))
             s.append('\n')
