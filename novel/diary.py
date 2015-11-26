@@ -59,16 +59,21 @@ class Diary:
     def write_icon(self):
         """Generate and write out the icon to a file."""
         hash_ = hashlib.sha256(self.person.name.encode('utf-8')).digest()
-        image = Image.new('L', (5, 5)) # Alt: 'RGBA' for colour
+        image = Image.new('RGBA', (5, 5)) # Alt: 'RGBA' for colour
+        primary_colour = hash_[25], hash_[26], hash_[27], 255
         pixels = image.load()
         for i in range(5):
             for j in range(5):
                 byte = hash_[i * 5 + j]
-                #r = ((byte & 0xc0) >> 6) * 85
-                #g = ((byte & 0x30) >> 4) * 85
-                #b = ((byte & 0x0c) >> 2) * 85
-                #a = ((byte & 0x03) >> 0) * 85
-                pixels[i, j] = byte
+                if (byte & 0x03) == 0:
+                    # colour pixel
+                    pixels[i, j] = primary_colour
+                else:
+                    # b&w pixel
+                    r = ((byte & 0xfc) >> 2) * 4
+                    g = ((byte & 0xfc) >> 2) * 4
+                    b = ((byte & 0xfc) >> 2) * 4
+                    pixels[i, j] = (r, g, b, 255)
         image = image.resize((100, 100))
         image.save("output/icon-%s.png" % (self.person.seq_id,))
         self.icon = image
