@@ -79,7 +79,7 @@ def present_3s(word):
     """Simle present, 3rd person singular"""
     tenses = find(word)
     try:
-        return tenses['present_3p']
+        return tenses['present_3s']
     except KeyError:
         return tenses['present'] + 's'
 
