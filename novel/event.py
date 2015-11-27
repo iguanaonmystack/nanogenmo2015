@@ -280,4 +280,12 @@ class Wake(Event):
         yield "I woke up"
 class Rest(Event):
     def clauses(self, diary):
-        yield "I am resting"
+        if random.random() < 0.7:
+            return
+        yield random.choice([
+            "I'm now resting",
+            "I'll stay here for a while",
+            "I'm laying low for a bit",
+            "that's this diary up to date",
+            "bye for now"])
+

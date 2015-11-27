@@ -51,7 +51,7 @@ def novel(x, y, num_people):
     print('Key:')
     print()
     print('    ~~ = water; || = forest; [empty] = meadows. | = border separator')
-
+    print()
     print("Dramatis Personae")
     print('-----------------')
     print()

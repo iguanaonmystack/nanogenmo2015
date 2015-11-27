@@ -35,24 +35,28 @@ class Diary:
         between = False
         end = False
         start = True
-        i = -1
+        had_punct = True
         for i, event in enumerate(self.events):
             if between:
                 punct, end = self.punct()
+                had_punct = True
                 yield punct
             between = False
             for j, clause in enumerate(event.clauses(self)):
                 between = True
                 if j > 0:
                     punct, end = self.punct()
+                    had_punct = True
                     yield punct
                 if end or start:
                     start = False
+                    had_punct = False
                     yield clause[0].upper() + clause[1:] # TODO this is bad
                 else:
+                    had_punct = False
                     yield clause
-        if i != -1:
-            yield random.choice(['.', '!'])
+        if not had_punct:
+            yield random.choice(['.', '.', '!'])
 
         self.events[:] = []
 
@@ -89,7 +93,11 @@ class Diary:
         print(self.person.name)
         print('-' * len(self.person.name))
         print()
-        for clause in self.write():
+        clauses = list(self.write())
+        if clauses[-1] not in ('.', '!'):
+            # replace final punctuation with a sentence-ender.
+            clauses[-1] = random.choice(['.', '.', '!'])
+        for clause in clauses:
             print(clause, end='')
         print()
         print()
