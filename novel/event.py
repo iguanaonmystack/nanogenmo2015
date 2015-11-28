@@ -4,6 +4,7 @@ import logging
 
 from .text import verbs
 from .fight import Escape, FightAction
+from . import util
 
 class Event:
     def __init__(self, time, person, worldview):
@@ -17,7 +18,7 @@ class Event:
 class Terrain(Event):
 
     def clauses(self, diary):
-        logging.debug('Last visited tile: %d', self.worldview.visited)
+        logging.debug('Last visited tile %s: %d', self.worldview, self.worldview.visited)
         if self.worldview.visited == 1:
             # first visit
             yield from self.first_visit(diary)
@@ -31,8 +32,15 @@ class Terrain(Event):
         adjectives = list(self.worldview.terrain.adjectives)
         # TODO - synonyms?
         description = ', '.join(adjectives) + (' ' if adjectives else '') + description
+        reltime = util.reltime(self.time, diary.time)
         if diary.time - self.time:
-            yield "I came across a %s" % description
+            time_before = False
+            if random.random() < 0.4:
+                time_before = True
+            yield "%sI came across a %s%s" % (
+                reltime + ' ' if time_before else '',
+                description,
+                '' if time_before else ' ' + reltime)
             is_ = 'was'
         else:
             yield "I'm now in a %s" % description
@@ -55,13 +63,15 @@ class Terrain(Event):
         if noteworthy:
             comma = ', ' if len(noteworthy) > 3 else ' '
             description += ' with ' + comma.join(noteworthy)
-        if diary.time - self.time:
+        logging.debug('subsequent visit diary time %d, self time %d', diary.time, self.time)
+        if not diary.time - self.time:
             yield "I'm now back at the %s" % (description)
             if self.worldview.visited > 1:
                 yield "it's been %d hours since I was last here" % (
                     self.worldview.visited - 1)
         else:
             yield "I returned to the %s" % (description)
+            yield util.reltime(self.time, diary.time)
             if self.worldview.visited > 1:
                 yield "it was the first time I had been here for %d hours" % (
                     self.worldview.visited - 1)
@@ -285,6 +295,7 @@ class Rest(Event):
         yield random.choice([
             "I'm now resting",
             "I'll stay here for a while",
+            "going to take a nap now",
             "I'm laying low for a bit",
             "that's this diary up to date",
             "bye for now"])

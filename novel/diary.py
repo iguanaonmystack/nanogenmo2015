@@ -9,6 +9,8 @@ except ImportError:
         file=sys.stderr)
     Image = None
 
+from . import util
+
 class Diary:
     def __init__(self, person):
         self.person = person
@@ -90,8 +92,9 @@ class Diary:
             print("<img align='left' alt='%s' src='icon-%s.png'>" % (
                 self.person.name, self.person.seq_id))
             print()
-        print(self.person.name)
-        print('-' * len(self.person.name))
+        prettytime = util.prettytime(self.time)
+        print(self.person.name, prettytime)
+        print('-' * (len(self.person.name) + 1 + len(prettytime)))
         print()
         clauses = list(self.write())
         if clauses[-1] not in ('.', '!'):
