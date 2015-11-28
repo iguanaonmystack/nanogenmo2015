@@ -59,7 +59,7 @@ class Terrain(Event):
             if prop.noteworthy(self.worldview.terrain.props):
                 noteworthy.append(prop.definite)
         if len(noteworthy) > 1:
-            noteworthy.insert(len(noteworthy) - 1, 'and')
+            noteworthy[-1] = 'and ' + noteworthy[-1]
         if noteworthy:
             comma = ', ' if len(noteworthy) > 3 else ' '
             description += ' with ' + comma.join(noteworthy)
