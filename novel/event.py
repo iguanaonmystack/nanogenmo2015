@@ -82,13 +82,22 @@ class Thirst(Event):
         self.thirst = thirst
 
     def clauses(self, diary):
-        if self.thirst > 10:
-            yield "I'm really thirsty"
-        elif self.thirst > 7:
-            if random.random() > 0.5:
-                yield "I'm thirsty"
+        if diary.time - self.time:
+            if self.thirst > 10:
+                yield "I was really thirsty"
+            elif self.thirst > 7:
+                if random.random() > 0.5:
+                    yield "I was thirsty"
+            else:
+                yield "I was getting thirsty"
         else:
-            yield "I'm getting thirsty"
+            if self.thirst > 10:
+                yield "I'm really thirsty"
+            elif self.thirst > 7:
+                if random.random() > 0.5:
+                    yield "I'm thirsty"
+            else:
+                yield "I'm getting thirsty"
 
 class Occupants(Event):
     
@@ -159,15 +168,14 @@ class Knowledge(Event):
         self.specific = specific
 
     def clauses(self, diary):
-        know = 'know'
+        dont = 'don\'t '
         is_ = 'is'
         if diary.time - self.time:
-            know = 'knew'
+            dont = 'didn\'t '
             is_ = 'was'
         if not self.specific or random.random() > 0.8:
-            yield "I %s%s the %s of %s" % (
-                know,
-                self.posneg < 0 and " not" or '',
+            yield "I %sknow the %s of %s" % (
+                self.posneg < 0 and dont or '',
                 self.what,
                 self.noun)
             if self.specific:

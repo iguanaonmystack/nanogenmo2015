@@ -76,7 +76,7 @@ class GoTo(Goal):
         if self.path is None:
             logging.debug('no path available')
             # Character doesn't know where there is water; explore.
-            self.person.log(event.Knowledge, 'location', self.prop.__doc__, -1, None)
+            self.person.log(event.Knowledge, 'location', self.prop, -1, None)
             self.person.goals.add_or_replace(Explore, None, self.priority)
             return False
         elif self.path[0][1] == '':
