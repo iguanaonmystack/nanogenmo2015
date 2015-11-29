@@ -67,14 +67,14 @@ class Terrain(Event):
         if not diary.time - self.time:
             yield "I'm now back at the %s" % (description)
             if self.worldview.visited > 2:
-                yield "it's been %d hours since I was last here" % (
-                    self.worldview.visited - 1)
+                yield "it's been %s hours since I was last here" % (
+                    util.int_to_word(self.worldview.visited - 1))
         else:
             yield "I returned to the %s" % (description)
             yield util.reltime(self.time, diary.time)
             if self.worldview.visited > 2:
-                yield "it was the first time I had been here for %d hours" % (
-                    self.worldview.visited - 1)
+                yield "it was the first time I had been here for %s hours" % (
+                    util.int_to_word(self.worldview.visited - 1))
 
 class Thirst(Event):
     def __init__(self, thirst, *args, **kw):
