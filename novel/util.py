@@ -40,21 +40,21 @@ def int_to_word(num):
 
     if (num < k):
         if num % 100 == 0: return d[num // 100] + ' hundred'
-        else: return d[num // 100] + ' hundred and ' + int_to_en(num % 100)
+        else: return d[num // 100] + ' hundred and ' + int_to_word(num % 100)
 
     if (num < m):
-        if num % k == 0: return int_to_en(num // k) + ' thousand'
-        else: return int_to_en(num // k) + ' thousand, ' + int_to_en(num % k)
+        if num % k == 0: return int_to_word(num // k) + ' thousand'
+        else: return int_to_word(num // k) + ' thousand, ' + int_to_word(num % k)
 
     if (num < b):
-        if (num % m) == 0: return int_to_en(num // m) + ' million'
-        else: return int_to_en(num // m) + ' million, ' + int_to_en(num % m)
+        if (num % m) == 0: return int_to_word(num // m) + ' million'
+        else: return int_to_word(num // m) + ' million, ' + int_to_word(num % m)
 
     if (num < t):
-        if (num % b) == 0: return int_to_en(num // b) + ' billion'
-        else: return int_to_en(num // b) + ' billion, ' + int_to_en(num % b)
+        if (num % b) == 0: return int_to_word(num // b) + ' billion'
+        else: return int_to_word(num // b) + ' billion, ' + int_to_word(num % b)
 
-    if (num % t == 0): return int_to_en(num // t) + ' trillion'
-    else: return int_to_en(num // t) + ' trillion, ' + int_to_en(num % t)
+    if (num % t == 0): return int_to_word(num // t) + ' trillion'
+    else: return int_to_word(num // t) + ' trillion, ' + int_to_word(num % t)
 
     raise AssertionError('num is too large: %s' % str(num))

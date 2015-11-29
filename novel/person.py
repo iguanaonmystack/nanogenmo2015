@@ -47,7 +47,7 @@ class Person:
         # log
         self.diary = Diary(self)
 
-        # fixed behaviour attributes
+        # fixed behaviour attributes (per person)
         self.shy = 0.9
         self.explorer = 0.9
         self.escapologist = 0.2

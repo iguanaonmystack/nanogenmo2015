@@ -9,6 +9,7 @@ except ImportError:
         file=sys.stderr)
     Image = None
 
+from .namegen import namegen
 from . import util
 
 class Diary:
@@ -18,6 +19,14 @@ class Diary:
         self._punct = ['. ', '. ', '; ', '; ', ', ', ', ', '! ']
         self.time = None # most recent update time
         self.icon = None
+        self.salutation = "%s%s%s" % (
+            random.choice(['Dear ', 'Hi ', 'Hello ', '']),
+            random.choice([
+                'Diary', 'Mum', 'Dad', 'Mum and Dad', namegen()[0]]),
+            random.choice(['', ',', ':']))
+        self.signoff = "%s%s" % (
+            random.choice(['Yours, ', ' -- ']),
+            self.person.name)
 
     def punct(self):
         sentence_end = False
@@ -96,6 +105,8 @@ class Diary:
         print(self.person.name, prettytime)
         print('-' * (len(self.person.name) + 1 + len(prettytime)))
         print()
+        print(self.salutation)
+        print()
         clauses = list(self.write())
         if clauses[-1] not in ('.', '!'):
             # replace final punctuation with a sentence-ender.
@@ -103,4 +114,6 @@ class Diary:
         for clause in clauses:
             print(clause, end='')
         print()
+        print()
+        print(self.signoff)
         print()
