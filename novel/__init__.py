@@ -7,6 +7,23 @@ from .person import Person
 from .namegen import namegen
 from . import event
 
+# monkeypatch random to ensure that it is not handed an object
+# whose order might be arbitrary; this defeats the point of
+# the -r switch.
+# While Python states that sets and dicts have a predictable order
+# within python versions, it's also seems to be dependent on 
+# exactly when the object is initialised during testing, and
+# despite random.seed being used, the choice still changes across
+# different runs!
+import random
+_choice = random.choice
+def newchoice(iterable):
+    if isinstance(iterable, (list, tuple)):
+        return _choice(iterable)
+    raise RuntimeError(
+        'Monkeypatched random.choice() rejecting iterable with arbitrary order')
+random.choice = newchoice
+
 def novel(x, y, num_people):
     world = World.from_random(x, y)
     names = []

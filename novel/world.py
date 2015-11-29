@@ -1,5 +1,6 @@
 import random
 import operator
+from collections import OrderedDict
 
 from . import terrains
 from . import props
@@ -124,7 +125,7 @@ class Tile:
 
     @property
     def neighbours(self):
-        d = {}
+        d = OrderedDict()
         for direction in ('north', 'east', 'south', 'west'):
             if getattr(self, direction) is not None:
                 d[direction] = getattr(self, direction)

@@ -138,7 +138,7 @@ class Explore(Goal):
         direction = self.direction
         if direction is None:
             neighbours = self.person.tile.neighbours
-            direction = random.choice(list(sorted(neighbours)))
+            direction = random.choice(list(neighbours.keys()))
         self.person._move(direction, getattr(self.person.tile, direction))
 
 class Escape(Explore):

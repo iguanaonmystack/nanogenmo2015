@@ -96,6 +96,9 @@ class Diary:
     def print(self):
         if Image and not self.icon:
             self.write_icon()
+        clauses = list(self.write())
+        if not clauses:
+            return
         if self.icon:
             print()
             print("<img align='left' alt='%s' src='icon-%s.png'>" % (
@@ -107,7 +110,6 @@ class Diary:
         print()
         print(self.salutation)
         print()
-        clauses = list(self.write())
         if clauses[-1] not in ('.', '!'):
             # replace final punctuation with a sentence-ender.
             clauses[-1] = random.choice(['.', '.', '!'])
