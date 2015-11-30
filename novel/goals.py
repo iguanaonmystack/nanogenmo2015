@@ -1,3 +1,4 @@
+import sys
 import random
 import bisect
 import logging
@@ -6,6 +7,7 @@ from . import event
 from . import fight
 from . import terrains
 from . import props
+from . import world
 
 class Goals(list):
     def __init__(self, person, *args, **kw):
@@ -137,8 +139,18 @@ class Explore(Goal):
         super().achieve()
         direction = self.direction
         if direction is None:
-            neighbours = self.person.tile.neighbours
-            direction = random.choice(list(neighbours.keys()))
+            neighbours = list(self.person.tile.neighbours.keys())
+            if self.person.time > 30 * 24:
+                # after a month, people strangely drawn towards each other...
+                def target_fn(tile):
+                    if tile.people and self.person not in tile.people:
+                        return True
+                    return False
+                path, item = world.find(self.person.tile, target_fn)
+                target_dir = path[0][1]
+                if target_dir in neighbours:
+                    neighbours.extend([path[0][0]] * 10)
+            direction = random.choice(neighbours)
         self.person._move(direction, getattr(self.person.tile, direction))
 
 class Escape(Explore):

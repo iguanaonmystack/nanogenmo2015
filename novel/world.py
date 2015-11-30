@@ -200,6 +200,18 @@ def _find(current, visited_nodes, distances, parents, target_fn=None, action=Non
         # no unvisted nodes, unable to find target
         return None, None
 
+def find(initial, target_fn=None):
+    visited_nodes = set()
+    distances = {}
+    parents = {}
+    dest, item = _find(initial, visited_nodes,
+        distances, parents, target_fn=target_fn)
+    if dest is not None:
+        path = [(dest, '')]
+        while path[0][0] != initial:
+            path = [parents[path[0][0]]] + path
+        return path, item
+    return None, None
 
 def opposite_direction(direction):
     d = {'north': 'south',
