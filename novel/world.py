@@ -23,18 +23,18 @@ class World(list):
                 row.append(None)
 
         # Generate some forests:
-        for n in range(tiles // 10):
-            sizex = random.randint(0, self.sizex // 2)
-            sizey = random.randint(0, self.sizey // 2)
+        for n in range(tiles // 16):
+            sizex = random.randint(0, 5)
+            sizey = random.randint(0, 5)
             origin = random.randint(0, x - sizex - 1), random.randint(0, y - sizey - 1)
             for i in range(origin[0], origin[0] + sizex):
                 for j in range(origin[1], origin[1] + sizey):
                     self[i][j] = Tile(i, j, terrains.Forest)
 
         # Generate some lakes:
-        for n in range(tiles // 8):
+        for n in range(tiles // 64):
             centre = random.randint(0, x - 1), random.randint(0, y - 1)
-            radius = random.randint(0, min(x // 8, y // 8))
+            radius = random.randint(0, 3)
             radius_sq = radius ** 2
             self[centre[0]][centre[1]] = Tile(centre[0], centre[1], terrains.Lake)
             for offset_i in range(- radius, radius + 1):
